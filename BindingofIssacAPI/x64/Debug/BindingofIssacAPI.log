@@ -1,0 +1,160 @@
+﻿  pch.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\pch.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\define.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\struct.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  BindingofIssacAPI.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\BindingofIssacAPI.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  func.cpp
+  MyAnim.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLogMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyAnimator.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLogMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyAsset.cpp
+  MyAssetMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAssetMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySound.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyBackGround.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyCameraMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.cpp(14,11): warning C4244: '초기화 중': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.cpp(17,76): warning C4244: '인수': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.cpp(17,66): warning C4244: '인수': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MyCollider.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyCollisionMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollisionMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyComponent.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyEngine.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyEngine.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLogMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyUIMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySoundMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyEntity.cpp
+  MyGCMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyGCMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyKeyMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyKeyMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyLayer.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyLevel.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyLevelMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevelMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLogMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyLogMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLogMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyObject.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  MyPathMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyPathMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyPlayLevel.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\TitleUI.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MySound.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySound.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySound.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySoundMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MySoundMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySoundMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySoundMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MySound.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyTaskMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyTexture.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTexture.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyTimeMgr.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTimeMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyTitleLevel.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyTitleLevel.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyLevel.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\TitleUI.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  MyUI.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyUI.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  struct.cpp
+  TitleUI.cpp
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\TitleUI.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyObject.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCameraMgr.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnimator.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyAnim.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssacAPI\MyCollider.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  코드를 생성하고 있습니다...
+  BindingofIssacAPI.vcxproj -> C:\Users\shin\Desktop\TheBindingofIssac-WinAPI-portfolio\BindingofIssac\bin\game_debug.exe
