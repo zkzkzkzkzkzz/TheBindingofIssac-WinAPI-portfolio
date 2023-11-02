@@ -13,7 +13,7 @@ class MyPlayer :
 private:
     MyAnimator* m_AnimatorHead;
     MyAnimator* m_AnimatorBody;
-    //MyMovement* m_Movement;
+    MyMovement* m_Movement;
     //MyCollider* m_Collider;
 
 public:
