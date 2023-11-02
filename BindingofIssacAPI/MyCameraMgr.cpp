@@ -25,22 +25,22 @@ void MyCameraMgr::tick()
 {
 	if (KEY_PRESSED(LEFT))
 	{
-		m_vLookAt.x -= 200.f * DT;
+		m_vLookAt.x -= 960.f * DT;
 	}
 
 	if (KEY_PRESSED(RIGHT))
 	{
-		m_vLookAt.x += 200.f * DT;
+		m_vLookAt.x += 960.f * DT;
 	}
 
 	if (KEY_PRESSED(UP))
 	{
-		m_vLookAt.y -= 200.f * DT;
+		m_vLookAt.y -= 960.f * DT;
 	}
 
 	if (KEY_PRESSED(DOWN))
 	{
-		m_vLookAt.y += 200.f * DT;
+		m_vLookAt.y += 960.f * DT;
 	}
 
 	// 화면 해상도의 중심위치를 알아낸다.
@@ -92,6 +92,44 @@ void MyCameraMgr::tick()
 			m_Alpha = (UINT)(alpha * 255);
 		}
 	}
+
+	else if (evnt.Type == CAM_EFFECT::SCROLLDOWN)
+	{
+		evnt.AccTime += DT;
+		
+		if (evnt.Duration <= evnt.AccTime)
+		{
+			m_EventList.pop_front();
+		}
+		else if (evnt.Duration >= evnt.AccTime)
+		{
+			// 카메라 초기 속도
+			float fSpeed = 1000.f;
+
+			m_vLookAt.y += fSpeed* DT;
+
+			
+		}
+	}
+
+	else if (evnt.Type == CAM_EFFECT::SCROLLUP)
+	{
+		evnt.AccTime += DT;
+
+		if (evnt.Duration <= evnt.AccTime)
+		{
+			m_EventList.pop_front();
+		}
+		else if (evnt.Duration >= evnt.AccTime)
+		{
+			// 카메라 초기 속도
+			float fSpeed = 1000.f;
+
+			m_vLookAt.y -= fSpeed * DT;
+		}
+
+	}
+
 }
 
 void MyCameraMgr::render(HDC _dc)

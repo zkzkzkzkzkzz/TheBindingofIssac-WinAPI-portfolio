@@ -7,6 +7,8 @@ enum class CAM_EFFECT
 {
 	FADE_IN,
 	FADE_OUT,
+	SCROLLDOWN,
+	SCROLLUP,
 };
 
 struct FCamEvent
@@ -49,6 +51,25 @@ public:
 	{
 		FCamEvent evnt = {};
 		evnt.Type = CAM_EFFECT::FADE_OUT;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
+	}
+
+	void ScrollDown(float _time)
+	{
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::SCROLLDOWN;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
+	}
+
+
+	void ScrollUp(float _time)
+	{
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::SCROLLUP;
 		evnt.AccTime = 0.f;
 		evnt.Duration = _time;
 		m_EventList.push_back(evnt);

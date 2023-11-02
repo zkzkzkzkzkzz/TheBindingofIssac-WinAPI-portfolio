@@ -2,18 +2,18 @@
 #include "MyLevel.h"
 
 class MyTexture;
+class MyRoom;
 
 class MyPlayLevel :
     public MyLevel
 {
 private:
-    MyTexture*  m_Texture;
-    Vec2        vLookAt;
-    int         m_CurScreen;
+    MyTexture*      m_Texture;
+    Vec2            vLookAt;
+    vector<MyRoom*> m_vecRoom;
 
 public:
-    void SetCurScreen(TITLE_TYPE _type) { m_CurScreen = (int)_type; }
-    int GetCurScreen() { return m_CurScreen; }
+
 
 public:
     virtual void init() override;

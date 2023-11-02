@@ -9,12 +9,15 @@
 TitleUI::TitleUI()
 	: m_Atlas(nullptr)
 	, m_Animator(nullptr)
+	, m_Inst(nullptr)
+	, m_Delegate(nullptr)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Titlemenu", L"texture\\UI\\titlemenu.png");
 	
 	m_Animator = AddComponent<MyAnimator>(L"TitleAnimator");
 
 	m_Animator->LoadAnimation(L"animdata\\TitleAnim.txt");
+
 	m_Animator->Play(L"TitleAnim", true);
 }
 

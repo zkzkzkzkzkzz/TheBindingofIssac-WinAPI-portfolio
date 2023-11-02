@@ -7,6 +7,7 @@
 #include "MyKeyMgr.h"
 #include "MyLevelMgr.h"
 #include "MyCameraMgr.h"
+#include "MyTimeMgr.h"
 
 #include "MyObject.h"
 #include "MyBackGround.h"
@@ -21,10 +22,12 @@ void MyTitleLevel::init()
 	AddObject(LAYER::MAP, pBG);
 
 	TitleUI* pTitle = new TitleUI;
-	pTitle->SetPos(Vec2(234.f, 200.f));
-	AddObject(LAYER::MAP, pTitle);
+	pTitle->SetPos(Vec2(470.f, 380.f));
+	AddObject(LAYER::UI, pTitle);
 
 	m_CurScreen = (int)TITLE_TYPE::TITLE;
+
+	m_Speed = 10000.f;
 
 	// 카메라 설정
 	vLookAt = MyEngine::GetInst()->GetResolution();
@@ -46,12 +49,12 @@ void MyTitleLevel::tick()
 {
 	MyLevel::tick();
 
+
 	if (m_CurScreen == (int)TITLE_TYPE::TITLE)
 	{
 		if (KEY_TAP(SPACE))
 		{
-			vLookAt.y += 320.f;
-			MyCameraMgr::GetInst()->SetLookAt(vLookAt);
+			MyCameraMgr::GetInst()->ScrollDown(0.65f);
 			m_CurScreen = (int)TITLE_TYPE::MENU;
 		}
 	}
@@ -60,6 +63,11 @@ void MyTitleLevel::tick()
 		if (KEY_TAP(SPACE))
 		{
 			ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+		}
+		else if (KEY_TAP(ESC))
+		{
+			MyCameraMgr::GetInst()->ScrollUp(0.65f);
+			m_CurScreen = (int)TITLE_TYPE::TITLE;
 		}
 	}
 }

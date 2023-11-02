@@ -42,7 +42,9 @@ bool MyTexture::Load(const wstring& _strFilePath)
 		Status stat = pBitmap->GetHBITMAP(Color(0, 0, 0, 0), &m_hBit);
 
 		if (Status::Ok != stat)
+		{
 			return false;
+		}
 	}
 
 	m_hDC = CreateCompatibleDC(MyEngine::GetInst()->GetMainDC());
