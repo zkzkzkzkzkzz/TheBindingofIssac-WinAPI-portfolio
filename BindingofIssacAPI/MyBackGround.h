@@ -10,7 +10,7 @@ class MyBackGround :
     GENERATED_OBJECT(MyObject);
 
 private:
-    MyTexture*  m_Atlas;
+    MyTexture* m_Atlas;
 
 public:
     virtual void tick(float _DT) override;

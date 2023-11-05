@@ -57,10 +57,6 @@ void MyPlayLevel::init()
 
 void MyPlayLevel::enter()
 {
-
-	MyCameraMgr::GetInst()->FadeOut(1.f);
-	MyCameraMgr::GetInst()->FadeIn(1.f);
-
 	// 카메라 설정
 	vLookAt = MyEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;

@@ -39,14 +39,27 @@ void MyMovement::finaltick(float _DT)
 	}
 
 	// 최대 속도 제한
-	if (abs(m_Velocity.x) > m_MaxSpeed)
+	if (abs(m_Velocity.x) >= m_MaxSpeed)
 	{
 		m_Velocity.x = (m_Velocity.x / abs(m_Velocity.x)) * m_MaxSpeed;
+
+		if (abs(m_Velocity.x) + abs(m_Velocity.y) >= m_MaxSpeed)
+		{
+			m_Velocity.Normalize();
+			m_Velocity *= m_MaxSpeed;
+		}
 	}
-	if (abs(m_Velocity.y) > m_MaxSpeed)
+	if (abs(m_Velocity.y) >= m_MaxSpeed)
 	{
 		m_Velocity.y = (m_Velocity.y / abs(m_Velocity.y)) * m_MaxSpeed;
+
+		if (abs(m_Velocity.x) + abs(m_Velocity.y) >= m_MaxSpeed)
+		{
+			m_Velocity.Normalize();
+			m_Velocity *= m_MaxSpeed;
+		}
 	}
+
 
 	float fFrictionX = -m_Velocity.x;
 	if (fFrictionX != 0.f)

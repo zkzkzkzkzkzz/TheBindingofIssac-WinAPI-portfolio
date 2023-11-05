@@ -40,7 +40,7 @@ MyPlayer::MyPlayer()
 	m_Movement = AddComponent<MyMovement>(L"PlayerMovement");
 	m_Movement->SetMass(1.f);
 	m_Movement->SetInitSpeed(250.f);
-	m_Movement->SetMaxSpeed(280.f);
+	m_Movement->SetMaxSpeed(300.f);
 	m_Movement->SetFrictionScale(450.f);
 }
 

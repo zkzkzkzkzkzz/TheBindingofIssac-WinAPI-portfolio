@@ -10,9 +10,8 @@ class TitleAnimUI :
     GENERATED_OBJECT(MyUI);
 
 private:
-    MyTexture* m_Atlas;
+    MyTexture*  m_Atlas;
     MyAnimator* m_Animator;
-
 
 public:
     virtual void tick(float _DT) override;

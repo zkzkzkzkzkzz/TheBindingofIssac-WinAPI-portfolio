@@ -26,7 +26,6 @@ TitleAnimUI::~TitleAnimUI()
 void TitleAnimUI::tick(float _DT)
 {
 	Super::tick(_DT);
-
 }
 
 

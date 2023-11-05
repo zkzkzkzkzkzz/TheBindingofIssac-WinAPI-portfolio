@@ -51,6 +51,9 @@ void MyTitleLevel::init()
 
 	m_CurScreen = (int)TITLE_TYPE::TITLE;
 
+	// 로딩용 이미지 생성
+
+
 	// 카메라 설정
 	vLookAt = MyEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
@@ -87,6 +90,8 @@ void MyTitleLevel::tick()
 	{
 		if (KEY_TAP(SPACE) && m_CursorIdx == 0)
 		{	
+			MyCameraMgr::GetInst()->FadeIn(1.5f);
+
 			ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 		}
 		else if (KEY_TAP(ESC))
