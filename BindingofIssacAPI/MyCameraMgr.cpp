@@ -11,7 +11,7 @@
 
 MyCameraMgr::MyCameraMgr()
 	: m_Veil(nullptr)
-	, m_Alpha(0.f)
+	, m_Alpha(0)
 	, m_fSpeed(13000.f)
 	, m_CurSpeed(0.f)
 	, damping(0.97f)
@@ -124,7 +124,7 @@ void MyCameraMgr::tick()
 		}
 		else if (BtwTime > 0.f && BtwTime <= 0.555f)
 		{
-			m_vLookAt.y += 350.f * DT * BtwTime;
+			m_vLookAt.y += 400.f * DT * BtwTime;
 
 			if (m_vLookAt.y >= 960.f)
 			{
