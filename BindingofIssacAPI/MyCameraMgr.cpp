@@ -113,18 +113,18 @@ void MyCameraMgr::tick()
 			SetLookAt(Vec2(480.f, 960.f));
 			m_EventList.pop_front();
 		}
-		else if (BtwTime > 0.3f)
+		else if (BtwTime > 0.555f)
 		{
-			m_vLookAt.y += 7000.f * DT * BtwTime;
+			m_vLookAt.y += 23000.f * DT * BtwTime;
 
 			if (m_vLookAt.y >= 960.f)
 			{
 				SetLookAt(Vec2(480.f, 960.f));
 			}
 		}
-		else if (BtwTime > 0.f && BtwTime <= 0.3f)
+		else if (BtwTime > 0.f && BtwTime <= 0.555f)
 		{
-			m_vLookAt.y += 100.f * DT * BtwTime;
+			m_vLookAt.y += 350.f * DT * BtwTime;
 
 			if (m_vLookAt.y >= 960.f)
 			{
@@ -149,18 +149,18 @@ void MyCameraMgr::tick()
 			SetLookAt(Vec2(480.f, 320.f));
 			m_EventList.pop_front();
 		}
-		else if (BtwTime > 0.3f)
+		else if (BtwTime > 0.555f)
 		{
-			m_vLookAt.y -= 7000.f * DT * BtwTime;
+			m_vLookAt.y -= 23000.f * DT * BtwTime;
 
 			if (m_vLookAt.y <= 320.f)
 			{
 				SetLookAt(Vec2(480.f, 320.f));
 			}
 		}
-		else if (BtwTime > 0.f && BtwTime <= 0.3f)
+		else if (BtwTime > 0.f && BtwTime <= 0.555f)
 		{
-			m_vLookAt.y -= 100.f * DT * BtwTime;
+			m_vLookAt.y -= 350.f * DT * BtwTime;
 
 			if (m_vLookAt.y <= 320.f)
 			{
