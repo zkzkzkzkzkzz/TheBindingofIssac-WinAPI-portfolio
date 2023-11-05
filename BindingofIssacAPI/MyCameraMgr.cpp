@@ -27,22 +27,22 @@ MyCameraMgr::~MyCameraMgr()
 
 void MyCameraMgr::tick()
 {
-	if (KEY_PRESSED(LEFT))
+	if (KEY_PRESSED(J))
 	{
 		m_vLookAt.x -= 960.f * DT;
 	}
 
-	if (KEY_PRESSED(RIGHT))
+	if (KEY_PRESSED(L))
 	{
 		m_vLookAt.x += 960.f * DT;
 	}
 
-	if (KEY_PRESSED(UP))
+	if (KEY_PRESSED(I))
 	{
 		m_vLookAt.y -= 960.f * DT;
 	}
 
-	if (KEY_PRESSED(DOWN))
+	if (KEY_PRESSED(K))
 	{
 		m_vLookAt.y += 960.f * DT;
 	}
@@ -100,72 +100,71 @@ void MyCameraMgr::tick()
 	else if (evnt.Type == CAM_EFFECT::SCROLLDOWN)
 	{
 		evnt.AccTime += DT;
-		
-		if (evnt.Duration <= evnt.AccTime)
+
+		float BtwTime = evnt.Duration - evnt.AccTime;
+
+		if (m_vLookAt.y >= 960.f)
 		{
-			//SetLookAt(Vec2(480, 960));
-			m_fSpeed = 13000.f;
-			dampingCount = 0;
+			SetLookAt(Vec2(480.f, 960.f));
+		}
+
+		if (BtwTime <= 0.f)
+		{
+			SetLookAt(Vec2(480.f, 960.f));
 			m_EventList.pop_front();
 		}
-		else
+		else if (BtwTime > 0.3f)
 		{
-			if (dampingCount < 50)
-			{
-				m_CurSpeed = m_fSpeed * DT;
-				m_fSpeed *= damping;
-				++dampingCount;
-			}
+			m_vLookAt.y += 7000.f * DT * BtwTime;
 
-			if (m_CurSpeed < 8.f)
+			if (m_vLookAt.y >= 960.f)
 			{
-				m_CurSpeed = 0.24f;
-			}
-			else if (m_CurSpeed > 18.f)
-			{
-				m_CurSpeed = 18.f;
-			}
-			m_vLookAt.y += m_CurSpeed;
-
-			if (m_vLookAt.y >= 955.f)
-			{
-				SetLookAt(Vec2(480, 960));
+				SetLookAt(Vec2(480.f, 960.f));
 			}
 		}
+		else if (BtwTime > 0.f && BtwTime <= 0.3f)
+		{
+			m_vLookAt.y += 100.f * DT * BtwTime;
+
+			if (m_vLookAt.y >= 960.f)
+			{
+				SetLookAt(Vec2(480.f, 960.f));
+			}
+ 		}
 	}
 
 	else if (evnt.Type == CAM_EFFECT::SCROLLUP)
 	{
 		evnt.AccTime += DT;
 
-		if (evnt.Duration <= evnt.AccTime)
+		float BtwTime = evnt.Duration - evnt.AccTime;
+
+		if (m_vLookAt.y <= 320.f)
 		{
-			m_fSpeed = 13000.f;
-			dampingCount = 0;
+			SetLookAt(Vec2(480.f, 320.f));
+		}
+
+		if (BtwTime <= 0.f)
+		{
+			SetLookAt(Vec2(480.f, 320.f));
 			m_EventList.pop_front();
 		}
-		else
+		else if (BtwTime > 0.3f)
 		{
-			if (dampingCount < 40)
-			{
-				m_CurSpeed = m_fSpeed * DT;
-				m_fSpeed *= damping;
-				++dampingCount;
-			}
+			m_vLookAt.y -= 7000.f * DT * BtwTime;
 
-			if (m_CurSpeed < 4.f)
+			if (m_vLookAt.y <= 320.f)
 			{
-				m_CurSpeed = 0.15f;
+				SetLookAt(Vec2(480.f, 320.f));
 			}
-			else if (m_CurSpeed > 18.f)
-			{
-				m_CurSpeed = 18.f;
-			}
-			m_vLookAt.y -= m_CurSpeed;
+		}
+		else if (BtwTime > 0.f && BtwTime <= 0.3f)
+		{
+			m_vLookAt.y -= 100.f * DT * BtwTime;
 
-			if (m_vLookAt.y <= 325.f)
+			if (m_vLookAt.y <= 320.f)
 			{
-				SetLookAt(Vec2(480, 320));
+				SetLookAt(Vec2(480.f, 320.f));
 			}
 		}
 	}

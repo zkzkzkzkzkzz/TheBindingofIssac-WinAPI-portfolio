@@ -75,7 +75,7 @@ void MyTitleLevel::tick()
 	{
 		if (KEY_TAP(SPACE))
 		{
-			MyCameraMgr::GetInst()->ScrollDown(0.55f);
+			MyCameraMgr::GetInst()->ScrollDown(0.6f);
 			m_CurScreen = (int)TITLE_TYPE::MENU;
 		}
 		else if(KEY_TAP(ESC))
@@ -91,10 +91,10 @@ void MyTitleLevel::tick()
 		}
 		else if (KEY_TAP(ESC))
 		{
-			MyCameraMgr::GetInst()->ScrollUp(0.55f);
+			MyCameraMgr::GetInst()->ScrollUp(0.6f);
 			m_CurScreen = (int)TITLE_TYPE::TITLE;
 		}
-		else if (KEY_TAP(Q))
+		else if (KEY_TAP(DOWN))
 		{
 			++m_CursorIdx;
 			Vec2 vPos = m_Cursor->GetPos();
@@ -110,7 +110,7 @@ void MyTitleLevel::tick()
 				m_CursorIdx = 0;
 			}
 		}
-		else if (KEY_TAP(E))
+		else if (KEY_TAP(UP))
 		{
 			--m_CursorIdx;
 			Vec2 vPos = m_Cursor->GetPos();
