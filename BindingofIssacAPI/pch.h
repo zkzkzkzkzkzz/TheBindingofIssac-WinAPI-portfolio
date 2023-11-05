@@ -41,4 +41,8 @@ using namespace::Gdiplus;
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "dsound.lib")
 
+// 영상
+#include <Vfw.h>
+#pragma comment(lib, "vfw32.lib")
+
 #include "global.h"

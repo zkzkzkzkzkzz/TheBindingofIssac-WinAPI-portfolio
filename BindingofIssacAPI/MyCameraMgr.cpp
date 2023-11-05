@@ -12,6 +12,10 @@
 MyCameraMgr::MyCameraMgr()
 	: m_Veil(nullptr)
 	, m_Alpha(0.f)
+	, m_fSpeed(13000.f)
+	, m_CurSpeed(0.f)
+	, damping(0.97f)
+	, dampingCount(0)
 {
 	Vec2 vResol = MyEngine::GetInst()->GetResolution();
 	m_Veil = MyAssetMgr::GetInst()->CreateTexture(L"VeilTex", vResol.x, vResol.y);
@@ -99,16 +103,34 @@ void MyCameraMgr::tick()
 		
 		if (evnt.Duration <= evnt.AccTime)
 		{
+			//SetLookAt(Vec2(480, 960));
+			m_fSpeed = 13000.f;
+			dampingCount = 0;
 			m_EventList.pop_front();
 		}
-		else if (evnt.Duration >= evnt.AccTime)
+		else
 		{
-			// 카메라 초기 속도
-			float fSpeed = 1000.f;
+			if (dampingCount < 50)
+			{
+				m_CurSpeed = m_fSpeed * DT;
+				m_fSpeed *= damping;
+				++dampingCount;
+			}
 
-			m_vLookAt.y += fSpeed* DT;
+			if (m_CurSpeed < 8.f)
+			{
+				m_CurSpeed = 0.24f;
+			}
+			else if (m_CurSpeed > 18.f)
+			{
+				m_CurSpeed = 18.f;
+			}
+			m_vLookAt.y += m_CurSpeed;
 
-			
+			if (m_vLookAt.y >= 955.f)
+			{
+				SetLookAt(Vec2(480, 960));
+			}
 		}
 	}
 
@@ -118,16 +140,34 @@ void MyCameraMgr::tick()
 
 		if (evnt.Duration <= evnt.AccTime)
 		{
+			m_fSpeed = 13000.f;
+			dampingCount = 0;
 			m_EventList.pop_front();
 		}
-		else if (evnt.Duration >= evnt.AccTime)
+		else
 		{
-			// 카메라 초기 속도
-			float fSpeed = 1000.f;
+			if (dampingCount < 40)
+			{
+				m_CurSpeed = m_fSpeed * DT;
+				m_fSpeed *= damping;
+				++dampingCount;
+			}
 
-			m_vLookAt.y -= fSpeed * DT;
+			if (m_CurSpeed < 4.f)
+			{
+				m_CurSpeed = 0.15f;
+			}
+			else if (m_CurSpeed > 18.f)
+			{
+				m_CurSpeed = 18.f;
+			}
+			m_vLookAt.y -= m_CurSpeed;
+
+			if (m_vLookAt.y <= 325.f)
+			{
+				SetLookAt(Vec2(480, 320));
+			}
 		}
-
 	}
 
 }

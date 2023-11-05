@@ -156,16 +156,22 @@
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
     <ClInclude Include="MyGCMgr.h" />
+    <ClInclude Include="MyIssacIdle.h" />
     <ClInclude Include="MyKeyMgr.h" />
     <ClInclude Include="MyLayer.h" />
     <ClInclude Include="MyLevel.h" />
     <ClInclude Include="MyLevelMgr.h" />
     <ClInclude Include="MyLogMgr.h" />
+    <ClInclude Include="MyMovement.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyPathMgr.h" />
+    <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyPlayLevel.h" />
+    <ClInclude Include="MyRoom.h" />
     <ClInclude Include="MySound.h" />
     <ClInclude Include="MySoundMgr.h" />
+    <ClInclude Include="MyState.h" />
+    <ClInclude Include="MyStateMachine.h" />
     <ClInclude Include="MyTaskMgr.h" />
     <ClInclude Include="MyTexture.h" />
     <ClInclude Include="MyTimeMgr.h" />
@@ -179,7 +185,8 @@
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="components.h" />
-    <ClInclude Include="TitleUI.h" />
+    <ClInclude Include="TitleAnimUI.h" />
+    <ClInclude Include="TitleTexUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BindingofIssacAPI.cpp" />
@@ -196,16 +203,22 @@
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
     <ClCompile Include="MyGCMgr.cpp" />
+    <ClCompile Include="MyIssacIdle.cpp" />
     <ClCompile Include="MyKeyMgr.cpp" />
     <ClCompile Include="MyLayer.cpp" />
     <ClCompile Include="MyLevel.cpp" />
     <ClCompile Include="MyLevelMgr.cpp" />
     <ClCompile Include="MyLogMgr.cpp" />
+    <ClCompile Include="MyMovement.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyPathMgr.cpp" />
+    <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyPlayLevel.cpp" />
+    <ClCompile Include="MyRoom.cpp" />
     <ClCompile Include="MySound.cpp" />
     <ClCompile Include="MySoundMgr.cpp" />
+    <ClCompile Include="MyState.cpp" />
+    <ClCompile Include="MyStateMachine.cpp" />
     <ClCompile Include="MyTaskMgr.cpp" />
     <ClCompile Include="MyTexture.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
@@ -219,7 +232,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="struct.cpp" />
-    <ClCompile Include="TitleUI.cpp" />
+    <ClCompile Include="TitleAnimUI.cpp" />
+    <ClCompile Include="TitleTexUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc" />

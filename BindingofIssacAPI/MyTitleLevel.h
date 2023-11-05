@@ -3,6 +3,9 @@
 #include "MyLevel.h"
 
 class MyTexture;
+class TitleTexUI;
+
+constexpr int MaxMenuSize = 5;
 
 class MyTitleLevel :
 	public MyLevel
@@ -12,8 +15,12 @@ private:
     Vec2        vLookAt;
     int         m_CurScreen;
 
-    // 초기 이동 속도
-    float       m_Speed;
+    vector<TitleTexUI*> m_vecMenu;
+    int                 m_curIdx;
+    TitleTexUI*         m_Curmenu;
+
+private:
+    void MoveCursor(int _Idx);
 
 public:
     void SetCurScreen(TITLE_TYPE _type) { m_CurScreen = (int)_type; }

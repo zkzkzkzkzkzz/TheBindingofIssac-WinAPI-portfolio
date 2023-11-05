@@ -65,7 +65,7 @@ void MyAnimator::Play(const wstring& _strName, bool _bRepeat)
 {
 	m_bRepeat = _bRepeat;
 	m_CurAnim = FindAnim(_strName);
-	m_CurAnim->Reset();
+	//m_CurAnim->Reset();
 }
 
 void MyAnimator::Stop()

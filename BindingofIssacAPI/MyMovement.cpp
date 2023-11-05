@@ -30,7 +30,7 @@ void MyMovement::finaltick(float _DT)
 		{
 			Vec2 vAccelDir = m_Accel;
 			vAccelDir.Normalize();
-			m_Velocity = vAccelDir * m_InitSpeed;
+			m_Velocity = vAccelDir;
 		}
 	}
 	else

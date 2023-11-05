@@ -17,9 +17,9 @@ public:
     virtual void render(HDC _dc) override;
 
 public:
-    CLONE(MyBackGround);
+    CLONE_DISABLE(MyBackGround);
     MyBackGround();
-    MyBackGround(const MyBackGround& _Origin);
+    MyBackGround(const MyBackGround& _Origin) = delete;
     ~MyBackGround();
 };
 

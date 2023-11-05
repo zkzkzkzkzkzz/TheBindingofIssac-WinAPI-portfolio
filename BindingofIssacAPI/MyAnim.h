@@ -18,10 +18,10 @@ class MyAnim :
     public MyEntity
 {
 private:
-    MyAnimator* m_pAnimator;
+    MyAnimator*     m_pAnimator;
 
     vector<FFrame>  m_vecFrm;
-    MyTexture* m_Atlas;
+    MyTexture*      m_Atlas;
     int             m_iCurFrm;
 
     // 누적 시간

@@ -86,6 +86,7 @@ void MyEngine::tick()
 	// LevelMgr
 	MyLevelMgr::GetInst()->tick();
 	MyCollisionMgr::GetInst()->tick();
+
 	//MyUIMgr::GetInst()->tick();
 	MyLevelMgr::GetInst()->render(m_SubTex->GetDC());
 
@@ -98,7 +99,6 @@ void MyEngine::tick()
 		, m_ptResolution.x, m_ptResolution.y
 		, m_SubTex->GetDC()
 		, 0, 0, SRCCOPY);
-
 
 	// Task Execute
 	MyTaskMgr::GetInst()->tick();

@@ -3,7 +3,12 @@
 
 #include "MyEngine.h"
 
-MyTimeMgr::MyTimeMgr() : m_Frequency{}, m_PrevCount{}, m_CurCount{}, m_CurTime(0.f), m_RealTime(0)
+MyTimeMgr::MyTimeMgr()
+	: m_Frequency{}
+	, m_PrevCount{}
+	, m_CurCount{}
+	, m_CurTime(0.f)
+	, m_RealTime(0)
 {
 
 }
@@ -37,9 +42,9 @@ void MyTimeMgr::tick()
 	// 델타타임을 누적시켜 1초가 지났을 때 if구문 실행
 	if (1.f <= m_CurTime)
 	{
-		//wchar_t szText[100] = {};
-		//swprintf_s(szText, 100, L"DeltaTime : %f, FPS : %d , Real Time : %d", m_DeltaTime, m_FPSTime, m_RealTime);
-		//SetWindowText(MyEngine::GetInst()->GetMainWind(), szText);
+		wchar_t szText[100] = {};
+		swprintf_s(szText, 100, L"DeltaTime : %f, FPS : %d , Real Time : %d", m_DeltaTime, m_FPSTime, m_RealTime);
+		SetWindowText(MyEngine::GetInst()->GetMainWind(), szText);
 
 		m_FPSTime = 0;
 		m_CurTime = 0.f;

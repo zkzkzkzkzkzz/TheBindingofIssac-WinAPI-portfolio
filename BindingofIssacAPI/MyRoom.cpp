@@ -59,6 +59,7 @@ void MyRoom::tick(float _DT)
 void MyRoom::render(HDC _dc)
 {
 	Vec2 vRenderPos = GetRenderPos();
+	Vec2 vScale = GetScale();
 
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
@@ -69,8 +70,8 @@ void MyRoom::render(HDC _dc)
 
 	AlphaBlend(_dc
 		, (int)vRenderPos.x, (int)vRenderPos.y
-		, m_CurImg->GetWidth() * 2.f
-		, m_CurImg->GetHeight() * 2.f
+		, m_CurImg->GetWidth() * vScale.x
+		, m_CurImg->GetHeight() * vScale.y
 		, m_CurImg->GetDC()
 		, 0, 0
 		, m_CurImg->GetWidth()

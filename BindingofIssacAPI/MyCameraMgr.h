@@ -31,8 +31,10 @@ private:
 	list<FCamEvent>		m_EventList;
 	UINT				m_Alpha;
 
-
-
+	float				m_fSpeed;
+	float				m_CurSpeed;
+	float				damping;
+	int					dampingCount;
 public:
 	void tick();
 	void render(HDC _dc);

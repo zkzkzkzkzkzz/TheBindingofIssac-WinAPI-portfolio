@@ -120,6 +120,7 @@ enum class LAYER
 {
 	DEFAULT,
 	MAP,
+	ROOM,
 	PLAYER,
 	MONSTER,
 	TEARS,
@@ -170,4 +171,11 @@ enum class TITLE_TYPE
 	TITLE,
 	MENU,
 	END,
+};
+
+enum class Issac_STATE
+{
+	IDLE,
+	MOVE,
+	ATTACK,
 };

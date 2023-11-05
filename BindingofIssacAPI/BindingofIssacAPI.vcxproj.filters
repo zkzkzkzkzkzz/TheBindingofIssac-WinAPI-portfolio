@@ -71,6 +71,27 @@
     <Filter Include="Game\04. Level\PlayLevel">
       <UniqueIdentifier>{26373bfd-c07a-41f8-a3de-fa261b21d16c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Room">
+      <UniqueIdentifier>{9bf17729-ae51-4016-9d73-f17f7ef0190d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Player">
+      <UniqueIdentifier>{4b3fc6a5-cccb-419f-b0b9-53e05e175c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\IssacState">
+      <UniqueIdentifier>{614c8028-f4c6-4c09-addd-486895c95c3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\IssacState\Idle">
+      <UniqueIdentifier>{61a15f44-159c-4cd4-9496-237825391fb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\IssacState\Move">
+      <UniqueIdentifier>{23bdc800-4773-4da1-bf8f-317c7fae1fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI\TitleUI\TexUI">
+      <UniqueIdentifier>{fd7b885e-587f-4b0a-8143-249779e3fd8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI\TitleUI\AnimUI">
+      <UniqueIdentifier>{22361cbb-d177-4215-a724-7a80ddb9ba6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -179,14 +200,35 @@
     <ClInclude Include="MyUI.h">
       <Filter>Game\05. Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="TitleUI.h">
-      <Filter>Game\05. Object\UI\TitleUI</Filter>
-    </ClInclude>
     <ClInclude Include="MyBackGround.h">
       <Filter>Game\05. Object\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="MyPlayLevel.h">
       <Filter>Game\04. Level\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="MyRoom.h">
+      <Filter>Game\05. Object\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPlayer.h">
+      <Filter>Game\05. Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMovement.h">
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="MyState.h">
+      <Filter>Game\08. State</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStateMachine.h">
+      <Filter>Game\06. Component\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="MyIssacIdle.h">
+      <Filter>Game\08. State\IssacState\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleTexUI.h">
+      <Filter>Game\05. Object\UI\TitleUI\TexUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleAnimUI.h">
+      <Filter>Game\05. Object\UI\TitleUI\AnimUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -291,14 +333,35 @@
     <ClCompile Include="MyUI.cpp">
       <Filter>Game\05. Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TitleUI.cpp">
-      <Filter>Game\05. Object\UI\TitleUI</Filter>
-    </ClCompile>
     <ClCompile Include="MyBackGround.cpp">
       <Filter>Game\05. Object\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="MyPlayLevel.cpp">
       <Filter>Game\04. Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MyRoom.cpp">
+      <Filter>Game\05. Object\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPlayer.cpp">
+      <Filter>Game\05. Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMovement.cpp">
+      <Filter>Game\06. Component\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="MyState.cpp">
+      <Filter>Game\08. State</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStateMachine.cpp">
+      <Filter>Game\06. Component\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="MyIssacIdle.cpp">
+      <Filter>Game\08. State\IssacState\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleTexUI.cpp">
+      <Filter>Game\05. Object\UI\TitleUI\TexUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleAnimUI.cpp">
+      <Filter>Game\05. Object\UI\TitleUI\AnimUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

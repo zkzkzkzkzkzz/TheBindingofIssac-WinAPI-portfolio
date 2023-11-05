@@ -22,6 +22,8 @@ public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;
 
+    virtual void LBtnClicked(Vec2 _vMousePos) {}
+
     Vec2 GetFinalPos() { return m_vFinalPos; }
 
 public:

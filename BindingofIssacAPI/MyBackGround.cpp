@@ -12,13 +12,6 @@ MyBackGround::MyBackGround()
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"TitleBG", L"texture\\UI\\TitleLevelBG.png");
 }
 
-MyBackGround::MyBackGround(const MyBackGround& _Origin)
-	: MyObject(_Origin)
-	, m_Atlas(_Origin.m_Atlas)
-{
-	
-}
-
 MyBackGround::~MyBackGround()
 {
 }
@@ -32,6 +25,7 @@ void MyBackGround::tick(float _DT)
 void MyBackGround::render(HDC _dc)
 {
 	Vec2 vRenderPos = GetRenderPos();
+	Vec2 vScale = GetScale();
 
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
@@ -42,8 +36,8 @@ void MyBackGround::render(HDC _dc)
 
 	AlphaBlend(_dc
 		, (int)vRenderPos.x,(int)vRenderPos.y
-		, m_Atlas->GetWidth() * 2.f
-		, m_Atlas->GetHeight() * 2.f
+		, m_Atlas->GetWidth() * vScale.x
+		, m_Atlas->GetHeight() * vScale.y
 		, m_Atlas->GetDC()
 		, 0, 0
 		, m_Atlas->GetWidth()

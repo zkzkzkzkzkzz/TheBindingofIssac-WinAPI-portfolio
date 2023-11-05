@@ -36,7 +36,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 엔진 초기화
-    MyEngine::GetInst()->init(g_hWnd, POINT{ 480, 320});
+    MyEngine::GetInst()->init(g_hWnd, POINT{ 960, 640});
 
     // 단축키 테이블 참조
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_BINDINGOFISSACAPI));
