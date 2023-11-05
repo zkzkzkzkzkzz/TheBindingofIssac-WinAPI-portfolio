@@ -37,10 +37,18 @@ void MyTitleLevel::init()
 		pTexTitle->SetPos(Vec2(350.f + i * 10.f, 780.f + i * 70.f));
 		pTexTitle->SetScale(Vec2(0.5f, 0.1f));
 		pTexTitle->SetCutPos(Vec2(32.f, 288.f + i * 50.f));
-		m_vecMenu.push_back(pTexTitle);
+		pTexTitle->SetCutSize(Vec2(116.f, 40.f));
 		AddObject(LAYER::UI, pTexTitle);
 	}
-	
+
+	// 커서 생성
+	m_Cursor = new TitleTexUI;
+	m_Cursor->SetPos(Vec2(305.f, 805.f));
+	m_Cursor->SetScale(Vec2(0.1f, 0.1f));
+	m_Cursor->SetCutPos(Vec2(0.f, 310.f));
+	m_Cursor->SetCutSize(Vec2(25.f, 25.f));
+	AddObject(LAYER::UI, m_Cursor);
+
 	m_CurScreen = (int)TITLE_TYPE::TITLE;
 
 	// 카메라 설정
@@ -63,7 +71,6 @@ void MyTitleLevel::tick()
 {
 	MyLevel::tick();
 
-
 	if (m_CurScreen == (int)TITLE_TYPE::TITLE)
 	{
 		if (KEY_TAP(SPACE))
@@ -71,18 +78,53 @@ void MyTitleLevel::tick()
 			MyCameraMgr::GetInst()->ScrollDown(0.55f);
 			m_CurScreen = (int)TITLE_TYPE::MENU;
 		}
+		else if(KEY_TAP(ESC))
+		{
+			DestroyWindow(MyEngine::GetInst()->GetMainWind());
+		}
 	}
 	else if (m_CurScreen == (int)TITLE_TYPE::MENU)
 	{
-		if (KEY_TAP(SPACE))
-		{
-			
+		if (KEY_TAP(SPACE) && m_CursorIdx == 0)
+		{	
 			ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 		}
 		else if (KEY_TAP(ESC))
 		{
 			MyCameraMgr::GetInst()->ScrollUp(0.55f);
 			m_CurScreen = (int)TITLE_TYPE::TITLE;
+		}
+		else if (KEY_TAP(Q))
+		{
+			++m_CursorIdx;
+			Vec2 vPos = m_Cursor->GetPos();
+
+			vPos.x += 10.f;
+			vPos.y += 70.f;
+
+			m_Cursor->SetPos(Vec2(vPos));
+
+			if (m_CursorIdx >= MaxMenuSize)
+			{
+				m_Cursor->SetPos(Vec2(305.f, 805.f));
+				m_CursorIdx = 0;
+			}
+		}
+		else if (KEY_TAP(E))
+		{
+			--m_CursorIdx;
+			Vec2 vPos = m_Cursor->GetPos();
+
+			vPos.x -= 10.f;
+			vPos.y -= 70.f;
+
+			m_Cursor->SetPos(Vec2(vPos));
+
+			if (0 > m_CursorIdx)
+			{
+				m_Cursor->SetPos(Vec2(345.f, 1075.f));
+				m_CursorIdx = 4;
+			}
 		}
 	}
 }

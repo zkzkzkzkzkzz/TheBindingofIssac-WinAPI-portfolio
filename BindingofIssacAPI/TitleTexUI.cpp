@@ -32,6 +32,7 @@ void TitleTexUI::render(HDC _dc)
 	Vec2 vRenderPos = GetRenderPos();
 	Vec2 vScale = GetScale();
 	Vec2 vCutPos = GetCutPos();
+	Vec2 vCutSize = GetCutSize();
 
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
@@ -41,13 +42,14 @@ void TitleTexUI::render(HDC _dc)
 	blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
 	AlphaBlend(_dc
-		, (int)vRenderPos.x, (int)vRenderPos.y
+		, (int)vRenderPos.x
+		, (int)vRenderPos.y
 		, m_Menu->GetWidth() * vScale.x
 		, m_Menu->GetHeight() * vScale.y
 		, m_Menu->GetDC()
 		, vCutPos.x, vCutPos.y
-		, 116.f
-		, 40.f
+		, vCutSize.x
+		, vCutSize.y
 		, blend);
 
 	Super::render(_dc);

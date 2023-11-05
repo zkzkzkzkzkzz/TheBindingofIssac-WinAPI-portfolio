@@ -15,12 +15,13 @@ private:
     Vec2        vLookAt;
     int         m_CurScreen;
 
-    vector<TitleTexUI*> m_vecMenu;
+    // 메뉴바
     int                 m_curIdx;
     TitleTexUI*         m_Curmenu;
 
-private:
-    void MoveCursor(int _Idx);
+    // 커서
+    TitleTexUI*         m_Cursor;
+    int                 m_CursorIdx;
 
 public:
     void SetCurScreen(TITLE_TYPE _type) { m_CurScreen = (int)_type; }

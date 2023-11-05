@@ -26,6 +26,7 @@ public:
 
 	int GetLayerIdx() { return m_iLayerIdx; }
 
+	void MoveTo(Vec2 _vPos) { m_Pos = _vPos; }
 
 protected:
 	template<typename T>
