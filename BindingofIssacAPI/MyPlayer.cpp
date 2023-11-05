@@ -3,7 +3,11 @@
 
 #include "MyEngine.h"
 #include "MyAssetMgr.h"
+#include "MyTaskMgr.h"
+#include "MyLevelMgr.h"
 #include "MyKeyMgr.h"
+#include "MyLevel.h"
+#include "MyTears.h"
 #include "MyTexture.h"
 
 #include "components.h"
@@ -52,6 +56,7 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	//, m_Collider(nullptr)
 {
 	m_AnimatorHead = GetComponent<MyAnimator>();
+	m_AnimatorBody = GetComponent<MyAnimator>();
 	m_Movement = GetComponent<MyMovement>();
 	//m_Collider = GetComponent<MyCollider>();
 }
@@ -114,6 +119,23 @@ void MyPlayer::tick(float _DT)
 	{
 		m_AnimatorBody->Play(L"BIdleDown", true);
 		m_AnimatorHead->Play(L"HIdleDown", true);
+	}
+
+	if (KEY_TAP(LEFT))
+	{
+		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+		MyTears* pTears = new MyTears;
+
+		Vec2 TearsPos = GetPos();
+		TearsPos.x -= GetScale().x / 2.f;
+
+		pTears->SetSpeed(100.f);
+		pTears->SetAngle(PI);
+		pTears->SetScale(Vec2(1.3f, 1.3f));
+		pTears->SetPos(TearsPos);
+
+		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
 	}
 
 	SetPos(vPos);
