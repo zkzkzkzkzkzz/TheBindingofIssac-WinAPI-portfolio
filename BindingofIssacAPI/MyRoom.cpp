@@ -70,8 +70,8 @@ void MyRoom::render(HDC _dc)
 
 	AlphaBlend(_dc
 		, (int)vRenderPos.x, (int)vRenderPos.y
-		, m_CurImg->GetWidth() * vScale.x
-		, m_CurImg->GetHeight() * vScale.y
+		, int(m_CurImg->GetWidth() * vScale.x)
+		, int(m_CurImg->GetHeight() * vScale.y)
 		, m_CurImg->GetDC()
 		, 0, 0
 		, m_CurImg->GetWidth()

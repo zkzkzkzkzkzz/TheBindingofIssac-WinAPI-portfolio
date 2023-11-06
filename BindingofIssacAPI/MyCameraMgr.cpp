@@ -18,7 +18,7 @@ MyCameraMgr::MyCameraMgr()
 	, dampingCount(0)
 {
 	Vec2 vResol = MyEngine::GetInst()->GetResolution();
-	m_Veil = MyAssetMgr::GetInst()->CreateTexture(L"VeilTex", vResol.x, vResol.y);
+	m_Veil = MyAssetMgr::GetInst()->CreateTexture(L"VeilTex", (UINT)vResol.x, (UINT)vResol.y);
 }
 
 MyCameraMgr::~MyCameraMgr()
@@ -115,7 +115,7 @@ void MyCameraMgr::tick()
 		}
 		else if (BtwTime > 0.555f)
 		{
-			m_vLookAt.y += 23000.f * DT * BtwTime;
+			m_vLookAt.y += 22500.f * DT * BtwTime;
 
 			if (m_vLookAt.y >= 960.f)
 			{
@@ -124,7 +124,7 @@ void MyCameraMgr::tick()
 		}
 		else if (BtwTime > 0.f && BtwTime <= 0.555f)
 		{
-			m_vLookAt.y += 400.f * DT * BtwTime;
+			m_vLookAt.y += 500.f * DT * BtwTime;
 
 			if (m_vLookAt.y >= 960.f)
 			{
@@ -151,7 +151,7 @@ void MyCameraMgr::tick()
 		}
 		else if (BtwTime > 0.555f)
 		{
-			m_vLookAt.y -= 23000.f * DT * BtwTime;
+			m_vLookAt.y -= 22500.f * DT * BtwTime;
 
 			if (m_vLookAt.y <= 320.f)
 			{
@@ -160,7 +160,7 @@ void MyCameraMgr::tick()
 		}
 		else if (BtwTime > 0.f && BtwTime <= 0.555f)
 		{
-			m_vLookAt.y -= 350.f * DT * BtwTime;
+			m_vLookAt.y -= 500.f * DT * BtwTime;
 
 			if (m_vLookAt.y <= 320.f)
 			{

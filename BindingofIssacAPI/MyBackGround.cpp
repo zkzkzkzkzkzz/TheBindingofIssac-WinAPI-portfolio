@@ -36,8 +36,8 @@ void MyBackGround::render(HDC _dc)
 
 	AlphaBlend(_dc
 		, (int)vRenderPos.x,(int)vRenderPos.y
-		, m_Atlas->GetWidth() * vScale.x
-		, m_Atlas->GetHeight() * vScale.y
+		, int(m_Atlas->GetWidth() * vScale.x)
+		, int(m_Atlas->GetHeight() * vScale.y)
 		, m_Atlas->GetDC()
 		, 0, 0
 		, m_Atlas->GetWidth()

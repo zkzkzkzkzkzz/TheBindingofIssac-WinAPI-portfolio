@@ -105,7 +105,7 @@ void MyTitleLevel::tick()
 			Vec2 vPos = m_Cursor->GetPos();
 
 			vPos.x += 10.f;
-			vPos.y += 70.f;
+			vPos.y += 68.f;
 
 			m_Cursor->SetPos(Vec2(vPos));
 
@@ -121,7 +121,7 @@ void MyTitleLevel::tick()
 			Vec2 vPos = m_Cursor->GetPos();
 
 			vPos.x -= 10.f;
-			vPos.y -= 70.f;
+			vPos.y -= 68.f;
 
 			m_Cursor->SetPos(Vec2(vPos));
 

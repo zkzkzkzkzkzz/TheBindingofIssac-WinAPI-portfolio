@@ -44,12 +44,12 @@ void TitleTexUI::render(HDC _dc)
 	AlphaBlend(_dc
 		, (int)vRenderPos.x
 		, (int)vRenderPos.y
-		, m_Menu->GetWidth() * vScale.x
-		, m_Menu->GetHeight() * vScale.y
+		, int(m_Menu->GetWidth() * vScale.x)
+		, int(m_Menu->GetHeight() * vScale.y)
 		, m_Menu->GetDC()
-		, vCutPos.x, vCutPos.y
-		, vCutSize.x
-		, vCutSize.y
+		, (int)vCutPos.x, (int)vCutPos.y
+		, (int)vCutSize.x
+		, (int)vCutSize.y
 		, blend);
 
 	Super::render(_dc);
