@@ -10,6 +10,9 @@ MyMovement::MyMovement(MyObject* _Owner)
 	, m_InitSpeed(0.f)
 	, m_MaxSpeed(0.f)
 	, m_FrictionScale(0.f)
+	, m_Gravity(0.f)
+	, m_UsingGravity(false)
+	, m_RotateSpeed(PI)
 {
 
 }
@@ -97,43 +100,14 @@ void MyMovement::finaltick(float _DT)
 		}
 	}
 
+	m_Gravity = GetGravity();
 
-	//// 물체에 적용되고있는 힘이 없으면 마찰력을 적용시킨다.
-	//if (m_Force.IsZero() && m_Velocity.x != 0.f)
-	//{
-	//	float fFriction = -m_Velocity.x;
-	//	fFriction /= abs(fFriction);
+	if (m_UsingGravity)
+	{
+		Vec2 vDir = Rotate(Vec2(0.f, m_Gravity), m_RotateSpeed * _DT);
 
-	//	fFriction *= m_FrictionScale;
-
-	//	float fFrictionAccel = (fFriction / m_Mass) * _DT;
-	//	if (abs(m_Velocity.x) < abs(fFrictionAccel))
-	//	{
-	//		m_Velocity = Vec2(0.f, m_Velocity.y);
-	//	}
-	//	else
-	//	{
-	//		m_Velocity.x += fFrictionAccel;
-	//	}
-	//}
-	//
-	//if (m_Force.IsZero() && m_Velocity.y != 0.f)
-	//{
-	//	float fFriction = -m_Velocity.y;
-	//	fFriction /= abs(fFriction);
-
-	//	fFriction *= m_FrictionScale;
-
-	//	float fFrictionAccel = (fFriction / m_Mass) * _DT;
-	//	if (abs(m_Velocity.y) < abs(fFrictionAccel))
-	//	{
-	//		m_Velocity = Vec2(m_Velocity.x, 0.f);
-	//	}
-	//	else
-	//	{
-	//		m_Velocity.y += fFrictionAccel;
-	//	}
-	//}
+		m_Velocity.y += vDir.y;
+	}
 
 	Vec2 vObjPos = GetOwner()->GetPos();
 	vObjPos += m_Velocity * _DT;
@@ -141,4 +115,10 @@ void MyMovement::finaltick(float _DT)
 
 	// 힘 리셋
 	m_Force = Vec2(0.f, 0.f);
+}
+
+void MyMovement::TearsGravity()
+{
+	
+
 }

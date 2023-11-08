@@ -56,17 +56,17 @@ void MyPlayLevel::init()
 	pPlayer->SetScale(Vec2(1.f, 1.f)); 
 	AddObject(LAYER::PLAYER, pPlayer);
 
-	// 일반 파리 몬스터 생성
-	NormalFly* pFly = new NormalFly;
-	pFly->SetPos(Vec2(100.f, 100.f));
-	pFly->SetScale(Vec2(2.f, 2.f));
-	AddObject(LAYER::MONSTER, pFly);
+	//// 일반 파리 몬스터 생성
+	//NormalFly* pFly = new NormalFly;
+	//pFly->SetPos(Vec2(100.f, 100.f));
+	//pFly->SetScale(Vec2(2.f, 2.f));
+	//AddObject(LAYER::MONSTER, pFly);
 
-	// 푸터 생성
-	Pooter* pPooter = new Pooter;
-	pPooter->SetPos(Vec2(100.f, 300.f));
-	pPooter->SetScale(Vec2(2.f, 2.f));
-	AddObject(LAYER::MONSTER, pPooter);
+	//// 푸터 생성
+	//Pooter* pPooter = new Pooter;
+	//pPooter->SetPos(Vec2(100.f, 300.f));
+	//pPooter->SetScale(Vec2(2.f, 2.f));
+	//AddObject(LAYER::MONSTER, pPooter);
 }
 
 void MyPlayLevel::enter()

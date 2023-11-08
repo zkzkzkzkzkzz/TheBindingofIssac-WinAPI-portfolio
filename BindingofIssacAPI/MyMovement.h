@@ -26,6 +26,14 @@ private:
     // 마찰 크기
     float   m_FrictionScale;
 
+    // 중력
+    float   m_Gravity;
+
+    bool    m_UsingGravity;
+
+    float   m_RotateSpeed;
+
+    Vec2    m_vDir;
 
 public:
     void AddForce(Vec2 _vForce)
@@ -93,8 +101,26 @@ public:
         return m_FrictionScale;
     }
 
+    void SetGravity(float _f)
+    {
+        m_Gravity = _f;
+    }
+
+    float GetGravity()
+    {
+        return m_Gravity;
+    }
+
+    void UseGravity(bool _b)
+    {
+        m_UsingGravity = _b;
+    }
+
+
 public:
     virtual void finaltick(float _DT) override;
+
+    void TearsGravity();
 
 public:
     CLONE(MyMovement);

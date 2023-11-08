@@ -47,6 +47,8 @@ MyPlayer::MyPlayer()
 	m_Movement->SetInitSpeed(250.f);
 	m_Movement->SetMaxSpeed(300.f);
 	m_Movement->SetFrictionScale(450.f);
+	m_Movement->SetGravity(0.f);
+	m_Movement->UseGravity(false);
 }
 
 MyPlayer::MyPlayer(const MyPlayer& _Origin)
