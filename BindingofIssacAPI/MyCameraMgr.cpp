@@ -138,7 +138,7 @@ void MyCameraMgr::tick()
 		evnt.AccTime += DT;
 
 		float BtwTime = evnt.Duration - evnt.AccTime;
-
+	
 		if (m_vLookAt.y <= 320.f)
 		{
 			SetLookAt(Vec2(480.f, 320.f));

@@ -179,3 +179,10 @@ enum class Issac_STATE
 	MOVE,
 	ATTACK,
 };
+
+enum class NormalMons_STATE
+{
+	IDLE,
+	TRACE,
+	ATTACK,
+};

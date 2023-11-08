@@ -16,6 +16,9 @@ private:
     MyMovement* m_Movement;
     //MyCollider* m_Collider;
 
+    // 눈물 딜레이
+    bool m_IsFire;
+
 public:
     virtual void tick(float _DT) override;
     

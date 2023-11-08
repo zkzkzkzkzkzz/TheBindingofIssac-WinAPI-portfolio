@@ -16,6 +16,7 @@ MyPlayer::MyPlayer()
 	: m_AnimatorHead(nullptr)
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
+	, m_IsFire(false)
 	//, m_Collider(nullptr)
 {
 	SetName(L"Player");
@@ -53,6 +54,7 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	, m_AnimatorHead(nullptr)
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
+	, m_IsFire(false)
 	//, m_Collider(nullptr)
 {
 	m_AnimatorHead = GetComponent<MyAnimator>();
@@ -121,6 +123,7 @@ void MyPlayer::tick(float _DT)
 		m_AnimatorHead->Play(L"HIdleDown", true);
 	}
 
+	// 눈물 발사
 	if (KEY_TAP(LEFT))
 	{
 		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
@@ -128,15 +131,76 @@ void MyPlayer::tick(float _DT)
 		MyTears* pTears = new MyTears;
 
 		Vec2 TearsPos = GetPos();
-		TearsPos.x -= GetScale().x / 2.f;
 
-		pTears->SetSpeed(100.f);
-		pTears->SetAngle(PI);
+		pTears->SetSpeed(400.f);
+		pTears->SetvAngle(Vec2(-1.f, 0.f));
 		pTears->SetScale(Vec2(1.3f, 1.3f));
 		pTears->SetPos(TearsPos);
 
 		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+		m_AnimatorHead->Play(L"HIdleLeft", true);
+		pTears->fire();
 	}
+	if (KEY_RELEASED(LEFT))
+	{
+		m_AnimatorHead->Play(L"HIdleDown", true);
+	}
+
+	if (KEY_TAP(RIGHT))
+	{
+		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+		MyTears* pTears = new MyTears;
+
+		Vec2 TearsPos = GetPos();
+
+		pTears->SetSpeed(400.f);
+		pTears->SetvAngle(Vec2(1.f, 0.f));
+		pTears->SetScale(Vec2(1.3f, 1.3f));
+		pTears->SetPos(TearsPos);
+
+		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+		pTears->fire();
+	}
+
+	if (KEY_TAP(UP))
+	{
+		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+		MyTears* pTears = new MyTears;
+
+		Vec2 TearsPos = GetPos();
+
+		pTears->SetSpeed(400.f);
+		pTears->SetvAngle(Vec2(0.f, -1.f));
+		pTears->SetScale(Vec2(1.3f, 1.3f));
+		pTears->SetPos(TearsPos);
+
+		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+		pTears->fire();
+	}
+
+	if (KEY_TAP(DOWN))
+	{
+		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+		MyTears* pTears = new MyTears;
+
+		Vec2 TearsPos = GetPos();
+
+		pTears->SetSpeed(400.f);
+		pTears->SetvAngle(Vec2(0.f, 1.f));
+		pTears->SetScale(Vec2(1.3f, 1.3f));
+		pTears->SetPos(TearsPos);
+
+		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+		pTears->fire();
+	}
+
 
 	SetPos(vPos);
 }

@@ -2,6 +2,7 @@
 #include "MyTears.h"
 
 #include "MyAssetMgr.h"
+#include "MyTimeMgr.h"
 
 #include "MyTexture.h"
 #include "components.h"
@@ -22,8 +23,8 @@ MyTears::MyTears()
 	m_Movement = AddComponent<MyMovement>(L"TearsMovement");
 	m_Movement->SetMass(1.f);
 	m_Movement->SetInitSpeed(250.f);
-	m_Movement->SetMaxSpeed(300.f);
-	m_Movement->SetFrictionScale(450.f);
+	m_Movement->SetMaxSpeed(250.f);
+	m_Movement->SetFrictionScale(0.f);
 }
 
 MyTears::MyTears(const MyTears& _Origin)
@@ -46,4 +47,16 @@ void MyTears::tick(float _DT)
 {
 	Super::tick(_DT);
 
+	fire();
+}
+
+void MyTears::fire()
+{
+	// 유도탄에서 몬스터를 향하는 방향을 구한다.
+	Vec2 vPos = GetPos();
+
+	vPos.x += m_vAngle.x * GetSpeed() * DT;
+	vPos.y += m_vAngle.y * GetSpeed() * DT;
+
+	SetPos(vPos);
 }
