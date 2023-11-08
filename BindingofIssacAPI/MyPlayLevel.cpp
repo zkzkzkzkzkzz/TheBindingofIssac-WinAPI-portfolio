@@ -11,6 +11,7 @@
 #include "MyObject.h"
 #include "MyPlayer.h"
 #include "NormalFly.h"
+#include "Pooter.h"
 #include "MyRoom.h"
 #include "MyBackGround.h"
 #include "MyTexture.h"
@@ -60,6 +61,12 @@ void MyPlayLevel::init()
 	pFly->SetPos(Vec2(100.f, 100.f));
 	pFly->SetScale(Vec2(2.f, 2.f));
 	AddObject(LAYER::MONSTER, pFly);
+
+	// 푸터 생성
+	Pooter* pPooter = new Pooter;
+	pPooter->SetPos(Vec2(100.f, 300.f));
+	pPooter->SetScale(Vec2(2.f, 2.f));
+	AddObject(LAYER::MONSTER, pPooter);
 }
 
 void MyPlayLevel::enter()
