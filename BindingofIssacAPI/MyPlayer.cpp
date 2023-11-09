@@ -2,6 +2,7 @@
 #include "MyPlayer.h"
 
 #include "MyEngine.h"
+#include "MyTimeMgr.h"
 #include "MyAssetMgr.h"
 #include "MyTaskMgr.h"
 #include "MyLevelMgr.h"
@@ -16,8 +17,10 @@ MyPlayer::MyPlayer()
 	: m_AnimatorHead(nullptr)
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
-	, m_IsFire(false)
 	, m_Collider(nullptr)
+	, m_Acctime(0.6f)
+	, m_Duration(0.6f)
+	, m_TearsCount(0)
 {
 	SetName(L"Player");
 
@@ -37,6 +40,10 @@ MyPlayer::MyPlayer()
 	m_AnimatorHead->LoadAnimation(L"animdata\\HIdleUp.txt");
 	m_AnimatorHead->LoadAnimation(L"animdata\\HIdleRight.txt");
 	m_AnimatorHead->LoadAnimation(L"animdata\\HIdleLeft.txt");
+	m_AnimatorHead->LoadAnimation(L"animdata\\HTearLeft.txt");
+	m_AnimatorHead->LoadAnimation(L"animdata\\HTearRight.txt");
+	m_AnimatorHead->LoadAnimation(L"animdata\\HTearUp.txt");
+	m_AnimatorHead->LoadAnimation(L"animdata\\HTearDown.txt");
 
 	m_AnimatorBody->Play(L"BIdleDown", true);
 	m_AnimatorHead->Play(L"HIdleDown", true);
@@ -61,8 +68,10 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	, m_AnimatorHead(nullptr)
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
-	, m_IsFire(false)
 	, m_Collider(nullptr)
+	, m_Acctime(1.f)
+	, m_Duration(1.f)
+	, m_TearsCount(0)
 {
 	m_AnimatorHead = GetComponent<MyAnimator>();
 	m_AnimatorBody = GetComponent<MyAnimator>();
@@ -80,134 +89,377 @@ void MyPlayer::tick(float _DT)
 	Super::tick(_DT);
 
 	Vec2 vPos = GetPos();
+	m_Acctime += DT;
 
-	if (KEY_PRESSED(A))
+	// 눈물을 안쏘고 있을 때
+	if (KEY_PRESSED(A) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(-1000.f, 0.f));
 		m_AnimatorBody->Play(L"BWalkLeft", true);
 		m_AnimatorHead->Play(L"HIdleLeft", true);
 	}
-
-	if (KEY_RELEASED(A))
+	if (KEY_RELEASED(A) && 0 == m_TearsCount)
 	{
 		m_AnimatorBody->Play(L"BIdleDown", true);
 		m_AnimatorHead->Play(L"HIdleDown", true);
 	}
 
-	if (KEY_PRESSED(D))
+	if (KEY_PRESSED(D) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(1000.f, 0.f));
 		m_AnimatorBody->Play(L"BWalkRight", true);
 		m_AnimatorHead->Play(L"HIdleRight", true);
 	}
-	if (KEY_RELEASED(D))
+	if (KEY_RELEASED(D) && 0 == m_TearsCount)
 	{
 		m_AnimatorBody->Play(L"BIdleDown", true);
 		m_AnimatorHead->Play(L"HIdleDown", true);
 	}
 
-	if (KEY_PRESSED(W))
+	if (KEY_PRESSED(W) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(0.f, -1000.f));
 		m_AnimatorBody->Play(L"BWalkDown", true);
 		m_AnimatorHead->Play(L"HIdleUp", true);
 	}
-	if (KEY_RELEASED(W))
+	if (KEY_RELEASED(W) && 0 == m_TearsCount)
 	{
 		m_AnimatorBody->Play(L"BIdleDown", true);
 		m_AnimatorHead->Play(L"HIdleDown", true);
 	}
 
-	if (KEY_PRESSED(S))
+	if (KEY_PRESSED(S) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(0.f, 1000.f));
 		m_AnimatorBody->Play(L"BWalkDown", true);
 		m_AnimatorHead->Play(L"HIdleDown", true);
 	}
-	if (KEY_RELEASED(S))
+	if (KEY_RELEASED(S) && 0 == m_TearsCount)
 	{
 		m_AnimatorBody->Play(L"BIdleDown", true);
 		m_AnimatorHead->Play(L"HIdleDown", true);
 	}
 
-	// 눈물 발사
+	// 눈물을 쏘면서 움직일 때
 	if (KEY_TAP(LEFT))
 	{
-		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
-
-		MyTears* pTears = new MyTears;
-
-		Vec2 TearsPos = GetPos();
-
-		pTears->SetSpeed(400.f);
-		pTears->SetvAngle(Vec2(-1.f, 0.f));
-		pTears->SetScale(Vec2(1.3f, 1.3f));
-		pTears->SetPos(TearsPos);
-
-		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
-
-		m_AnimatorHead->Play(L"HIdleLeft", true);
-		pTears->fire();
+		++m_TearsCount;
 	}
-	if (KEY_RELEASED(LEFT))
+	else if (KEY_PRESSED(LEFT))
+	{
+		m_AnimatorHead->Play(L"HTearLeft", true);
+		
+		if (m_Duration <= m_Acctime)
+		{
+			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+			MyTears* pTears = new MyTears;
+
+			Vec2 TearsPos = GetPos();
+			TearsPos.x -= 20.f;
+			TearsPos.y -= 40.f;
+
+			pTears->SetSpeed(400.f);
+			pTears->SetvAngle(Vec2(-1.f, 0.f));
+			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetPos(TearsPos);
+
+			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+			pTears->fire();
+
+			m_Acctime = 0.f;
+		}
+
+		if (KEY_PRESSED(A) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkLeft", true);
+		}
+		if (KEY_RELEASED(A) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(D) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkRight", true);
+		}
+		if (KEY_RELEASED(D) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(W) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(W) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(S) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(S) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+	}
+	else if (KEY_RELEASED(LEFT))
 	{
 		m_AnimatorHead->Play(L"HIdleDown", true);
+		--m_TearsCount;
 	}
 
 	if (KEY_TAP(RIGHT))
 	{
-		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+		++m_TearsCount;
+	}
+	else if (KEY_PRESSED(RIGHT))
+	{
+		m_AnimatorHead->Play(L"HTearRight", true);
 
-		MyTears* pTears = new MyTears;
+		if (m_Duration <= m_Acctime)
+		{
+			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
 
-		Vec2 TearsPos = GetPos();
+			MyTears* pTears = new MyTears;
 
-		pTears->SetSpeed(400.f);
-		pTears->SetvAngle(Vec2(1.f, 0.f));
-		pTears->SetScale(Vec2(1.3f, 1.3f));
-		pTears->SetPos(TearsPos);
+			Vec2 TearsPos = GetPos();
+			TearsPos.x += 12.f;
+			TearsPos.y -= 40.f;
 
-		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+			pTears->SetSpeed(400.f);
+			pTears->SetvAngle(Vec2(1.f, 0.f));
+			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetPos(TearsPos);
 
-		pTears->fire();
+			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+			pTears->fire();
+
+			m_Acctime = 0.f;
+		}
+
+		if (KEY_PRESSED(A) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkLeft", true);
+		}
+		if (KEY_RELEASED(A) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(D) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkRight", true);
+		}
+		if (KEY_RELEASED(D) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(W) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(W) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(S) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(S) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+	}
+	else if (KEY_RELEASED(RIGHT))
+	{
+		m_AnimatorHead->Play(L"HIdleDown", true);
+		--m_TearsCount;
 	}
 
 	if (KEY_TAP(UP))
 	{
-		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+		++m_TearsCount;
+	}
+	else if (KEY_PRESSED(UP))
+	{
+		m_AnimatorHead->Play(L"HTearUp", true);
 
-		MyTears* pTears = new MyTears;
+		if (m_Duration <= m_Acctime)
+		{
+			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
 
-		Vec2 TearsPos = GetPos();
+			MyTears* pTears = new MyTears;
 
-		pTears->SetSpeed(400.f);
-		pTears->SetvAngle(Vec2(0.f, -1.f));
-		pTears->SetScale(Vec2(1.3f, 1.3f));
-		pTears->SetPos(TearsPos);
+			Vec2 TearsPos = GetPos();
+			TearsPos.x -= 8.f;
+			TearsPos.y -= 60.f;
 
-		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+			pTears->SetSpeed(400.f);
+			pTears->SetvAngle(Vec2(0.f, -1.f));
+			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetPos(TearsPos);
 
-		pTears->fire();
+			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+			pTears->fire();
+
+			m_Acctime = 0.f;
+		}
+
+		if (KEY_PRESSED(A) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkLeft", true);
+		}
+		if (KEY_RELEASED(A) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(D) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkRight", true);
+		}
+		if (KEY_RELEASED(D) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(W) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(W) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(S) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(S) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+	}
+	else if (KEY_RELEASED(UP))
+	{
+		m_AnimatorHead->Play(L"HIdleDown", true);
+		--m_TearsCount;
 	}
 
 	if (KEY_TAP(DOWN))
 	{
-		MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
-
-		MyTears* pTears = new MyTears;
-
-		Vec2 TearsPos = GetPos();
-
-		pTears->SetSpeed(400.f);
-		pTears->SetvAngle(Vec2(0.f, 1.f));
-		pTears->SetScale(Vec2(1.3f, 1.3f));
-		pTears->SetPos(TearsPos);
-
-		MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
-
-		pTears->fire();
+		++m_TearsCount;
 	}
+	else if (KEY_PRESSED(DOWN))
+	{
+		m_AnimatorHead->Play(L"HTearDown", true);
 
+		if (m_Duration <= m_Acctime)
+		{
+			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
+
+			MyTears* pTears = new MyTears;
+
+			Vec2 TearsPos = GetPos();
+			TearsPos.x -= 8.f;
+			TearsPos.y -= 35.f;
+
+			pTears->SetSpeed(400.f);
+			pTears->SetvAngle(Vec2(0.f, 1.f));
+			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetPos(TearsPos);
+
+			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+			pTears->fire();
+
+			m_Acctime = 0.f;
+		}
+
+		if (KEY_PRESSED(A) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkLeft", true);
+		}
+		if (KEY_RELEASED(A) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(D) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			m_AnimatorBody->Play(L"BWalkRight", true);
+		}
+		if (KEY_RELEASED(D) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(W) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(W) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+
+		if (KEY_PRESSED(S) && 0 != m_TearsCount)
+		{
+			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			m_AnimatorBody->Play(L"BWalkDown", true);
+		}
+		if (KEY_RELEASED(S) && 0 != m_TearsCount)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+	}
+	else if (KEY_RELEASED(DOWN))
+	{
+		m_AnimatorHead->Play(L"HIdleDown", true);
+		--m_TearsCount;
+	}
 
 	SetPos(vPos);
 }
