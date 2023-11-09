@@ -11,6 +11,7 @@
 
 #include "MyObject.h"
 #include "MyPlayer.h"
+#include "MyShadow.h"
 #include "NormalFly.h"
 #include "Pooter.h"
 #include "MyRoom.h"
@@ -74,7 +75,8 @@ void MyPlayLevel::init()
 
 	// 충돌 설정
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::MONSTER);
-	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::ROOM);
+	//MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::ROOM);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::ROOM);
 }
 
 void MyPlayLevel::enter()

@@ -121,6 +121,7 @@ enum class LAYER
 	DEFAULT,
 	MAP,
 	ROOM,
+	SHADOW,
 	PLAYER,
 	MONSTER,
 	TEARS,

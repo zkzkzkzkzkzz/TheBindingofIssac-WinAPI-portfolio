@@ -8,7 +8,9 @@
 #include "MyLevelMgr.h"
 #include "MyKeyMgr.h"
 #include "MyLevel.h"
+#include "MyLayer.h"
 #include "MyTears.h"
+#include "MyShadow.h"
 #include "MyTexture.h"
 
 #include "components.h"
@@ -18,6 +20,7 @@ MyPlayer::MyPlayer()
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
 	, m_Collider(nullptr)
+	, m_Shadow(nullptr)
 	, m_Acctime(0.6f)
 	, m_Duration(0.6f)
 	, m_TearsCount(0)
@@ -82,6 +85,21 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 MyPlayer::~MyPlayer()
 {
 	
+}
+
+void MyPlayer::begin()
+{
+	Vec2 vPos = GetPos();
+
+	m_Shadow = new MyShadow;
+
+	m_Shadow->SetName(L"PlayerShadow");
+	m_Shadow->SetPos(vPos);
+	m_Shadow->SetScale(Vec2(0.32f, 0.32f));
+	m_Shadow->SetOffsetPos(Vec2(-18.5f, -6.f));
+
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::SHADOW, (UINT_PTR)m_Shadow });
+
 }
 
 void MyPlayer::tick(float _DT)
@@ -462,4 +480,5 @@ void MyPlayer::tick(float _DT)
 	}
 
 	SetPos(vPos);
+	m_Shadow->SetPos(vPos);
 }

@@ -2,6 +2,9 @@
 #include "MyRoom.h"
 
 #include "MyAssetMgr.h"
+#include "MyLevelMgr.h"
+#include "MyLevel.h"
+#include "MyPlayer.h"
 #include "MyTexture.h"
 #include "components.h"
 
@@ -102,11 +105,16 @@ void MyRoom::render(HDC _dc)
 
 void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
+	MyObject* pObj = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"PlayerShadow"));
+	_OtherObj = pObj;
+	_OtherCol = pObj->GetComponent<MyCollider>();
+
 	Vec2 vOwnScale = _OwnCol->GetOffsetScale();
 	Vec2 vOwnPos = _OwnCol->GetFinalPos();
 	Vec2 vOtherScale = _OtherCol->GetOffsetScale();
 	Vec2 vOtherPos = _OtherCol->GetFinalPos();
 	
+
 	float vDiffPosX = vOwnPos.x - vOtherPos.x;
 	float vDiffPosY = vOwnPos.y - vOtherPos.y;
 	float MoveX = vOtherScale.x - vDiffPosX;
@@ -116,21 +124,29 @@ void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _Othe
 
 	if (str == L"RoomColliderUp")
 	{
+		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
+		_OtherObj = pPlayer;
 		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y + MoveY / 70.f));
 	}
 
 	if (str == L"RoomColliderDown")
 	{
-		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y - MoveY / 15.f));
+		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
+		_OtherObj = pPlayer;
+		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y - abs(MoveY * 0.1f)));
 	}
 
 	if (str == L"RoomColliderLeft")
 	{
+		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
+		_OtherObj = pPlayer;
 		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x + abs(MoveX / 40.f), _OtherObj->GetPos().y));
 	}
 	
 	if (str == L"RoomColliderRight")
 	{
-		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x - abs(MoveX / 2.f), _OtherObj->GetPos().y));
+		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
+		_OtherObj = pPlayer;
+		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x - abs(MoveX * 0.4f), _OtherObj->GetPos().y));
 	}	
 }
