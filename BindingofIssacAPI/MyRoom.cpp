@@ -105,10 +105,6 @@ void MyRoom::render(HDC _dc)
 
 void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
-	MyObject* pObj = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"PlayerShadow"));
-	_OtherObj = pObj;
-	_OtherCol = pObj->GetComponent<MyCollider>();
-
 	Vec2 vOwnScale = _OwnCol->GetOffsetScale();
 	Vec2 vOwnPos = _OwnCol->GetFinalPos();
 	Vec2 vOtherScale = _OtherCol->GetOffsetScale();
