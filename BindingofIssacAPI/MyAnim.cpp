@@ -234,7 +234,9 @@ bool MyAnim::Load(const wstring& _FilePath)
 					fwscanf_s(pFile, L"%f", &m_vecFrm[iCurFrame].Duration);
 
 					if (iFrameCount - 1 <= iCurFrame)
+					{
 						break;
+					}
 				}
 			}
 		}

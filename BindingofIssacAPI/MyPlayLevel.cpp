@@ -77,6 +77,7 @@ void MyPlayLevel::init()
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::MONSTER);
 	//MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::ROOM);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::ROOM);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::TEARS);
 }
 
 void MyPlayLevel::enter()

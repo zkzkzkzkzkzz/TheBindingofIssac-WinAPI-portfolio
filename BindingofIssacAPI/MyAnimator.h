@@ -32,8 +32,6 @@ public:
     void SaveAnimations(const wstring& _strRelativePath);
     void LoadAnimation(const wstring& _strRelativePath);
 
-
-
 public:
     virtual void finaltick(float _DT) override;
     virtual void render(HDC _dc) override;

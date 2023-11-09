@@ -12,8 +12,9 @@ MyShadow::MyShadow()
 	m_ShadowTex = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
 
 	m_Collider = AddComponent<MyCollider>(L"ShadowCollider");
-	m_Collider->SetScale(Vec2(40.f, 20.f));
-	m_Collider->SetOffsetPos(Vec2(0.f, 0.f));
+
+	m_Collider->SetScale(Vec2(27.f, 5.f));
+	m_Collider->SetOffsetPos(Vec2(-1.f, -4.f));
 }
 
 MyShadow::MyShadow(const MyShadow& _Origin)
@@ -31,6 +32,12 @@ MyShadow::~MyShadow()
 
 void MyShadow::begin()
 {
+	wstring str = m_Collider->GetOwner()->GetName();
+	if (str == L"PlayerShadow")
+	{
+		m_Collider->SetScale(Vec2(40.f, 20.f));
+		m_Collider->SetOffsetPos(Vec2(0.f, 0.f));
+	}
 }
 
 void MyShadow::tick(float _DT)

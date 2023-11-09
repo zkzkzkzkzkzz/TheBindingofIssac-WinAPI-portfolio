@@ -120,8 +120,6 @@ public:
 public:
     virtual void finaltick(float _DT) override;
 
-    void TearsGravity();
-
 public:
     CLONE(MyMovement);
 

@@ -63,8 +63,8 @@ void MyCollider::render(HDC _dc)
 		// render
 		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
 			, int(vRenderPos.y - m_vScale.y / 2.f)
-			, int(vRenderPos.x + m_vScale.x / 2.f)
-			, int(vRenderPos.y + m_vScale.y / 2.f));
+			, int(vRenderPos.x + m_vScale.x / 2.f - m_CutSize.x)
+			, int(vRenderPos.y + m_vScale.y / 2.f - m_CutSize.y));
 	}
 	else
 	{
@@ -73,8 +73,8 @@ void MyCollider::render(HDC _dc)
 		// render
 		Rectangle(_dc, int(vRenderPos.x - m_vScale.x / 2.f)
 			, int(vRenderPos.y - m_vScale.y / 2.f)
-			, int(vRenderPos.x + m_vScale.x / 2.f)
-			, int(vRenderPos.y + m_vScale.y / 2.f));
+			, int(vRenderPos.x + m_vScale.x / 2.f - m_CutSize.x)
+			, int(vRenderPos.y + m_vScale.y / 2.f - m_CutSize.y));
 	}
 }
 

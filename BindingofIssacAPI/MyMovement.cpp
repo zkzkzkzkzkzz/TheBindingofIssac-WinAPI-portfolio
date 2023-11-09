@@ -116,9 +116,3 @@ void MyMovement::finaltick(float _DT)
 	// 힘 리셋
 	m_Force = Vec2(0.f, 0.f);
 }
-
-void MyMovement::TearsGravity()
-{
-	
-
-}

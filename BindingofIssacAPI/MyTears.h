@@ -3,6 +3,8 @@
 
 class MyTexture;
 class MyAnimator;
+class MyCollider;
+class MyShadow;
 
 class MyTears :
     public MyObject
@@ -13,6 +15,8 @@ private:
     MyTexture*  m_Atlas;
     MyAnimator* m_Animator;
     MyMovement* m_Movement;
+    MyCollider* m_Collider;
+    MyShadow*   m_Shadow;
 
     float   m_Speed;
     float   m_Angle;
@@ -21,7 +25,10 @@ private:
     float   m_Acctime;
     bool    m_IsDestroy;
 
+    Vec2    m_initPos;
+
 public:
+    virtual void begin() override;
     virtual void tick(float _DT) override;
     
     void fire();
@@ -34,6 +41,9 @@ public:
 
     float GetSpeed() { return m_Speed; }
     float GetAngle() { return m_Angle; };
+
+public:
+    virtual void BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol) override;
 
 public:
     CLONE(MyTears);

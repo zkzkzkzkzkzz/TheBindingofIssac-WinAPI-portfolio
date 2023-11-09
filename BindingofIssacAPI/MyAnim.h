@@ -13,6 +13,7 @@ struct FFrame
 
 
 class MyAnimator;
+class MyTears;
 
 class MyAnim :
     public MyEntity
@@ -58,5 +59,6 @@ public:
     ~MyAnim();
 
     friend class MyAnimator;
+    friend class MyTears;
 };
 

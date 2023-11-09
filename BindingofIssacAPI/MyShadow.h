@@ -12,6 +12,7 @@ class MyShadow :
 private:
     MyTexture*  m_ShadowTex;
     MyCollider* m_Collider;
+
 public:
     virtual void begin() override;
     virtual void tick(float _DT) override;

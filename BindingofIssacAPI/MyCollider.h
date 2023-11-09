@@ -6,9 +6,10 @@ class MyCollider :
     public MyComponent
 {
 private:
-    Vec2    m_vOffsetPos;  // Owner 로부터 떨어진 거리
-    Vec2    m_vScale;      // Owner 로부터 추가 배율
-    Vec2    m_vFinalPos;   // 충돌체의 최종 위치
+    Vec2    m_vOffsetPos;   // Owner 로부터 떨어진 거리
+    Vec2    m_vScale;       // Owner 로부터 추가 배율
+    Vec2    m_vFinalPos;    // 충돌체의 최종 위치
+    Vec2    m_CutSize;      // 충돌체 스케일로부터 얼마나 잘라낼 것인가
 
     int     m_iCollisionCount;
 
@@ -19,6 +20,7 @@ public:
 public:
     void SetOffsetPos(Vec2 _vOffsetPos) { m_vOffsetPos = _vOffsetPos; }
     void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
+    void SetCutSize(Vec2 _vSize = {}) { m_CutSize = _vSize; }
     Vec2 GetFinalPos() { return m_vFinalPos; }
     Vec2 GetOffsetPos() { return m_vOffsetPos; }
     Vec2 GetOffsetScale() { return m_vScale; }

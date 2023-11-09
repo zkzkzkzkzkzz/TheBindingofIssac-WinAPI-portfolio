@@ -175,11 +175,12 @@ void MyPlayer::tick(float _DT)
 
 			Vec2 TearsPos = GetPos();
 			TearsPos.x -= 20.f;
-			TearsPos.y -= 40.f;
+			TearsPos.y -= 25.f;
 
-			pTears->SetSpeed(400.f);
+			pTears->SetSpeed(450.f);
 			pTears->SetvAngle(Vec2(-1.f, 0.f));
-			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetScale(Vec2(1.4f, 1.4f));
+			pTears->SetOffsetPos(Vec2(-14.f, -18.f));
 			pTears->SetPos(TearsPos);
 
 			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
@@ -255,11 +256,12 @@ void MyPlayer::tick(float _DT)
 
 			Vec2 TearsPos = GetPos();
 			TearsPos.x += 12.f;
-			TearsPos.y -= 40.f;
+			TearsPos.y -= 25.f;
 
-			pTears->SetSpeed(400.f);
+			pTears->SetSpeed(450.f);
 			pTears->SetvAngle(Vec2(1.f, 0.f));
-			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetScale(Vec2(1.4f, 1.4f));
+			pTears->SetOffsetPos(Vec2(-14.f, -18.f));
 			pTears->SetPos(TearsPos);
 
 			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
@@ -337,9 +339,10 @@ void MyPlayer::tick(float _DT)
 			TearsPos.x -= 8.f;
 			TearsPos.y -= 60.f;
 
-			pTears->SetSpeed(400.f);
+			pTears->SetSpeed(450.f);
 			pTears->SetvAngle(Vec2(0.f, -1.f));
-			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetScale(Vec2(1.4f, 1.4f));
+			pTears->SetOffsetPos(Vec2(-14.f, -18.f));
 			pTears->SetPos(TearsPos);
 
 			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
@@ -417,9 +420,10 @@ void MyPlayer::tick(float _DT)
 			TearsPos.x -= 8.f;
 			TearsPos.y -= 35.f;
 
-			pTears->SetSpeed(400.f);
+			pTears->SetSpeed(450.f);
 			pTears->SetvAngle(Vec2(0.f, 1.f));
-			pTears->SetScale(Vec2(1.3f, 1.3f));
+			pTears->SetScale(Vec2(1.4f, 1.4f));
+			pTears->SetOffsetPos(Vec2(-14.f, -18.f));
 			pTears->SetPos(TearsPos);
 
 			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });

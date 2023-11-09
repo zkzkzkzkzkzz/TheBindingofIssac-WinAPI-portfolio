@@ -103,8 +103,22 @@ void MyRoom::render(HDC _dc)
 	Super::render(_dc);
 }
 
+void MyRoom::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
+{
+	wstring Objstr = _OtherObj->GetName();
+
+	if (Objstr == L"TearsShadow")
+	{
+		MyObject* pTears = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"NormalTears"));
+		pTears->Destroy();
+		_OtherObj->Destroy();
+	}
+}
+
 void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
+	wstring Objstr = _OtherObj->GetName();
+
 	Vec2 vOwnScale = _OwnCol->GetOffsetScale();
 	Vec2 vOwnPos = _OwnCol->GetFinalPos();
 	Vec2 vOtherScale = _OtherCol->GetOffsetScale();
@@ -116,30 +130,30 @@ void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _Othe
 	float MoveX = vOtherScale.x - vDiffPosX;
 	float MoveY = vOtherScale.y - vDiffPosY;
 
-	wstring str = _OwnCol->GetName();
+	wstring Colstr = _OwnCol->GetName();
 
-	if (str == L"RoomColliderUp")
+	if (Colstr == L"RoomColliderUp" && Objstr == L"PlayerShadow")
 	{
 		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 		_OtherObj = pPlayer;
 		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y + MoveY / 70.f));
 	}
 
-	if (str == L"RoomColliderDown")
+	if (Colstr == L"RoomColliderDown" && Objstr == L"PlayerShadow")
 	{
 		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 		_OtherObj = pPlayer;
 		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y - abs(MoveY * 0.1f)));
 	}
 
-	if (str == L"RoomColliderLeft")
+	if (Colstr == L"RoomColliderLeft" && Objstr == L"PlayerShadow")
 	{
 		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 		_OtherObj = pPlayer;
 		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x + abs(MoveX / 40.f), _OtherObj->GetPos().y));
 	}
 	
-	if (str == L"RoomColliderRight")
+	if (Colstr == L"RoomColliderRight" && Objstr == L"PlayerShadow")
 	{
 		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 		_OtherObj = pPlayer;
