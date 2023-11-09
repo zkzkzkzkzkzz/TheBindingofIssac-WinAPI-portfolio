@@ -15,6 +15,7 @@ MyObject::MyObject(const MyObject& _Origin)
 	: MyEntity(_Origin)
 	, m_Pos(_Origin.m_Pos)
 	, m_Scale(_Origin.m_Scale)
+	, m_OffsetPos(_Origin.m_OffsetPos)
 	, m_iLayerIdx(-1)
 {
 	for (size_t i = 0; i < _Origin.m_vecComponent.size(); ++i)

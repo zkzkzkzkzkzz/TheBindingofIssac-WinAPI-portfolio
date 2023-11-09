@@ -52,15 +52,20 @@ void NMTrace::finaltick(float _DT)
 	// 플레이어를 추적한다.
 	// 1. 몬스터가 이동할 방향을 알아낸다. (플레이어위치 - 몬스터 위치)
 	Vec2 vDir = vPlayerPos - vMonsterPos;
-	vDir.Normalize();
+	
+	if (vPlayerPos != vMonsterPos)
+	{
+		vDir.Normalize();
 
-	// 2. 본인(몬스터) 의 이동속도를 알아낸다.
-	float* pSpeed = (float*)GetOwnerSM()->GetDataFromBlackboard(L"Speed");
-	float fSpeed = *pSpeed;
+		// 2. 본인(몬스터) 의 이동속도를 알아낸다.
+		float* pSpeed = (float*)GetOwnerSM()->GetDataFromBlackboard(L"Speed");
+		float fSpeed = *pSpeed;
 
-	// 3. 플레이어를 향해서 이동한다.
-	vMonsterPos += vDir * fSpeed * _DT;
-	pMonster->SetPos(vMonsterPos);
+		// 3. 플레이어를 향해서 이동한다.
+		vMonsterPos += vDir * fSpeed * _DT;
+		pMonster->SetPos(vMonsterPos);
+	}
+
 }
 
 void NMTrace::Enter()

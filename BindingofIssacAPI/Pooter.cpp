@@ -16,11 +16,13 @@ Pooter::Pooter()
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Pooter", L"texture\\monster\\monster_pooter.png");
 
 	m_Animator = AddComponent<MyAnimator>(L"PooterAnimator");
-
 	m_Animator->LoadAnimation(L"animdata\\PooterLeftAnim.txt");
 	m_Animator->LoadAnimation(L"animdata\\PooterRightAnim.txt");
-
 	m_Animator->Play(L"PooterRightAnim", true);
+
+	m_Collider = AddComponent<MyCollider>(L"NormalFlyCollider");
+	m_Collider->SetScale(Vec2(28.f, 32.f));
+	m_Collider->SetOffsetPos(Vec2(0.f, -15.f));
 
 	m_AI = AddComponent<MyStateMachine>(L"NormalFlyAI");
 	m_AI->AddState((UINT)NormalMons_STATE::IDLE, new NMIdle);

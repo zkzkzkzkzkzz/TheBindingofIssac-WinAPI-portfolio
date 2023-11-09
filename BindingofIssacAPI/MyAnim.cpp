@@ -53,6 +53,7 @@ void MyAnim::render(HDC _dc)
 	MyObject* pOwnerObject = m_pAnimator->GetOwner();
 	Vec2 vRenderPos = pOwnerObject->GetRenderPos();
 	Vec2 vScale = pOwnerObject->GetScale();
+	Vec2 vOffset = pOwnerObject->GetOffsetPos();
 
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
@@ -61,8 +62,8 @@ void MyAnim::render(HDC _dc)
 	blend.SourceConstantAlpha = 255; // 0 ~ 255
 	blend.AlphaFormat = AC_SRC_ALPHA; // 0
 
-	AlphaBlend(_dc, int(vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x)
-		, int(vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y)
+	AlphaBlend(_dc, int((vRenderPos.x - (frm.vCutSize.x / 2.f) + frm.vOffset.x) + vOffset.x)
+		, int((vRenderPos.y - (frm.vCutSize.y / 2.f) + frm.vOffset.y) + vOffset.y)
 		, int(frm.vCutSize.x * vScale.x), int(frm.vCutSize.y * vScale.y)
 		, m_Atlas->GetDC()
 		, int(frm.vLeftTop.x), int(frm.vLeftTop.y)

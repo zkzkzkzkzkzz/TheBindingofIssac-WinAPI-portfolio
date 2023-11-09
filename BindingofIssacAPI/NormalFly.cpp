@@ -16,10 +16,12 @@ NormalFly::NormalFly()
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"NormalFly", L"texture\\monster\\monster_fly.png");
 
 	m_Animator = AddComponent<MyAnimator>(L"NormalFlyAnimator");
-
 	m_Animator->LoadAnimation(L"animdata\\NormalFlyAnim.txt");
-
 	m_Animator->Play(L"NormalFlyAnim", true);
+
+	m_Collider = AddComponent<MyCollider>(L"NormalFlyCollider");
+	m_Collider->SetScale(Vec2(28.f, 28.f));
+	m_Collider->SetOffsetPos(Vec2(0.f, -14.f));
 
 	m_AI = AddComponent<MyStateMachine>(L"NormalFlyAI");
 	m_AI->AddState((UINT)NormalMons_STATE::IDLE, new NMIdle);

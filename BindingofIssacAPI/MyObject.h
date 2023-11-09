@@ -12,6 +12,7 @@ class MyObject
 private:
 	Vec2					m_Pos;
 	Vec2					m_Scale;
+	Vec2					m_OffsetPos;
 	vector<MyComponent*>	m_vecComponent;
 	int						m_iLayerIdx;
 
@@ -20,9 +21,11 @@ public:
 	Vec2 GetPos() { return m_Pos; }
 	Vec2 GetRenderPos() { return MyCameraMgr::GetInst()->GetRenderPos(m_Pos); }
 	Vec2 GetScale() { return m_Scale; }
+	Vec2 GetOffsetPos() { return m_OffsetPos; }
 
 	void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
 	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
+	void SetOffsetPos(Vec2 _OffsetPos) { m_OffsetPos = _OffsetPos; }
 
 	int GetLayerIdx() { return m_iLayerIdx; }
 

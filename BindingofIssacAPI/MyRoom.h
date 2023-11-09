@@ -2,6 +2,7 @@
 #include "MyObject.h"
 
 class MyTexture;
+class MyCollider;
 
 enum class ROOM_TYPE
 {
@@ -18,6 +19,8 @@ class MyRoom :
     GENERATED_OBJECT(MyObject);
 
 private:
+    MyCollider* m_Collider;
+
     int        m_MonsterCount;
     bool       m_isOpen;
     bool       m_IsBoss;
@@ -32,6 +35,9 @@ public:
 	virtual void begin() override;
 	virtual void tick(float _DT) override;
 	virtual void render(HDC _dc);
+
+   // virtual void BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol) override;
+    virtual void Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol) override;
 
 public:
     void SetRoomImg(MyTexture* _Img) { m_CurImg = _Img; }

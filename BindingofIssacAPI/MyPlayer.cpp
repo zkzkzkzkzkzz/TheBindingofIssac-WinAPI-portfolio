@@ -17,7 +17,7 @@ MyPlayer::MyPlayer()
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
 	, m_IsFire(false)
-	//, m_Collider(nullptr)
+	, m_Collider(nullptr)
 {
 	SetName(L"Player");
 
@@ -41,6 +41,11 @@ MyPlayer::MyPlayer()
 	m_AnimatorBody->Play(L"BIdleDown", true);
 	m_AnimatorHead->Play(L"HIdleDown", true);
 
+	// 충돌체 추가
+	m_Collider = AddComponent<MyCollider>(L"PlayerCollider");
+	m_Collider->SetScale(Vec2(40.f, 64.f));
+	m_Collider->SetOffsetPos(Vec2(0.f, -29.f));
+
 	// Movement 컴포넌트 추가
 	m_Movement = AddComponent<MyMovement>(L"PlayerMovement");
 	m_Movement->SetMass(1.f);
@@ -57,12 +62,12 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
 	, m_IsFire(false)
-	//, m_Collider(nullptr)
+	, m_Collider(nullptr)
 {
 	m_AnimatorHead = GetComponent<MyAnimator>();
 	m_AnimatorBody = GetComponent<MyAnimator>();
 	m_Movement = GetComponent<MyMovement>();
-	//m_Collider = GetComponent<MyCollider>();
+	m_Collider = GetComponent<MyCollider>();
 }
 
 MyPlayer::~MyPlayer()

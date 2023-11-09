@@ -4,6 +4,7 @@
 class MyTexture;
 class MyAnimator;
 class MyMovement;
+class MyCollider;
 class MyStateMachine;
 
 class NormalFly :
@@ -15,6 +16,7 @@ private:
     MyTexture*      m_Atlas;
     MyAnimator*     m_Animator;
     MyMovement*     m_Movement;
+    MyCollider*     m_Collider;
     MyStateMachine* m_AI;
 
 public:
