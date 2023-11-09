@@ -147,6 +147,6 @@ void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _Othe
 	{
 		MyObject* pPlayer = dynamic_cast<MyObject*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
 		_OtherObj = pPlayer;
-		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x - abs(MoveX * 0.4f), _OtherObj->GetPos().y));
+		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x - abs(MoveX * 0.3f), _OtherObj->GetPos().y));
 	}	
 }
