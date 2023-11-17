@@ -121,11 +121,13 @@ enum class LAYER
 	DEFAULT,
 	MAP,
 	ROOM,
+	DOOR,
 	SHADOW,
 	PLAYER,
 	MONSTER,
 	TEARS,
 	BOSS,
+	EFFECT,
 
 	UI = 31,
 	END = 32,
@@ -186,4 +188,12 @@ enum class NormalMons_STATE
 	IDLE,
 	TRACE,
 	ATTACK,
+};
+
+enum class DOOR_DIR
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
 };

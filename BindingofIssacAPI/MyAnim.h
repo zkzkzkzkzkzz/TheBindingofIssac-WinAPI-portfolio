@@ -60,5 +60,6 @@ public:
 
     friend class MyAnimator;
     friend class MyTears;
+    friend class MyEffect;
 };
 

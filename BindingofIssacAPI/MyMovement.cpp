@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "MyMovement.h"
-
+#include "MyTimeMgr.h"
 
 #include "MyObject.h"
 
@@ -33,7 +33,7 @@ void MyMovement::finaltick(float _DT)
 		{
 			Vec2 vAccelDir = m_Accel;
 			vAccelDir.Normalize();
-			m_Velocity = vAccelDir;
+			m_Velocity = vAccelDir * 10.f;
 		}
 	}
 	else
@@ -104,9 +104,11 @@ void MyMovement::finaltick(float _DT)
 
 	if (m_UsingGravity)
 	{
-		Vec2 vDir = Rotate(Vec2(0.f, m_Gravity), m_RotateSpeed * _DT);
+		//Vec2 vDir = Rotate(Vec2(0.f, m_Gravity), m_RotateSpeed * _DT);
 
-		m_Velocity.y += vDir.y;
+		//m_Velocity.y += abs(vDir.y);
+
+		m_Velocity.y += m_Gravity * DT;
 	}
 
 	Vec2 vObjPos = GetOwner()->GetPos();

@@ -3,6 +3,8 @@
 
 class MyTexture;
 class MyCollider;
+class MyTears;
+class MyMonsterTears;
 
 class MyShadow :
     public MyObject
@@ -10,8 +12,13 @@ class MyShadow :
     GENERATED_OBJECT(MyObject);
 
 private:
-    MyTexture*  m_ShadowTex;
-    MyCollider* m_Collider;
+    MyTexture*      m_ShadowTex;
+    MyCollider*     m_Collider;
+    MyTears*        m_OwnerTears;
+    MyMonsterTears* m_MonsOwnerTears;
+
+public:
+    MyTears* GetOwnerTears() { return m_OwnerTears; }
 
 public:
     virtual void begin() override;
@@ -21,6 +28,8 @@ public:
 public:
     CLONE(MyShadow);
     MyShadow();
+    MyShadow(MyTears* _Owner);
+    MyShadow(MyMonsterTears* _Owner);
     MyShadow(const MyShadow& _Origin);
     ~MyShadow();
 };

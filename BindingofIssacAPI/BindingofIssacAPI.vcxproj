@@ -114,6 +114,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,6 +131,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="FloatingKnight.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="global.h" />
@@ -153,8 +156,12 @@
     <ClInclude Include="MyCollider.h" />
     <ClInclude Include="MyCollisionMgr.h" />
     <ClInclude Include="MyComponent.h" />
+    <ClInclude Include="MyDoor.h" />
+    <ClInclude Include="MyEffect.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
+    <ClInclude Include="MyFKDeadEffect.h" />
+    <ClInclude Include="MyFlyDeadEffect.h" />
     <ClInclude Include="MyGCMgr.h" />
     <ClInclude Include="MyIssacIdle.h" />
     <ClInclude Include="MyKeyMgr.h" />
@@ -162,17 +169,23 @@
     <ClInclude Include="MyLevel.h" />
     <ClInclude Include="MyLevelMgr.h" />
     <ClInclude Include="MyLogMgr.h" />
+    <ClInclude Include="MyMonster.h" />
+    <ClInclude Include="MyMonsterEffect.h" />
+    <ClInclude Include="MyMonsterTears.h" />
     <ClInclude Include="MyMovement.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyPathMgr.h" />
     <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyPlayLevel.h" />
     <ClInclude Include="MyRoom.h" />
+    <ClInclude Include="MyShadow.h" />
     <ClInclude Include="MySound.h" />
     <ClInclude Include="MySoundMgr.h" />
+    <ClInclude Include="MySpawnEffect.h" />
     <ClInclude Include="MyState.h" />
     <ClInclude Include="MyStateMachine.h" />
     <ClInclude Include="MyTaskMgr.h" />
+    <ClInclude Include="MyTears.h" />
     <ClInclude Include="MyTexture.h" />
     <ClInclude Include="MyTimeMgr.h" />
     <ClInclude Include="MyTitleLevel.h" />
@@ -180,7 +193,12 @@
     <ClInclude Include="MyUIMgr.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="NMAttack.h" />
+    <ClInclude Include="NMIdle.h" />
+    <ClInclude Include="NMTrace.h" />
+    <ClInclude Include="NormalFly.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Pooter.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
@@ -190,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BindingofIssacAPI.cpp" />
+    <ClCompile Include="FloatingKnight.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="MyAnim.cpp" />
     <ClCompile Include="MyAnimator.cpp" />
@@ -200,8 +219,12 @@
     <ClCompile Include="MyCollider.cpp" />
     <ClCompile Include="MyCollisionMgr.cpp" />
     <ClCompile Include="MyComponent.cpp" />
+    <ClCompile Include="MyDoor.cpp" />
+    <ClCompile Include="MyEffect.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
+    <ClCompile Include="MyFKDeadEffect.cpp" />
+    <ClCompile Include="MyFlyDeadEffect.cpp" />
     <ClCompile Include="MyGCMgr.cpp" />
     <ClCompile Include="MyIssacIdle.cpp" />
     <ClCompile Include="MyKeyMgr.cpp" />
@@ -209,17 +232,23 @@
     <ClCompile Include="MyLevel.cpp" />
     <ClCompile Include="MyLevelMgr.cpp" />
     <ClCompile Include="MyLogMgr.cpp" />
+    <ClCompile Include="MyMonster.cpp" />
+    <ClCompile Include="MyMonsterEffect.cpp" />
+    <ClCompile Include="MyMonsterTears.cpp" />
     <ClCompile Include="MyMovement.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyPathMgr.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyPlayLevel.cpp" />
     <ClCompile Include="MyRoom.cpp" />
+    <ClCompile Include="MyShadow.cpp" />
     <ClCompile Include="MySound.cpp" />
     <ClCompile Include="MySoundMgr.cpp" />
+    <ClCompile Include="MySpawnEffect.cpp" />
     <ClCompile Include="MyState.cpp" />
     <ClCompile Include="MyStateMachine.cpp" />
     <ClCompile Include="MyTaskMgr.cpp" />
+    <ClCompile Include="MyTears.cpp" />
     <ClCompile Include="MyTexture.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="MyTitleLevel.cpp" />
@@ -227,10 +256,15 @@
     <ClCompile Include="MyUIMgr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="NMAttack.cpp" />
+    <ClCompile Include="NMIdle.cpp" />
+    <ClCompile Include="NMTrace.cpp" />
+    <ClCompile Include="NormalFly.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Pooter.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="TitleAnimUI.cpp" />
     <ClCompile Include="TitleTexUI.cpp" />

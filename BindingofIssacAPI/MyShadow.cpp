@@ -8,6 +8,8 @@
 MyShadow::MyShadow()
 	: m_ShadowTex(nullptr)
 	, m_Collider(nullptr)
+	, m_OwnerTears(nullptr)
+	, m_MonsOwnerTears(nullptr)
 {
 	m_ShadowTex = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
 
@@ -17,10 +19,39 @@ MyShadow::MyShadow()
 	m_Collider->SetOffsetPos(Vec2(-1.f, -4.f));
 }
 
+MyShadow::MyShadow(MyTears* _Owner)
+	: m_ShadowTex(nullptr)
+	, m_Collider(nullptr)
+	, m_OwnerTears(_Owner)
+	, m_MonsOwnerTears(nullptr)
+{
+	m_ShadowTex = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
+
+	m_Collider = AddComponent<MyCollider>(L"TearShadowCollider");
+
+	m_Collider->SetScale(Vec2(27.f, 5.f));
+	m_Collider->SetOffsetPos(Vec2(-1.f, -4.f));
+}
+
+MyShadow::MyShadow(MyMonsterTears* _Owner)
+	: m_ShadowTex(nullptr)
+	, m_Collider(nullptr)
+	, m_OwnerTears(nullptr)
+	, m_MonsOwnerTears(_Owner)
+{
+	m_ShadowTex = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
+
+	m_Collider = AddComponent<MyCollider>(L"MonsTearShadowCollider");
+
+	m_Collider->SetScale(Vec2(27.f, 5.f));
+	m_Collider->SetOffsetPos(Vec2(-1.f, -4.f));
+}
+
 MyShadow::MyShadow(const MyShadow& _Origin)
 	: MyObject(_Origin)
 	, m_ShadowTex(_Origin.m_ShadowTex)
 	, m_Collider(nullptr)
+	, m_OwnerTears(nullptr)
 {
 	m_Collider = GetComponent<MyCollider>();
 }

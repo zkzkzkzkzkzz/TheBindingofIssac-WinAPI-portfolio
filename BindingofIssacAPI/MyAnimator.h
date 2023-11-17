@@ -20,6 +20,7 @@ private:
 public:
     void Play(const wstring& _strName, bool _bRepeat);
     void Stop();
+    MyAnim* GetCurAnim() { return m_CurAnim; }
 
 
     // Animation 찾기
@@ -41,5 +42,7 @@ public:
     MyAnimator(MyObject* _Owner);
     MyAnimator(const MyAnimator& _Origin);
     ~MyAnimator();
+
+    friend class MyDoor;
 };
 

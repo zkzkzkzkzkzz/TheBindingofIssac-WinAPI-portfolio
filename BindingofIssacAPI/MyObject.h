@@ -15,7 +15,8 @@ private:
 	Vec2					m_OffsetPos;
 	vector<MyComponent*>	m_vecComponent;
 	int						m_iLayerIdx;
-
+	
+	bool m_IsActive;
 
 public:
 	Vec2 GetPos() { return m_Pos; }
@@ -26,6 +27,7 @@ public:
 	void SetPos(Vec2 _Pos) { m_Pos = _Pos; }
 	void SetScale(Vec2 _Scale) { m_Scale = _Scale; }
 	void SetOffsetPos(Vec2 _OffsetPos) { m_OffsetPos = _OffsetPos; }
+	void SetActive(bool _b) { m_IsActive = _b; }
 
 	int GetLayerIdx() { return m_iLayerIdx; }
 

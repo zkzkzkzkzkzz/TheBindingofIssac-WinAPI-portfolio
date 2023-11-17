@@ -19,6 +19,7 @@ MyCameraMgr::MyCameraMgr()
 {
 	Vec2 vResol = MyEngine::GetInst()->GetResolution();
 	m_Veil = MyAssetMgr::GetInst()->CreateTexture(L"VeilTex", (UINT)vResol.x, (UINT)vResol.y);
+	m_InitPos = Vec2(480.f, 320.f);
 }
 
 MyCameraMgr::~MyCameraMgr()
@@ -130,7 +131,7 @@ void MyCameraMgr::tick()
 			{
 				SetLookAt(Vec2(480.f, 960.f));
 			}
- 		}
+		}
 	}
 
 	else if (evnt.Type == CAM_EFFECT::SCROLLUP)
@@ -138,7 +139,7 @@ void MyCameraMgr::tick()
 		evnt.AccTime += DT;
 
 		float BtwTime = evnt.Duration - evnt.AccTime;
-	
+
 		if (m_vLookAt.y <= 320.f)
 		{
 			SetLookAt(Vec2(480.f, 320.f));
@@ -169,7 +170,135 @@ void MyCameraMgr::tick()
 		}
 	}
 
+	else if (evnt.Type == CAM_EFFECT::CAMERAUP)
+	{
+		evnt.AccTime += DT;
+
+		float BtwTime = evnt.Duration - evnt.AccTime;
+
+		if (BtwTime <= 0.f)
+		{
+			SetLookAt(Vec2(m_vLookAt.x, m_vLookAt.y));
+			m_EventList.pop_front();
+			m_InitPos.y -= 640.f;
+		}
+		else if (BtwTime > 0.555f)
+		{
+			m_vLookAt.y -= 24000.f * DT * BtwTime;
+
+			if (m_vLookAt.y <= m_InitPos.y - 640.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x, m_InitPos.y - 640.f));
+			}
+		}
+		else if (BtwTime > 0.f && BtwTime <= 0.555f)
+		{
+			m_vLookAt.y -= 500.f * DT * BtwTime;
+
+			if (m_vLookAt.y <= m_InitPos.y - 640.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x, m_InitPos.y - 640.f));
+			}
+		}
+	}
+
+	else if (evnt.Type == CAM_EFFECT::CAMERADOWN)
+	{
+		evnt.AccTime += DT;
+
+		float BtwTime = evnt.Duration - evnt.AccTime;
+
+		if (BtwTime <= 0.f)
+		{
+			SetLookAt(Vec2(m_vLookAt.x, m_vLookAt.y));
+			m_EventList.pop_front();
+			m_InitPos.y += 640.f;
+		}
+		else if (BtwTime > 0.555f)
+		{
+			m_vLookAt.y += 24000.f * DT * BtwTime;
+
+			if (m_vLookAt.y >= m_InitPos.y + 640.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x, m_InitPos.y + 640.f));
+			}
+		}
+		else if (BtwTime > 0.f && BtwTime <= 0.555f)
+		{
+			m_vLookAt.y += 500.f * DT * BtwTime;
+
+			if (m_vLookAt.y >= m_InitPos.y + 640.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x, m_InitPos.y + 640.f));
+			}
+		}
+	}
+
+	else if (evnt.Type == CAM_EFFECT::CAMERALEFT)
+	{
+		evnt.AccTime += DT;
+
+		float BtwTime = evnt.Duration - evnt.AccTime;
+
+		if (BtwTime <= 0.f)
+		{
+			SetLookAt(Vec2(m_vLookAt.x, m_vLookAt.y));
+			m_EventList.pop_front();
+			m_InitPos.x -= 960.f;
+		}
+		else if (BtwTime > 0.5f)
+		{
+			m_vLookAt.x -= 23000.f * DT * BtwTime;
+
+			if (m_vLookAt.x <= m_InitPos.x - 960.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x - 960.f, m_InitPos.y));
+			}
+		}
+		else if (BtwTime > 0.f && BtwTime <= 0.5f)
+		{
+			m_vLookAt.x -= 300.f * DT * BtwTime;
+
+			if (m_vLookAt.x <= m_InitPos.x - 960.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x - 960.f, m_InitPos.y));
+			}
+		}
+	}
+
+	else if (evnt.Type == CAM_EFFECT::CAMERARIGHT)
+	{
+		evnt.AccTime += DT;
+
+		float BtwTime = evnt.Duration - evnt.AccTime;
+
+		if (BtwTime <= 0.f)
+		{
+			SetLookAt(Vec2(m_vLookAt.x, m_vLookAt.y));
+			m_EventList.pop_front();
+			m_InitPos.x += 960.f;
+		}
+		else if (BtwTime > 0.5f)
+		{
+			m_vLookAt.x += 23000.f * DT * BtwTime;
+
+			if (m_vLookAt.x >= m_InitPos.x + 960.f)
+			{
+				SetLookAt(Vec2(m_InitPos.x + 960.f, m_InitPos.y));
+			}
+		}
+		else if (BtwTime > 0.f && BtwTime <= 0.5f)
+		{
+			m_vLookAt.x += 300.f * DT * BtwTime;
+
+			if (m_vLookAt.x >= m_InitPos.x + 960.f)
+			{							   
+				SetLookAt(Vec2(m_InitPos.x + 960.f, m_InitPos.y));
+			}
+		}
+	}
 }
+
 
 void MyCameraMgr::render(HDC _dc)
 {

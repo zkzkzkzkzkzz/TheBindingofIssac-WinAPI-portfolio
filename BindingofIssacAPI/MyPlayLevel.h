@@ -10,10 +10,6 @@ class MyPlayLevel :
 private:
     MyTexture*      m_Texture;
     Vec2            vLookAt;
-    vector<MyRoom*> m_vecRoom;
-
-public:
-
 
 public:
     virtual void init() override;

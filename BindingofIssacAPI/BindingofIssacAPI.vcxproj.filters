@@ -59,38 +59,89 @@
     <Filter Include="Game\07. Asset\Sound">
       <UniqueIdentifier>{7658407a-5481-4077-9797-1f8c49c05f2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\UI">
-      <UniqueIdentifier>{4f68d81a-8a5c-4967-acd9-9f27c3939d1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\05. Object\UI\TitleUI">
-      <UniqueIdentifier>{cf4f3e60-c1ee-48c4-8110-077fa9c93f27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\05. Object\BackGround">
       <UniqueIdentifier>{58b431ec-cfb1-4c58-a9c4-bcb610c22bd0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\04. Level\PlayLevel">
       <UniqueIdentifier>{26373bfd-c07a-41f8-a3de-fa261b21d16c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\05. Object\Room">
-      <UniqueIdentifier>{9bf17729-ae51-4016-9d73-f17f7ef0190d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\05. Object\Player">
       <UniqueIdentifier>{4b3fc6a5-cccb-419f-b0b9-53e05e175c57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\08. State\IssacState">
+    <Filter Include="Game\05. Object\Tears">
+      <UniqueIdentifier>{ded4d904-d3c4-46c8-805d-a324c3128455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Monster">
+      <UniqueIdentifier>{9c480be6-dbe5-4e54-a112-e1c2d83d44a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\NormalMonster">
+      <UniqueIdentifier>{05e08bcf-4717-487c-b7ed-4d30c9fe7388}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\NormalMonster\Idle">
+      <UniqueIdentifier>{d445a744-b26b-4cc8-bd69-bc4528118f1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\NormalMonster\Trace">
+      <UniqueIdentifier>{8724b663-5c86-4e54-b666-c55a6b0c0ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\Issac">
       <UniqueIdentifier>{614c8028-f4c6-4c09-addd-486895c95c3d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\08. State\IssacState\Idle">
+    <Filter Include="Game\08. State\Issac\Idle">
       <UniqueIdentifier>{61a15f44-159c-4cd4-9496-237825391fb4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\08. State\IssacState\Move">
+    <Filter Include="Game\08. State\Issac\Move">
       <UniqueIdentifier>{23bdc800-4773-4da1-bf8f-317c7fae1fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Monster\Pooter">
+      <UniqueIdentifier>{9eef010e-a1c7-4bdf-8a6c-bb7211180c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Shadow">
+      <UniqueIdentifier>{6af7659e-b27f-431a-ab7b-39c2361136ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI">
+      <UniqueIdentifier>{4f68d81a-8a5c-4967-acd9-9f27c3939d1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI\TitleUI">
+      <UniqueIdentifier>{cf4f3e60-c1ee-48c4-8110-077fa9c93f27}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\05. Object\UI\TitleUI\TexUI">
       <UniqueIdentifier>{fd7b885e-587f-4b0a-8143-249779e3fd8f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\05. Object\UI\TitleUI\AnimUI">
       <UniqueIdentifier>{22361cbb-d177-4215-a724-7a80ddb9ba6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect">
+      <UniqueIdentifier>{330f8681-aa44-469b-9ee9-a702617f9979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Room">
+      <UniqueIdentifier>{9bf17729-ae51-4016-9d73-f17f7ef0190d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Room\Door">
+      <UniqueIdentifier>{83800c46-e902-46d2-b03d-541866b3e32d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\08. State\NormalMonster\Attack">
+      <UniqueIdentifier>{b4ee0649-f1fe-4481-b18f-fe5893466d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Tears\MonsterTears">
+      <UniqueIdentifier>{ddd09baf-12d3-46bc-a524-8f2f7df621a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect\MonsterEffect">
+      <UniqueIdentifier>{eab59633-69c9-4db8-851a-026c368684c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Monster\FloatingKnight">
+      <UniqueIdentifier>{35020170-f116-48a3-8977-60a0c52c53e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Monster\NormalFly">
+      <UniqueIdentifier>{868dd48a-fdda-449d-bf72-5588c787ec80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect\SpawnEffect">
+      <UniqueIdentifier>{ddad2894-3927-49b2-acc2-c09fc7e01228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect\FlyDeadEffect">
+      <UniqueIdentifier>{ee028ea9-03d4-4200-8498-6b3a5b711453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect\FKDeadEffect">
+      <UniqueIdentifier>{4294d695-7c28-4164-b49b-787a1b566375}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -222,13 +273,61 @@
       <Filter>Game\06. Component\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="MyIssacIdle.h">
-      <Filter>Game\08. State\IssacState\Idle</Filter>
+      <Filter>Game\08. State\Issac\Idle</Filter>
     </ClInclude>
     <ClInclude Include="TitleTexUI.h">
       <Filter>Game\05. Object\UI\TitleUI\TexUI</Filter>
     </ClInclude>
     <ClInclude Include="TitleAnimUI.h">
       <Filter>Game\05. Object\UI\TitleUI\AnimUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTears.h">
+      <Filter>Game\05. Object\Tears</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMonster.h">
+      <Filter>Game\05. Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalFly.h">
+      <Filter>Game\05. Object\Monster\NormalFly</Filter>
+    </ClInclude>
+    <ClInclude Include="NMIdle.h">
+      <Filter>Game\08. State\NormalMonster\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="NMTrace.h">
+      <Filter>Game\08. State\NormalMonster\Trace</Filter>
+    </ClInclude>
+    <ClInclude Include="Pooter.h">
+      <Filter>Game\05. Object\Monster\Pooter</Filter>
+    </ClInclude>
+    <ClInclude Include="MyShadow.h">
+      <Filter>Game\05. Object\Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="MyEffect.h">
+      <Filter>Game\05. Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDoor.h">
+      <Filter>Game\05. Object\Room\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="NMAttack.h">
+      <Filter>Game\08. State\NormalMonster\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMonsterTears.h">
+      <Filter>Game\05. Object\Tears\MonsterTears</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMonsterEffect.h">
+      <Filter>Game\05. Object\Effect\MonsterEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatingKnight.h">
+      <Filter>Game\05. Object\Monster\FloatingKnight</Filter>
+    </ClInclude>
+    <ClInclude Include="MySpawnEffect.h">
+      <Filter>Game\05. Object\Effect\SpawnEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFlyDeadEffect.h">
+      <Filter>Game\05. Object\Effect\FlyDeadEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFKDeadEffect.h">
+      <Filter>Game\05. Object\Effect\FKDeadEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -355,13 +454,61 @@
       <Filter>Game\06. Component\StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="MyIssacIdle.cpp">
-      <Filter>Game\08. State\IssacState\Idle</Filter>
+      <Filter>Game\08. State\Issac\Idle</Filter>
     </ClCompile>
     <ClCompile Include="TitleTexUI.cpp">
       <Filter>Game\05. Object\UI\TitleUI\TexUI</Filter>
     </ClCompile>
     <ClCompile Include="TitleAnimUI.cpp">
       <Filter>Game\05. Object\UI\TitleUI\AnimUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTears.cpp">
+      <Filter>Game\05. Object\Tears</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMonster.cpp">
+      <Filter>Game\05. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalFly.cpp">
+      <Filter>Game\05. Object\Monster\NormalFly</Filter>
+    </ClCompile>
+    <ClCompile Include="NMIdle.cpp">
+      <Filter>Game\08. State\NormalMonster\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="NMTrace.cpp">
+      <Filter>Game\08. State\NormalMonster\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="Pooter.cpp">
+      <Filter>Game\05. Object\Monster\Pooter</Filter>
+    </ClCompile>
+    <ClCompile Include="MyShadow.cpp">
+      <Filter>Game\05. Object\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEffect.cpp">
+      <Filter>Game\05. Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDoor.cpp">
+      <Filter>Game\05. Object\Room\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="NMAttack.cpp">
+      <Filter>Game\08. State\NormalMonster\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMonsterTears.cpp">
+      <Filter>Game\05. Object\Tears\MonsterTears</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMonsterEffect.cpp">
+      <Filter>Game\05. Object\Effect\MonsterEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatingKnight.cpp">
+      <Filter>Game\05. Object\Monster\FloatingKnight</Filter>
+    </ClCompile>
+    <ClCompile Include="MySpawnEffect.cpp">
+      <Filter>Game\05. Object\Effect\SpawnEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFlyDeadEffect.cpp">
+      <Filter>Game\05. Object\Effect\FlyDeadEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFKDeadEffect.cpp">
+      <Filter>Game\05. Object\Effect\FKDeadEffect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

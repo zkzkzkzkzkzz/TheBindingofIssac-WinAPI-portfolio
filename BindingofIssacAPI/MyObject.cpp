@@ -7,7 +7,8 @@
 #include "MyTaskMgr.h"
 
 MyObject::MyObject()
-	: m_iLayerIdx(-1)
+	: m_iLayerIdx(-1),
+	m_IsActive(true)
 {
 }
 
@@ -37,6 +38,8 @@ MyObject::~MyObject()
 
 void MyObject::tick(float _DT)
 {
+	if (!m_IsActive)
+		return;
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
 	{
 		m_vecComponent[i]->tick(_DT);
@@ -45,6 +48,8 @@ void MyObject::tick(float _DT)
 
 void MyObject::finaltick(float _DT)
 {
+	if (!m_IsActive)
+		return;
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
 	{
 		m_vecComponent[i]->finaltick(_DT);
@@ -53,6 +58,8 @@ void MyObject::finaltick(float _DT)
 
 void MyObject::render(HDC _dc)
 {
+	if (!m_IsActive)
+		return;
 	for (size_t i = 0; i < m_vecComponent.size(); ++i)
 	{
 		m_vecComponent[i]->render(_dc);

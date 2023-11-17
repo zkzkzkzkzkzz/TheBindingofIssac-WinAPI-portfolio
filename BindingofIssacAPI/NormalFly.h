@@ -6,6 +6,7 @@ class MyAnimator;
 class MyMovement;
 class MyCollider;
 class MyStateMachine;
+class MyRoom;
 
 class NormalFly :
     public MyMonster
@@ -14,10 +15,12 @@ class NormalFly :
 
 private:
     MyTexture*      m_Atlas;
+    MyTexture*      m_MonsterShadow;
     MyAnimator*     m_Animator;
-    MyMovement*     m_Movement;
     MyCollider*     m_Collider;
     MyStateMachine* m_AI;
+    FMonInfo        m_Info;
+    MyRoom*         m_OwnerRoom;
 
 public:
     virtual void begin() override;

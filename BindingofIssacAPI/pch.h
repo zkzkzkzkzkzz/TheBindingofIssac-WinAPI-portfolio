@@ -5,6 +5,7 @@
 #define WIN32_LEAN_AND_MEAN             
 #include <windows.h>
 #include <stdlib.h>
+#include <time.h>
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
@@ -15,6 +16,7 @@
 #include <list>
 #include <map>
 #include <string>
+#include <algorithm>
 
 using std::vector;
 using std::list;

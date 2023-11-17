@@ -9,6 +9,10 @@ enum class CAM_EFFECT
 	FADE_OUT,
 	SCROLLDOWN,
 	SCROLLUP,
+	CAMERAUP,
+	CAMERADOWN,
+	CAMERALEFT,
+	CAMERARIGHT,
 };
 
 struct FCamEvent
@@ -35,10 +39,14 @@ private:
 	float				m_CurSpeed;
 	float				damping;
 	int					dampingCount;
+
+	Vec2				m_InitPos;
+
 public:
 	void tick();
 	void render(HDC _dc);
 	void SetLookAt(Vec2 _vLookAt) { m_vLookAt = _vLookAt; }
+	Vec2 GetInitPos() { return m_InitPos; }
 
 	void FadeIn(float _time)
 	{
@@ -72,6 +80,42 @@ public:
 	{
 		FCamEvent evnt = {};
 		evnt.Type = CAM_EFFECT::SCROLLUP;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
+	}
+
+	void MoveUpCamera(float _time)
+	{
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::CAMERAUP;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
+	}
+
+	void MoveDownCamera(float _time)
+	{
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::CAMERADOWN;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
+	}
+
+	void MoveLeftCamera(float _time)
+	{
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::CAMERALEFT;
+		evnt.AccTime = 0.f;
+		evnt.Duration = _time;
+		m_EventList.push_back(evnt);
+	}
+
+	void MoveRightCamera(float _time)
+	{
+		FCamEvent evnt = {};
+		evnt.Type = CAM_EFFECT::CAMERARIGHT;
 		evnt.AccTime = 0.f;
 		evnt.Duration = _time;
 		m_EventList.push_back(evnt);

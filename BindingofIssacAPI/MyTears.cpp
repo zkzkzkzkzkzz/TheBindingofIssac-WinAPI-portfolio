@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "MyTears.h"
-
 #include "MyAssetMgr.h"
 #include "MyTimeMgr.h"
 
+#include "MyEffect.h"
 #include "MyShadow.h"
 #include "MyTexture.h"
 #include "components.h"
@@ -15,6 +15,7 @@ MyTears::MyTears()
 	, m_Movement(nullptr)
 	, m_Collider(nullptr)
 	, m_Shadow(nullptr)
+	, m_Effect(nullptr)
 	, m_Speed(0.f)
 	, m_Angle(PI /2.f)
 	, m_Duration(0.4f)
@@ -27,7 +28,6 @@ MyTears::MyTears()
 
 	m_Animator = AddComponent<MyAnimator>(L"TearsAnimator");
 	m_Animator->LoadAnimation(L"animdata\\TearsAnim.txt");
-	m_Animator->LoadAnimation(L"animdata\\TearsDestroy.txt");
 	m_Animator->Play(L"TearsAnim", false);
 
 	m_Collider = AddComponent<MyCollider>(L"TearsCollider");
@@ -42,26 +42,32 @@ MyTears::MyTears()
 	m_Movement->SetGravity(1000.f);
 	m_Movement->UseGravity(false);
 
-	m_Shadow = new MyShadow;
+	m_Shadow = new MyShadow(this);
 	m_Shadow->SetName(L"TearsShadow");
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::SHADOW, (UINT_PTR)m_Shadow });
+
 }
 
 MyTears::MyTears(const MyTears& _Origin)
-	: MyObject(_Origin)
-	, m_Atlas(_Origin.m_Atlas)
+	: m_Atlas(_Origin.m_Atlas)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
 	, m_Collider(nullptr)
+	, m_Shadow(nullptr)
+	, m_Effect(nullptr)
 	, m_Speed(0.f)
 	, m_Angle(PI / 2.f)
-	, m_Duration(0.5f)
+	, m_Duration(1.f)
 	, m_Acctime(0.f)
 	, m_IsDestroy(false)
 {
 	m_Animator = GetComponent<MyAnimator>();
 	m_Movement = GetComponent<MyMovement>();
 	m_Collider = GetComponent<MyCollider>();
+
+	m_Shadow = new MyShadow(this);
+	m_Shadow->SetName(L"TearsShadow");
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::SHADOW, (UINT_PTR)m_Shadow });
 }
 
 MyTears::~MyTears()
@@ -69,9 +75,11 @@ MyTears::~MyTears()
 
 }
 
+
 void MyTears::begin()
 {
 	m_initPos = GetPos();
+
 }
 
 void MyTears::tick(float _DT)
@@ -107,7 +115,7 @@ void MyTears::fire()
 		m_Shadow->SetPos(Vec2(vPos.x, m_initPos.y + 30.f));
 	}
 
-	if (m_Duration <= m_Acctime)
+	if (m_Duration / 2.f <= m_Acctime)
 	{
 		m_Movement->UseGravity(true);
 	}
@@ -115,19 +123,26 @@ void MyTears::fire()
 
 void MyTears::TearsDestroy()
 {
-	Destroy();
+	Vec2 vPos = GetPos();
+
+	m_Effect = new MyEffect;
+	m_Effect->SetName(L"TearsDestroyAnimation");
+	m_Effect->SetPos(vPos);
+	m_Effect->SetScale(Vec2(1.f, 1.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)m_Effect });
+
 	m_Shadow->Destroy();
+	Destroy();
 }
 
 
 void MyTears::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
-	if (dynamic_cast<MyShadow*>(_OtherObj) && _OtherObj->GetName() != L"PlayerShadow")
+	if (_OtherObj->GetName() != L"PlayerShadow")
 	{
 		m_IsDestroy = true;
 		m_Movement->SetVelocity(Vec2(0.f, 0.f));
 		m_Movement->UseGravity(false);
-		m_Animator->Play(L"TearsDestroy", false);
 		TearsDestroy();
 	}
 }

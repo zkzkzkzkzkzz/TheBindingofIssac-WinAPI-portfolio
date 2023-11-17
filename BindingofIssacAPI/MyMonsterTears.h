@@ -1,13 +1,13 @@
 #pragma once
 #include "MyObject.h"
-
 class MyTexture;
 class MyAnimator;
 class MyCollider;
+class MyPlayer;
 class MyShadow;
-class MyEffect;
+class MyMonsterEffect;
 
-class MyTears :
+class MyMonsterTears :
     public MyObject
 {
     GENERATED_OBJECT(MyObject);
@@ -26,14 +26,15 @@ private:
     float   m_Acctime;
     bool    m_IsDestroy;
 
-    Vec2    m_initPos;
-    MyEffect* m_Effect;
+    MyMonsterEffect*    m_Effect;
+    MyPlayer*           m_pTarget;
+    Vec2                m_TargetPos;
 
 
 public:
     virtual void begin() override;
     virtual void tick(float _DT) override;
-    
+
     void fire();
     void TearsDestroy();
 
@@ -51,9 +52,9 @@ public:
     virtual void BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol) override;
 
 public:
-    CLONE(MyTears);
-    MyTears();
-    MyTears(const MyTears& _Origin);
-    ~MyTears();
+    CLONE(MyMonsterTears);
+    MyMonsterTears();
+    MyMonsterTears(const MyMonsterTears& _Origin);
+    ~MyMonsterTears();
 };
 

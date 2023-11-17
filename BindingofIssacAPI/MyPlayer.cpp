@@ -21,9 +21,12 @@ MyPlayer::MyPlayer()
 	, m_Movement(nullptr)
 	, m_Collider(nullptr)
 	, m_Shadow(nullptr)
-	, m_Acctime(0.6f)
-	, m_Duration(0.6f)
+	, m_Acctime(0.f)
+	, m_Duration(0.2f)
 	, m_TearsCount(0)
+	, m_IsDamaged(0)
+	, m_DamagedMaxTime(2.f)
+	, m_DamagedAccTime(0.f)
 {
 	SetName(L"Player");
 
@@ -31,12 +34,6 @@ MyPlayer::MyPlayer()
 
 	m_AnimatorBody = AddComponent<MyAnimator>(L"BodyAnimator");
 	m_AnimatorHead = AddComponent<MyAnimator>(L"HeadAnimator");
-
-	// 몸 애니메이션 로드
-	m_AnimatorBody->LoadAnimation(L"animdata\\BIdleDown.txt");
-	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkLeft.txt");
-	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkRight.txt");
-	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkDown.txt");
 
 	// 머리 애니메이션 로드
 	m_AnimatorHead->LoadAnimation(L"animdata\\HIdleDown.txt");
@@ -47,6 +44,14 @@ MyPlayer::MyPlayer()
 	m_AnimatorHead->LoadAnimation(L"animdata\\HTearRight.txt");
 	m_AnimatorHead->LoadAnimation(L"animdata\\HTearUp.txt");
 	m_AnimatorHead->LoadAnimation(L"animdata\\HTearDown.txt");
+	m_AnimatorHead->LoadAnimation(L"animdata\\IssacDamagedAnim.txt");
+
+	// 몸 애니메이션 로드
+	m_AnimatorBody->LoadAnimation(L"animdata\\BIdleDown.txt");
+	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkLeft.txt");
+	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkRight.txt");
+	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkDown.txt");
+	m_AnimatorBody->LoadAnimation(L"animdata\\IssacDamagedBodyAnim.txt");
 
 	m_AnimatorBody->Play(L"BIdleDown", true);
 	m_AnimatorHead->Play(L"HIdleDown", true);
@@ -72,9 +77,13 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	, m_AnimatorBody(nullptr)
 	, m_Movement(nullptr)
 	, m_Collider(nullptr)
+	, m_Shadow(nullptr)
 	, m_Acctime(1.f)
 	, m_Duration(1.f)
 	, m_TearsCount(0)
+	, m_IsDamaged(0)
+	, m_DamagedMaxTime(2.f)
+	, m_DamagedAccTime(0.f)
 {
 	m_AnimatorHead = GetComponent<MyAnimator>();
 	m_AnimatorBody = GetComponent<MyAnimator>();
@@ -86,6 +95,7 @@ MyPlayer::~MyPlayer()
 {
 	
 }
+
 
 void MyPlayer::begin()
 {
@@ -99,7 +109,6 @@ void MyPlayer::begin()
 	m_Shadow->SetOffsetPos(Vec2(-18.5f, -6.f));
 
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::SHADOW, (UINT_PTR)m_Shadow });
-
 }
 
 void MyPlayer::tick(float _DT)
@@ -107,7 +116,8 @@ void MyPlayer::tick(float _DT)
 	Super::tick(_DT);
 
 	Vec2 vPos = GetPos();
-	m_Acctime += DT;
+
+	m_Acctime += _DT;
 
 	// 눈물을 안쏘고 있을 때
 	if (KEY_PRESSED(A) && 0 == m_TearsCount)
@@ -162,6 +172,7 @@ void MyPlayer::tick(float _DT)
 	if (KEY_TAP(LEFT))
 	{
 		++m_TearsCount;
+
 	}
 	else if (KEY_PRESSED(LEFT))
 	{
@@ -169,8 +180,6 @@ void MyPlayer::tick(float _DT)
 		
 		if (m_Duration <= m_Acctime)
 		{
-			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
-
 			MyTears* pTears = new MyTears;
 
 			Vec2 TearsPos = GetPos();
@@ -250,8 +259,6 @@ void MyPlayer::tick(float _DT)
 
 		if (m_Duration <= m_Acctime)
 		{
-			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
-
 			MyTears* pTears = new MyTears;
 
 			Vec2 TearsPos = GetPos();
@@ -331,8 +338,6 @@ void MyPlayer::tick(float _DT)
 
 		if (m_Duration <= m_Acctime)
 		{
-			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
-
 			MyTears* pTears = new MyTears;
 
 			Vec2 TearsPos = GetPos();
@@ -412,13 +417,11 @@ void MyPlayer::tick(float _DT)
 
 		if (m_Duration <= m_Acctime)
 		{
-			MyLevel* pCurLevel = MyLevelMgr::GetInst()->GetCurLevel();
-
 			MyTears* pTears = new MyTears;
 
 			Vec2 TearsPos = GetPos();
-			TearsPos.x -= 8.f;
-			TearsPos.y -= 35.f;
+			TearsPos.x -= 4.f;
+			TearsPos.y -= 10.f;
 
 			pTears->SetSpeed(450.f);
 			pTears->SetvAngle(Vec2(0.f, 1.f));
@@ -483,6 +486,18 @@ void MyPlayer::tick(float _DT)
 		--m_TearsCount;
 	}
 
+
 	SetPos(vPos);
 	m_Shadow->SetPos(vPos);
+}
+
+
+void MyPlayer::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
+{
+	++m_IsDamaged;
+}
+
+void MyPlayer::EndOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
+{
+	--m_IsDamaged;
 }
