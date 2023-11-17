@@ -1,0 +1,21 @@
+[ANIM_NAME]
+MonsterTearsAnim
+
+[ATLAS_TEXTURE]
+MonsterTears
+texture\\Effect\\effect_bloodtear.png
+
+[FRAME_COUNT]
+1
+
+[FRAME_NUM]
+0
+[LEFT_TOP]
+0.000000 0.000000
+[CUT_SIZE]
+64.000000 64.000000
+[OFFSET]
+0.000000 0.000000
+[DURATION]
+0.200000
+
