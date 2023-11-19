@@ -17,9 +17,9 @@ protected:
 
 private:
     bool    IsBoss;
-    Vec2 m_vInitPos;
-    float m_fDuration;
-    float m_AccTime;
+    Vec2    m_vInitPos;
+    float   m_fDuration;
+    float   m_AccTime;
     
     MyTexture*  m_Atlas;
     MyAnimator* m_Animator;

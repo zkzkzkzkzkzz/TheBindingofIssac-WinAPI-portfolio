@@ -13,6 +13,7 @@
 #include "MyDoor.h"
 #include "MyShadow.h"
 #include "MyEffect.h"
+#include "MyScene.h"
 #include "MyTexture.h"
 #include "components.h"
 
@@ -205,6 +206,14 @@ void MyRoom::tick(float _DT)
 	{
 		m_CurRoomType = ROOM_TYPE::NORMAL2;
 	}
+	else if ((vPos.x > 1400.f && vPos.x < 1500.f) && (vPos.y > 300.f && vPos.y < 400.f))
+	{
+		m_CurRoomType = ROOM_TYPE::NORMAL3;
+	}
+	else if ((vPos.x > 1400.f && vPos.x < 1500.f) && (vPos.y > -400.f && vPos.y < -300.f))
+	{
+		m_CurRoomType = ROOM_TYPE::BOSS;
+	}
 }
 
 void MyRoom::render(HDC _dc)
@@ -275,7 +284,7 @@ void MyRoom::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _Othe
 		_OtherObj = pPlayer;
 		_OtherObj->SetPos(Vec2(_OtherObj->GetPos().x, _OtherObj->GetPos().y + abs(MoveY * 0.03f)));
 	}
-
+	
 	if ((Colstr == L"RoomColliderDown1" || Colstr == L"RoomColliderDown2" || Colstr == L"RoomColliderDown3") && Objstr == L"PlayerShadow")
 	{
 		MyPlayer* pPlayer = dynamic_cast<MyPlayer*>(MyLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"Player"));
@@ -306,6 +315,15 @@ void MyRoom::SetMonPos()
 			m_vecMons[i]->SetToInitPos();
 		}
 	}
+}
+
+void MyRoom::PlayBossAnimation()
+{
+	MyScene* pScene = new MyScene;
+	pScene->SetPos(Vec2(960.f, -640.f));
+	pScene->SetScale(Vec2(2.f, 2.f));
+	pScene->SetOffsetPos(Vec2(250.f, 150.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pScene });
 }
 
 void MyRoom::CheckMonsterCount()

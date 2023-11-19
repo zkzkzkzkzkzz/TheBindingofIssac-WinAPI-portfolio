@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h" />
+    <ClInclude Include="BossMonster.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="FloatingKnight.h" />
     <ClInclude Include="framework.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyPlayLevel.h" />
     <ClInclude Include="MyRoom.h" />
+    <ClInclude Include="MyScene.h" />
     <ClInclude Include="MyShadow.h" />
     <ClInclude Include="MySound.h" />
     <ClInclude Include="MySoundMgr.h" />
@@ -208,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BindingofIssacAPI.cpp" />
+    <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="FloatingKnight.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="MyAnim.cpp" />
@@ -241,6 +244,7 @@
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyPlayLevel.cpp" />
     <ClCompile Include="MyRoom.cpp" />
+    <ClCompile Include="MyScene.cpp" />
     <ClCompile Include="MyShadow.cpp" />
     <ClCompile Include="MySound.cpp" />
     <ClCompile Include="MySoundMgr.cpp" />

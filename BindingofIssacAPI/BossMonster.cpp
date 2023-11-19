@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "FloatingKnight.h"
+#include "BossMonster.h"
 #include "MyAssetMgr.h"
 #include "MyTimeMgr.h"
 #include "MyTexture.h"
@@ -7,50 +7,45 @@
 #include "components.h"
 #include "MyFKDeadEffect.h"
 
-FloatingKnight::FloatingKnight()
+BossMonster::BossMonster()
 	: m_Atlas(nullptr)
 	, m_MonsterShadow(nullptr)
-	, m_HeadCollider(nullptr)
-	, m_TailCollider(nullptr)
+	, m_Collider(nullptr)
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
-	, m_Info{}
 	, m_MoveTime(0.f)
 	, m_StartMoveTime(1.f)
-	, m_ChangeDirTime(10.f)
+	, m_ChangeDirTime(8.f)
+	, m_Info{}
 {
-	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"FloatingKnight", L"texture\\monster\\monster_floatingknight.png");
+	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Boss", L"texture\\Boss\\boss_dukeofflies.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
 
-	m_Animator = AddComponent<MyAnimator>(L"FKAnimator");
-	m_Animator->LoadAnimation(L"animdata\\FloatingKnightDownAnim.txt");
-	m_Animator->LoadAnimation(L"animdata\\FloatingKnightUpAnim.txt");
-	m_Animator->LoadAnimation(L"animdata\\FloatingKnightRightAnim.txt");
-	m_Animator->LoadAnimation(L"animdata\\FloatingKnightLeftAnim.txt");
-	m_Animator->Play(L"FloatingKnightDownAnim", true);
+	m_Animator = AddComponent<MyAnimator>(L"BossAnimator");
+	m_Animator->LoadAnimation(L"animdata\\BossIdleAnim.txt");
+	m_Animator->LoadAnimation(L"animdata\\BossAttackAnim1.txt");
+	m_Animator->LoadAnimation(L"animdata\\BossAttackAnim2.txt");
+	m_Animator->Play(L"BossIdleAnim", true);
 
-	m_HeadCollider = AddComponent<MyCollider>(L"FKHeadCollider");
+	m_Collider = AddComponent<MyCollider>(L"BossCollider");
+	m_Collider->SetScale(Vec2(100.f, 100.f));
+	m_Collider->SetOffsetPos(Vec2(0.f, -50.f));
 
-	m_TailCollider = AddComponent<MyCollider>(L"FKTailCollider");
+	m_Movement = AddComponent<MyMovement>(L"BossMovement");
+	m_Movement->SetVelocity(Vec2(0.f, 0.f));
+	m_Movement->SetInitSpeed(50.f);
+	m_Movement->SetMaxSpeed(50.f);
 
-	m_Movement = AddComponent<MyMovement>(L"FKMovement");
-	m_Movement->SetVelocity(Vec2(0.f, 100.f));
-	m_Movement->SetInitSpeed(30.f);
-	m_Movement->SetMaxSpeed(30.f);
-
-
-	m_Info.HP = 3.f;
+	m_Info.HP = 10.f;
 
 	srand((UINT)time(NULL));
 }
 
-FloatingKnight::~FloatingKnight()
+BossMonster::~BossMonster()
 {
 }
 
-
-
-void FloatingKnight::begin()
+void BossMonster::begin()
 {
 	if (m_IsDead == true)
 	{
@@ -60,7 +55,7 @@ void FloatingKnight::begin()
 	GetStartDir();
 }
 
-void FloatingKnight::tick(float _DT)
+void BossMonster::tick(float _DT)
 {
 	if (m_IsDead == true)
 	{
@@ -99,7 +94,7 @@ void FloatingKnight::tick(float _DT)
 	}
 }
 
-void FloatingKnight::render(HDC _dc)
+void BossMonster::render(HDC _dc)
 {
 	if (m_IsDead == true)
 	{
@@ -107,8 +102,8 @@ void FloatingKnight::render(HDC _dc)
 	}
 
 	Vec2 vRenderPos = GetRenderPos();
-	Vec2 vScale = Vec2(0.4f, 0.4f);
-	Vec2 vOffset = Vec2(-22.f, -5.f);
+	Vec2 vScale = Vec2(1.f, 1.f);
+	Vec2 vOffset = Vec2(-60.f, 0.f);
 
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
@@ -127,117 +122,80 @@ void FloatingKnight::render(HDC _dc)
 		, m_MonsterShadow->GetHeight()
 		, blend);
 
-
 	Super::render(_dc);
 }
 
-void FloatingKnight::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
+void BossMonster::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
 	if (!m_IsDead)
 	{
 		if ((_OtherCol->GetName() == L"RoomColliderUp1" || _OtherCol->GetName() == L"RoomColliderUp2"
 			|| _OtherCol->GetName() == L"RoomColliderUp3" || _OtherCol->GetName() == L"CloseUpDoorCollider")
-			&& _OwnCol->GetName() == L"FKHeadCollider")
+			&& _OwnCol->GetName() == L"BossCollider")
 		{
 			SetStartDir(FKDir::DOWN);
 		}
 
 		if ((_OtherCol->GetName() == L"RoomColliderDown1" || _OtherCol->GetName() == L"RoomColliderDown2"
 			|| _OtherCol->GetName() == L"RoomColliderDown3" || _OtherCol->GetName() == L"CloseDownDoorCollider")
-			&& _OwnCol->GetName() == L"FKHeadCollider")
+			&& _OwnCol->GetName() == L"BossCollider")
 		{
 			SetStartDir(FKDir::UP);
 		}
 
 		if ((_OtherCol->GetName() == L"RoomColliderLeft1" || _OtherCol->GetName() == L"RoomColliderLeft2"
 			|| _OtherCol->GetName() == L"RoomColliderLeft3" || _OtherCol->GetName() == L"CloseLeftDoorCollider")
-			&& _OwnCol->GetName() == L"FKHeadCollider")
+			&& _OwnCol->GetName() == L"BossCollider")
 		{
 			SetStartDir(FKDir::RIGHT);
 		}
 
 		if ((_OtherCol->GetName() == L"RoomColliderRight1" || _OtherCol->GetName() == L"RoomColliderRight2"
 			|| _OtherCol->GetName() == L"RoomColliderRight3" || _OtherCol->GetName() == L"CloseRightDoorCollider")
-			&& _OwnCol->GetName() == L"FKHeadCollider")
+			&& _OwnCol->GetName() == L"BossCollider")
 		{
 			SetStartDir(FKDir::LEFT);
 		}
 	}
-	
 
-	if (dynamic_cast<MyTears*>(_OtherObj) && _OwnCol->GetName() == L"FKTailCollider")
+
+	if (dynamic_cast<MyTears*>(_OtherObj) && _OwnCol->GetName() == L"BossCollider")
 	{
 		m_Info.HP -= 1.f;
 
 		if (m_Info.HP <= 0.f)
 		{
 			m_IsDead = true;
-			MyFKDeadEffect* pFDE = new MyFKDeadEffect;
-			pFDE->SetPos(GetPos());
-			pFDE->SetScale(Vec2(1.5f, 1.5f));
-			pFDE->SetOffsetPos(Vec2(-15.f, -20.f));
-			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pFDE });
+			
 			//Destroy();
 		}
 	}
 }
 
 
-void FloatingKnight::ChangeDirectionU()
+void BossMonster::ChangeDirectionU()
 {
 	m_Movement->SetVelocity(Vec2(0.f, -100.f));
-
-	m_HeadCollider->SetScale(Vec2(50.f, 20.f));
-	m_HeadCollider->SetOffsetPos(Vec2(0.f, -35.f));
-
-	m_TailCollider->SetScale(Vec2(50.f, 30.f));
-	m_TailCollider->SetOffsetPos(Vec2(0.f, -15.f));
-
-	m_Animator->Play(L"FloatingKnightUpAnim", true);
 }
 
-void FloatingKnight::ChangeDirectionD()
+void BossMonster::ChangeDirectionD()
 {
 	m_Movement->SetVelocity(Vec2(0.f, 100.f));
-
-	m_HeadCollider->SetScale(Vec2(40.f, 40.f));
-	m_HeadCollider->SetOffsetPos(Vec2(0.f, -19.f));
-
-	m_TailCollider->SetScale(Vec2(40.f, 20.f));
-	m_TailCollider->SetOffsetPos(Vec2(0.f, -40.f));
-
-	m_Animator->Play(L"FloatingKnightDownAnim", true);
 }
 
-void FloatingKnight::ChangeDirectionL()
+void BossMonster::ChangeDirectionL()
 {
 	m_Movement->SetVelocity(Vec2(-100.f, 0.f));
-
-	m_HeadCollider->SetScale(Vec2(20.f, 50.f));
-	m_HeadCollider->SetOffsetPos(Vec2(-10.f, -25.f));
-
-	m_TailCollider->SetScale(Vec2(30.f, 45.f));
-	m_TailCollider->SetOffsetPos(Vec2(10.f, -25.f));
-
-	m_Animator->Play(L"FloatingKnightLeftAnim", true);
 }
 
-void FloatingKnight::ChangeDirectionR()
+void BossMonster::ChangeDirectionR()
 {
 	m_Movement->SetVelocity(Vec2(100.f, 0.f));
-
-	m_HeadCollider->SetScale(Vec2(30.f, 50.f));
-	m_HeadCollider->SetOffsetPos(Vec2(10.f, -25.f));
-
-	m_TailCollider->SetScale(Vec2(20.f, 45.f));
-	m_TailCollider->SetOffsetPos(Vec2(-10.f, -25.f));
-
-	m_Animator->Play(L"FloatingKnightRightAnim", true);
 }
 
-void FloatingKnight::SetStartDir(FKDir _dir)
-{
 
+void BossMonster::SetStartDir(FKDir _dir)
+{
 	switch (_dir)
 	{
 	case FKDir::UP:
@@ -255,4 +213,16 @@ void FloatingKnight::SetStartDir(FKDir _dir)
 	default:
 		break;
 	}
+}
+
+
+
+void BossMonster::Attack01()
+{
+	m_Animator->Play(L"BossAttackAnim1", false);
+}
+
+void BossMonster::Attack02()
+{
+	m_Animator->Play(L"BossAttackAnim2", false);
 }

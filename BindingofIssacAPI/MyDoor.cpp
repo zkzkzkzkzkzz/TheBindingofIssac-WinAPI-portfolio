@@ -10,8 +10,10 @@
 #include "MyShadow.h"
 #include "MyTears.h"
 #include "MyEffect.h"
+#include "MyScene.h"
 #include "MyRoom.h"
 #include "components.h"
+#include "MyScene.h"
 
 MyDoor::MyDoor()
 	: m_Atlas(nullptr)
@@ -28,6 +30,8 @@ MyDoor::MyDoor()
 	, m_DoorDir(0)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Door", L"texture\\Grid\\door_01_normaldoor.png");
+	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"TreasureDoor", L"texture\\Grid\\door_02_treasureroomdoor.png");
+	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"BossDoor", L"texture\\Grid\\door_10_bossroomdoor.png");
 
 	// 애니메이션
 	m_OutAnimator = AddComponent<MyAnimator>(L"OutDoorAnimator");
@@ -35,7 +39,11 @@ MyDoor::MyDoor()
 	m_OutAnimator->LoadAnimation(L"animdata\\DownOutDoorAnim.txt");
 	m_OutAnimator->LoadAnimation(L"animdata\\LeftOutDoorAnim.txt");
 	m_OutAnimator->LoadAnimation(L"animdata\\RightOutDoorAnim.txt");
-	
+
+	// 보스방 용
+	m_OutAnimator->LoadAnimation(L"animdata\\UpOutBossDoorAnim.txt");
+	m_OutAnimator->LoadAnimation(L"animdata\\DownOutBossDoorAnim.txt");
+
 	m_InAnimator = AddComponent<MyAnimator>(L"InDoorAnimator");
 	m_InAnimator->LoadAnimation(L"animdata\\UpInDoorIdleAnim.txt");
 	m_InAnimator->LoadAnimation(L"animdata\\UpInDoorOpenAnim.txt");
@@ -49,6 +57,10 @@ MyDoor::MyDoor()
 	m_InAnimator->LoadAnimation(L"animdata\\RightInDoorIdleAnim.txt");
 	m_InAnimator->LoadAnimation(L"animdata\\RightInDoorOpenAnim.txt");
 	m_InAnimator->LoadAnimation(L"animdata\\RightInDoorCloseAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\UpInBossDoorOpenAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\UpInBossDoorCloseAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\DownInBossDoorOpenAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\DownInBossDoorCloseAnim.txt");
 }
 
 MyDoor::MyDoor(MyRoom* _Owner)
@@ -66,6 +78,8 @@ MyDoor::MyDoor(MyRoom* _Owner)
 	, m_DoorDir(0)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Door", L"texture\\Grid\\door_01_normaldoor.png");
+	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"TreasureDoor", L"texture\\Grid\\door_02_treasureroomdoor.png");
+	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"BossDoor", L"texture\\Grid\\door_10_bossroomdoor.png");
 
 	// 애니메이션
 	m_OutAnimator = AddComponent<MyAnimator>(L"OutDoorAnimator");
@@ -73,6 +87,9 @@ MyDoor::MyDoor(MyRoom* _Owner)
 	m_OutAnimator->LoadAnimation(L"animdata\\DownOutDoorAnim.txt");
 	m_OutAnimator->LoadAnimation(L"animdata\\LeftOutDoorAnim.txt");
 	m_OutAnimator->LoadAnimation(L"animdata\\RightOutDoorAnim.txt");
+	// 보스방 용
+	m_OutAnimator->LoadAnimation(L"animdata\\UpOutBossDoorAnim.txt");
+	m_OutAnimator->LoadAnimation(L"animdata\\DownOutBossDoorAnim.txt");
 
 	m_InAnimator = AddComponent<MyAnimator>(L"InDoorAnimator");
 	m_InAnimator->LoadAnimation(L"animdata\\UpInDoorIdleAnim.txt");
@@ -87,6 +104,10 @@ MyDoor::MyDoor(MyRoom* _Owner)
 	m_InAnimator->LoadAnimation(L"animdata\\RightInDoorIdleAnim.txt");
 	m_InAnimator->LoadAnimation(L"animdata\\RightInDoorOpenAnim.txt");
 	m_InAnimator->LoadAnimation(L"animdata\\RightInDoorCloseAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\UpInBossDoorOpenAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\UpInBossDoorCloseAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\DownInBossDoorOpenAnim.txt");
+	m_InAnimator->LoadAnimation(L"animdata\\DownInBossDoorCloseAnim.txt");
 }
 
 MyDoor::~MyDoor()
@@ -99,64 +120,136 @@ void MyDoor::begin()
 
 	if (m_OwnerRoom->GetUpDoorColOpen() && m_DoorDir == (int)DOOR_DIR::UP && m_OwnerRoom->IsRoomOpen())
 	{
-		m_OutAnimator->Play(L"UpOutDoorAnim", true);
+		if (!(m_OwnerRoom->m_IsBoss))
+		{
+			m_OutAnimator->Play(L"UpOutDoorAnim", true);
 
-		m_CloseCollider = AddComponent<MyCollider>(L"CloseUpDoorCollider");
-		m_OpenCollider = AddComponent<MyCollider>(L"OpenUpDoorCollider");
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseUpDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenUpDoorCollider");
 
-		m_CloseCollider->SetScale(Vec2(80.f, 120.f));
-		m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 50.f));
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 50.f));
 
-		m_OpenCollider->SetScale(Vec2(80.f, 80.f));
-		m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 60.f));
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 60.f));
 
-		m_InAnimator->Play(L"UpInDoorOpenAnim", false);
+			m_InAnimator->Play(L"UpInDoorOpenAnim", false);
+		}
+		else if (m_OwnerRoom->m_IsBoss)
+		{
+			m_OutAnimator->Play(L"UpOutBossDoorAnim", true);
+
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseUpDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenUpDoorCollider");
+
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 50.f));
+
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 60.f));
+
+			m_InAnimator->Play(L"UpInBossDoorOpenAnim", false);
+		}
 	}
 	else if (m_OwnerRoom->GetUpDoorColOpen() && m_DoorDir == (int)DOOR_DIR::UP && !m_OwnerRoom->IsRoomOpen())
 	{
-		m_OutAnimator->Play(L"UpOutDoorAnim", true);
+		if (!(m_OwnerRoom->m_IsBoss))
+		{
+			m_OutAnimator->Play(L"UpOutDoorAnim", true);
 
-		m_CloseCollider = AddComponent<MyCollider>(L"CloseUpDoorCollider");
-		m_OpenCollider = AddComponent<MyCollider>(L"OpenUpDoorCollider");
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseUpDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenUpDoorCollider");
 
-		m_CloseCollider->SetScale(Vec2(80.f, 120.f));
-		m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 50.f));
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 50.f));
 
-		m_OpenCollider->SetScale(Vec2(80.f, 80.f));
-		m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 60.f));
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 60.f));
 
-		m_InAnimator->Play(L"UpInDoorCloseAnim", false);
+			m_InAnimator->Play(L"UpInDoorCloseAnim", false);
+		}
+		else if (m_OwnerRoom->m_IsBoss)
+		{
+			m_OutAnimator->Play(L"UpOutBossDoorAnim", true);
+
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseUpDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenUpDoorCollider");
+
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 50.f));
+
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 60.f));
+
+			m_InAnimator->Play(L"UpInBossDoorCloseAnim", false);
+		}
 	}
 
 	if (m_OwnerRoom->GetDownDoorColOpen() && m_DoorDir == (int)DOOR_DIR::DOWN && m_OwnerRoom->IsRoomOpen())
 	{
-		m_OutAnimator->Play(L"DownOutDoorAnim", true);
+		if (!(m_OwnerRoom->m_IsBoss))
+		{
+			m_OutAnimator->Play(L"DownOutDoorAnim", true);
 
-		m_CloseCollider = AddComponent<MyCollider>(L"CloseDownDoorCollider");
-		m_OpenCollider = AddComponent<MyCollider>(L"OpenDownDoorCollider");
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseDownDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenDownDoorCollider");
 
-		m_CloseCollider->SetScale(Vec2(80.f, 120.f));
-		m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
 
-		m_OpenCollider->SetScale(Vec2(80.f, 80.f));
-		m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
 
-		m_InAnimator->Play(L"DownInDoorOpenAnim", false);
+			m_InAnimator->Play(L"DownInDoorOpenAnim", false);
+		}
+		else if (m_OwnerRoom->m_IsBoss)
+		{
+			m_OutAnimator->Play(L"DownOutBossDoorAnim", true);
+
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseDownDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenDownDoorCollider");
+
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+
+			m_InAnimator->Play(L"DownInBossDoorOpenAnim", false);
+		}
 	}
 	else if (m_OwnerRoom->GetDownDoorColOpen() && m_DoorDir == (int)DOOR_DIR::DOWN && !m_OwnerRoom->IsRoomOpen())
 	{
-		m_OutAnimator->Play(L"DownOutDoorAnim", true);
+		if (!(m_OwnerRoom->m_IsBoss))
+		{
+			m_OutAnimator->Play(L"DownOutBossDoorAnim", true);
 
-		m_CloseCollider = AddComponent<MyCollider>(L"CloseDownDoorCollider");
-		m_OpenCollider = AddComponent<MyCollider>(L"OpenDownDoorCollider");
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseDownDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenDownDoorCollider");
 
-		m_CloseCollider->SetScale(Vec2(80.f, 120.f));
-		m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
 
-		m_OpenCollider->SetScale(Vec2(80.f, 80.f));
-		m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
 
-		m_InAnimator->Play(L"DownInDoorCloseAnim", false);
+			m_InAnimator->Play(L"DownInDoorCloseAnim", false);
+		}
+		else if (m_OwnerRoom->m_IsBoss)
+		{
+			m_OutAnimator->Play(L"DownOutBossDoorAnim", true);
+
+			m_CloseCollider = AddComponent<MyCollider>(L"CloseDownDoorCollider");
+			m_OpenCollider = AddComponent<MyCollider>(L"OpenDownDoorCollider");
+
+			m_CloseCollider->SetScale(Vec2(80.f, 120.f));
+			m_CloseCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+
+			m_OpenCollider->SetScale(Vec2(80.f, 80.f));
+			m_OpenCollider->SetOffsetPos(Vec2(OwnerRoomPos.x + 480.f, OwnerRoomPos.y + 585.f));
+
+			m_InAnimator->Play(L"DownInBossDoorCloseAnim", false);
+		}
 	}
 
 	if (m_OwnerRoom->GetLeftDoorColOpen() && m_DoorDir == (int)DOOR_DIR::LEFT && m_OwnerRoom->IsRoomOpen())
@@ -230,16 +323,29 @@ void MyDoor::tick(float _DT)
 	{
 		if (m_OwnerRoom->GetUpDoorColOpen() && m_DoorDir == (int)DOOR_DIR::UP)
 		{
-			if (m_InAnimator->m_CurAnim->IsFinish())
-			{
-				m_InAnimator->Play(L"UpInDoorCloseAnim", false);
-				m_InAnimator->FindAnim(L"UpInDoorOpenAnim")->Reset();
-			}
+				if (!(m_OwnerRoom->m_IsBoss))
+				{
+					m_InAnimator->Play(L"UpInDoorCloseAnim", false);
+					m_InAnimator->FindAnim(L"UpInDoorOpenAnim")->Reset();
+				}
+				else if (m_OwnerRoom->m_IsBoss)
+				{
+					m_InAnimator->Play(L"UpInBossDoorCloseAnim", false);
+					m_InAnimator->FindAnim(L"UpInBossDoorOpenAnim")->Reset();
+				}
 		}
 		if (m_OwnerRoom->GetDownDoorColOpen() && m_DoorDir == (int)DOOR_DIR::DOWN)
 		{
-			m_InAnimator->Play(L"DownInDoorCloseAnim", false);
-			m_InAnimator->FindAnim(L"DownInDoorOpenAnim")->Reset();
+				if (!(m_OwnerRoom->m_IsBoss))
+				{
+					m_InAnimator->Play(L"DownInDoorCloseAnim", false);
+					m_InAnimator->FindAnim(L"DownInDoorOpenAnim")->Reset();
+				}
+				else if (m_OwnerRoom->m_IsBoss)
+				{
+					m_InAnimator->Play(L"DownInBossDoorCloseAnim", false);
+					m_InAnimator->FindAnim(L"DownInBossDoorOpenAnim")->Reset();
+				}
 		}
 		if (m_OwnerRoom->GetLeftDoorColOpen() && m_DoorDir == (int)DOOR_DIR::LEFT)
 		{
@@ -256,13 +362,31 @@ void MyDoor::tick(float _DT)
 	{
 		if (m_OwnerRoom->GetUpDoorColOpen() && m_DoorDir == (int)DOOR_DIR::UP)
 		{
-			m_InAnimator->Play(L"UpInDoorOpenAnim", false);
-			m_InAnimator->FindAnim(L"UpInDoorCloseAnim")->Reset();
+			if (!(m_OwnerRoom->m_IsBoss))
+			{
+				m_InAnimator->Play(L"UpInDoorOpenAnim", false);
+				m_InAnimator->FindAnim(L"UpInDoorCloseAnim")->Reset();
+			}
+			else if (m_OwnerRoom->m_IsBoss)
+			{
+				m_InAnimator->Play(L"UpInBossDoorOpenAnim", false);
+				m_InAnimator->FindAnim(L"UpInBossDoorCloseAnim")->Reset();
+			}
+			
 		}
 		if (m_OwnerRoom->GetDownDoorColOpen() && m_DoorDir == (int)DOOR_DIR::DOWN)
 		{
-			m_InAnimator->Play(L"DownInDoorOpenAnim", false);
-			m_InAnimator->FindAnim(L"DownInDoorCloseAnim")->Reset();
+			if (!(m_OwnerRoom->m_IsBoss))
+			{
+				m_InAnimator->Play(L"DownInDoorOpenAnim", false);
+				m_InAnimator->FindAnim(L"DownInDoorCloseAnim")->Reset();
+			}
+			else if (m_OwnerRoom->m_IsBoss)
+			{
+				m_InAnimator->Play(L"DownInBossDoorOpenAnim", false);
+				m_InAnimator->FindAnim(L"DownInBossDoorCloseAnim")->Reset();
+			}
+
 		}
 		if (m_OwnerRoom->GetLeftDoorColOpen() && m_DoorDir == (int)DOOR_DIR::LEFT)
 		{
@@ -296,9 +420,19 @@ void MyDoor::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* 
 			
 			_OtherObj->SetPos(Vec2(PlayerPos.x, PlayerPos.y - 238.f));
 
-			if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::START) {
+			if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::START)
+			{
 				auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
 				dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::NORMAL2])->SetMonPos();
+			}
+			else if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::NORMAL3)
+			{
+				auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
+				MyCameraMgr::GetInst()->SetLookAt(Vec2(1440.f, -320.f));
+				if (!(dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->IsDead()))
+				{
+					dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->PlayBossAnimation();
+				}
 			}
 		}
 
@@ -341,11 +475,6 @@ void MyDoor::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* 
 			_OtherObj = pPlayer;
 
 			_OtherObj->SetPos(Vec2(PlayerPos.x + 252.f, PlayerPos.y));
-
-			/*if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::NORMAL2) {
-				auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
-				dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->PlayBossAnimation();
-			}*/
 		}
 
 		// 문과 눈물 충돌

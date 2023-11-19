@@ -16,10 +16,10 @@
 #include "NormalFly.h"
 #include "Pooter.h"
 #include "FloatingKnight.h"
+#include "BossMonster.h"
 #include "MyRoom.h"
 #include "MyBackGround.h"
 #include "MyTexture.h"
-
 #include "components.h"
 
 void MyPlayLevel::init()
@@ -33,8 +33,7 @@ void MyPlayLevel::init()
 	pRoom->SetUpDoorColOpen(true);
 	pRoom->SetDownDoorColOpen(false);
 	pRoom->SetLeftDoorColOpen(true);
-	pRoom->SetRightDoorColOpen(false);
-	
+	pRoom->SetRightDoorColOpen(true);
 	AddObject(LAYER::ROOM, pRoom);
 
 	// 왼쪽 방
@@ -50,30 +49,46 @@ void MyPlayLevel::init()
 	pRoom2->SetRightDoorColOpen(true);
 	AddObject(LAYER::ROOM, pRoom2);
 
-	//// 오른쪽 방
-	//pRoom = pRoom->Clone();
-	//pRoom->SetRoomImg(pRoom->GetNormalImg());
-	//pRoom->SetPos(Vec2(960.f, 0.f));
-	//AddObject(LAYER::ROOM, pRoom);
-
 	// 위쪽 방
 	MyRoom* pRoom3 = new MyRoom;
-	pRoom3->SetRoomImg(pRoom2->GetNormalImg());
+	pRoom3->SetRoomImg(pRoom3->GetNormalImg());
 	pRoom3->SetName(L"NormalRoom2");
 	pRoom3->SetPos(Vec2(0.f, -640.f));
 	pRoom3->SetScale(Vec2(2.f, 2.f));
-	pRoom3->SetRoomType(ROOM_TYPE::NORMAL);
+	pRoom3->SetRoomType(ROOM_TYPE::NORMAL2);
 	pRoom3->SetUpDoorColOpen(true);
 	pRoom3->SetDownDoorColOpen(true);
 	pRoom3->SetLeftDoorColOpen(false);
 	pRoom3->SetRightDoorColOpen(false);
 	AddObject(LAYER::ROOM, pRoom3);
 
-	//// 아래쪽 방
-	//pRoom = pRoom->Clone();
-	//pRoom->SetRoomImg(pRoom->GetNormalImg());
-	//pRoom->SetPos(Vec2(0.f, 640.f));
-	//AddObject(LAYER::ROOM, pRoom);
+	// 오른쪽 방
+	MyRoom* pRoom4 = new MyRoom;
+	pRoom4->SetRoomImg(pRoom4->GetNormalImg());
+	pRoom4->SetName(L"NormalRoom3");
+	pRoom4->SetPos(Vec2(960.f, 0.f));
+	pRoom4->SetScale(Vec2(2.f, 2.f));
+	pRoom4->SetRoomType(ROOM_TYPE::NORMAL2);
+	pRoom4->SetUpDoorColOpen(true);
+	pRoom4->SetDownDoorColOpen(false);
+	pRoom4->SetLeftDoorColOpen(true);
+	pRoom4->SetRightDoorColOpen(false);
+	pRoom4->SetBossRoom();
+	AddObject(LAYER::ROOM, pRoom4);
+
+	// 보스 방
+	MyRoom* pRoom5 = new MyRoom;
+	pRoom5->SetRoomImg(pRoom5->GetBossImg());
+	pRoom5->SetName(L"BossRoom");
+	pRoom5->SetPos(Vec2(960.f, -640.f));
+	pRoom5->SetScale(Vec2(2.f, 2.f));
+	pRoom5->SetRoomType(ROOM_TYPE::BOSS);
+	pRoom5->SetUpDoorColOpen(false);
+	pRoom5->SetDownDoorColOpen(true);
+	pRoom5->SetLeftDoorColOpen(false);
+	pRoom5->SetRightDoorColOpen(false);
+	pRoom5->SetBossRoom();
+	AddObject(LAYER::ROOM, pRoom5);
 
 	// 플레이어 생성
 	MyPlayer* pPlayer = new MyPlayer;
@@ -133,6 +148,15 @@ void MyPlayLevel::init()
 	pRoom3->AddMonster(pFK3);
 	AddObject(LAYER::MONSTER, pFK3);
 
+	BossMonster* pBoss = new BossMonster;
+	pBoss->SetPos(Vec2(-10000.f, -10000.f));
+	pBoss->SetInitPos(Vec2(1440.f, -400.f));
+	pBoss->SetScale(Vec2(2.f, 2.f));
+	pBoss->SetOffsetPos(Vec2(-15.f, -40.f));
+	pBoss->SetActive(false);
+	pRoom5->AddMonster(pBoss);
+	AddObject(LAYER::BOSS, pBoss);
+
 	// 충돌 설정
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::MONSTER);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::MONSTEARS);
@@ -140,6 +164,9 @@ void MyPlayLevel::init()
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::DOOR);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::TEARS);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::TEARS);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::BOSS, LAYER::TEARS);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::BOSS, LAYER::ROOM);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::BOSS, LAYER::DOOR);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::ROOM);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::DOOR);
 }

@@ -12,8 +12,9 @@ enum class ROOM_TYPE
     START,
     NORMAL,
     NORMAL2,
-    TREASURE,
+    NORMAL3,
     BOSS,
+    TREASURE,
     END,
 };
 
@@ -68,6 +69,9 @@ public:
     void SetRoomOpen() { m_isOpen = true; }
     void SetRoomClose() { m_isOpen = false; }
     bool IsRoomOpen() { return m_isOpen; }
+    void SetBossRoom() { m_IsBoss = true; }
+
+    void PlayBossAnimation();
 
     void AddMonster(MyMonster* _Mons)
     {

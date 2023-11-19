@@ -10,7 +10,13 @@ class MyMovement;
 class MyCollider;
 class MyRoom;
 
-class FloatingKnight :
+enum class ATT_TYPE
+{
+    ATT1,
+    ATT2,
+};
+
+class BossMonster :
     public MyMonster
 {
     GENERATED_OBJECT(MyMonster);
@@ -18,11 +24,10 @@ class FloatingKnight :
 private:
     MyTexture*  m_Atlas;
     MyTexture*  m_MonsterShadow;
-    MyCollider* m_HeadCollider;
-    MyCollider* m_TailCollider;
+    MyCollider* m_Collider;
     MyAnimator* m_Animator;
     MyMovement* m_Movement;
-    
+
     FMonInfo m_Info;
 
     float m_StartMoveTime;
@@ -30,11 +35,18 @@ private:
     float m_ChangeDirTime;
     FKDir m_StartDir;
 
+    float m_AttTime;
+    float m_AttDelay;
+    ATT_TYPE m_AttType;
+
 public:
     void ChangeDirectionU();
     void ChangeDirectionD();
     void ChangeDirectionL();
     void ChangeDirectionR();
+
+    void Attack01();
+    void Attack02();
 
     void SetStartDir(FKDir _dir);
     FKDir GetStartDir() { return m_StartDir; }
@@ -48,8 +60,8 @@ public:
     virtual void BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol) override;
 
 public:
-    CLONE(FloatingKnight);
-    FloatingKnight();
-    ~FloatingKnight();
+    CLONE(BossMonster);
+    BossMonster();
+    ~BossMonster();
 };
 

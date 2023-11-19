@@ -198,3 +198,11 @@ enum class DOOR_DIR
 	LEFT,
 	RIGHT,
 };
+
+enum class FKDir
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+};

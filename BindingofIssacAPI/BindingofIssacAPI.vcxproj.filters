@@ -143,6 +143,12 @@
     <Filter Include="Game\05. Object\Effect\FKDeadEffect">
       <UniqueIdentifier>{4294d695-7c28-4164-b49b-787a1b566375}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Monster\BossMonster">
+      <UniqueIdentifier>{eaf7dea6-78b8-43c3-99ee-0a3a4631afbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Scene">
+      <UniqueIdentifier>{0ae1c00a-89ab-4b4f-bbb8-f775ec1ba62e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -329,6 +335,12 @@
     <ClInclude Include="MyFKDeadEffect.h">
       <Filter>Game\05. Object\Effect\FKDeadEffect</Filter>
     </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>Game\05. Object\Monster\BossMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="MyScene.h">
+      <Filter>Game\05. Object\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc">
@@ -509,6 +521,12 @@
     </ClCompile>
     <ClCompile Include="MyFKDeadEffect.cpp">
       <Filter>Game\05. Object\Effect\FKDeadEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>Game\05. Object\Monster\BossMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="MyScene.cpp">
+      <Filter>Game\05. Object\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
