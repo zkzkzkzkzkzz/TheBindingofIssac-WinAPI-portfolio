@@ -68,10 +68,10 @@ void NMAttack::finaltick(float _DT)
 
 					pTears->SetSpeed(250.f);
 					pTears->SetScale(Vec2(1.4f, 1.4f));
-					pTears->SetOffsetPos(Vec2(-14.f, -5.f));
+					pTears->SetOffsetPos(Vec2(-14.f, -15.f));
 					pTears->SetPos(TearsPos);
 
-					MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+					MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTEARS, (UINT_PTR)pTears });
 
 					pTears->fire();
 
@@ -100,10 +100,10 @@ void NMAttack::finaltick(float _DT)
 
 						pTears->SetSpeed(250.f);
 						pTears->SetScale(Vec2(1.4f, 1.4f));
-						pTears->SetOffsetPos(Vec2(-14.f, -5.f));
+						pTears->SetOffsetPos(Vec2(-14.f, -15.f));
 						pTears->SetPos(TearsPos);
 
-						MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+						MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTEARS, (UINT_PTR)pTears });
 
 						pTears->fire();
 
@@ -135,10 +135,10 @@ void NMAttack::finaltick(float _DT)
 
 							pTears->SetSpeed(250.f);
 							pTears->SetScale(Vec2(1.4f, 1.4f));
-							pTears->SetOffsetPos(Vec2(-14.f, -5.f));
+							pTears->SetOffsetPos(Vec2(-14.f, -15.f));
 							pTears->SetPos(TearsPos);
 
-							MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+							MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTEARS, (UINT_PTR)pTears });
 
 							pTears->fire();
 
@@ -170,10 +170,10 @@ void NMAttack::finaltick(float _DT)
 
 					pTears->SetSpeed(250.f);
 					pTears->SetScale(Vec2(1.4f, 1.4f));
-					pTears->SetOffsetPos(Vec2(-14.f, -5.f));
+					pTears->SetOffsetPos(Vec2(-14.f, -15.f));
 					pTears->SetPos(TearsPos);
 
-					MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+					MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTEARS, (UINT_PTR)pTears });
 
 					pTears->fire();
 
@@ -202,10 +202,10 @@ void NMAttack::finaltick(float _DT)
 
 						pTears->SetSpeed(250.f);
 						pTears->SetScale(Vec2(1.4f, 1.4f));
-						pTears->SetOffsetPos(Vec2(-14.f, -5.f));
+						pTears->SetOffsetPos(Vec2(-14.f, -15.f));
 						pTears->SetPos(TearsPos);
 
-						MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+						MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTEARS, (UINT_PTR)pTears });
 
 						pTears->fire();
 
@@ -238,10 +238,10 @@ void NMAttack::finaltick(float _DT)
 
 							pTears->SetSpeed(250.f);
 							pTears->SetScale(Vec2(1.4f, 1.4f));
-							pTears->SetOffsetPos(Vec2(-14.f, -5.f));
+							pTears->SetOffsetPos(Vec2(-14.f, -15.f));
 							pTears->SetPos(TearsPos);
 
-							MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+							MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTEARS, (UINT_PTR)pTears });
 
 							pTears->fire();
 

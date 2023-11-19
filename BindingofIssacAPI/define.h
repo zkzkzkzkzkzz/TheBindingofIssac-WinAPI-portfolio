@@ -126,6 +126,7 @@ enum class LAYER
 	PLAYER,
 	MONSTER,
 	TEARS,
+	MONSTEARS,
 	BOSS,
 	EFFECT,
 

@@ -137,12 +137,12 @@ void MyMonsterTears::TearsDestroy()
 
 void MyMonsterTears::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
-	//if (_OtherObj->GetName() != L"MonsterShadow")
-	//{
-	//	m_IsDestroy = true;
-	//	m_Movement->SetVelocity(Vec2(0.f, 0.f));
-	//	m_Movement->UseGravity(false);
-	//	TearsDestroy();
-	//}
+	if (_OtherObj->GetName() == L"Player")
+	{
+		m_IsDestroy = true;
+		m_Movement->SetVelocity(Vec2(0.f, 0.f));
+		m_Movement->UseGravity(false);
+		TearsDestroy();
+	}
 }
 
