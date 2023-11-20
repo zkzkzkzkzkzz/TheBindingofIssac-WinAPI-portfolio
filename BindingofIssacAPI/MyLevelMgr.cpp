@@ -11,6 +11,7 @@
 #include "MyLevel.h"
 #include "MyTitleLevel.h"
 #include "MyPlayLevel.h"
+#include "MyEndingLevel.h"
 
 
 MyLevelMgr::MyLevelMgr() : m_pCurLevel(nullptr)
@@ -34,6 +35,7 @@ void MyLevelMgr::init()
 	// 모든 레벨 생성
 	m_arrLevels[(UINT)LEVEL_TYPE::TITLE_LEVEL] = new MyTitleLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new MyPlayLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::ENDING_LEVEL] = new MyEndingLevel;
 
 	// 레벨 초기화
 	for (UINT i = 0; i < (UINT)LEVEL_TYPE::END; ++i)

@@ -29,6 +29,7 @@ private:
     MyMovement* m_Movement;
 
     FMonInfo m_Info;
+    size_t m_MonsCount;
 
     float m_StartMoveTime;
     float m_MoveTime;
@@ -36,6 +37,7 @@ private:
     FKDir m_StartDir;
 
     float m_AttTime;
+    float m_StartAttTime;
     float m_AttDelay;
     ATT_TYPE m_AttType;
 
@@ -47,6 +49,8 @@ public:
 
     void Attack01();
     void Attack02();
+    void SpawnFly();
+    void SpawnTrophy();
 
     void SetStartDir(FKDir _dir);
     FKDir GetStartDir() { return m_StartDir; }

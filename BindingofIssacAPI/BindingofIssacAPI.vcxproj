@@ -153,12 +153,14 @@
     <ClInclude Include="MyAsset.h" />
     <ClInclude Include="MyAssetMgr.h" />
     <ClInclude Include="MyBackGround.h" />
+    <ClInclude Include="MyBossDeadEffect.h" />
     <ClInclude Include="MyCameraMgr.h" />
     <ClInclude Include="MyCollider.h" />
     <ClInclude Include="MyCollisionMgr.h" />
     <ClInclude Include="MyComponent.h" />
     <ClInclude Include="MyDoor.h" />
     <ClInclude Include="MyEffect.h" />
+    <ClInclude Include="MyEndingLevel.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
     <ClInclude Include="MyFKDeadEffect.h" />
@@ -191,6 +193,7 @@
     <ClInclude Include="MyTexture.h" />
     <ClInclude Include="MyTimeMgr.h" />
     <ClInclude Include="MyTitleLevel.h" />
+    <ClInclude Include="MyTrophy.h" />
     <ClInclude Include="MyUI.h" />
     <ClInclude Include="MyUIMgr.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -218,12 +221,14 @@
     <ClCompile Include="MyAsset.cpp" />
     <ClCompile Include="MyAssetMgr.cpp" />
     <ClCompile Include="MyBackGround.cpp" />
+    <ClCompile Include="MyBossDeadEffect.cpp" />
     <ClCompile Include="MyCameraMgr.cpp" />
     <ClCompile Include="MyCollider.cpp" />
     <ClCompile Include="MyCollisionMgr.cpp" />
     <ClCompile Include="MyComponent.cpp" />
     <ClCompile Include="MyDoor.cpp" />
     <ClCompile Include="MyEffect.cpp" />
+    <ClCompile Include="MyEndingLevel.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
     <ClCompile Include="MyFKDeadEffect.cpp" />
@@ -256,6 +261,7 @@
     <ClCompile Include="MyTexture.cpp" />
     <ClCompile Include="MyTimeMgr.cpp" />
     <ClCompile Include="MyTitleLevel.cpp" />
+    <ClCompile Include="MyTrophy.cpp" />
     <ClCompile Include="MyUI.cpp" />
     <ClCompile Include="MyUIMgr.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

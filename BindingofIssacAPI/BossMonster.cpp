@@ -1,11 +1,18 @@
 #include "pch.h"
 #include "BossMonster.h"
+
 #include "MyAssetMgr.h"
+#include "MyLevelMgr.h"
+#include "MyLevel.h"
+#include "MyLayer.h"
 #include "MyTimeMgr.h"
 #include "MyTexture.h"
+#include "MyRoom.h"
 #include "MyTears.h"
+#include "NormalFly.h"
 #include "components.h"
-#include "MyFKDeadEffect.h"
+#include "MyBossDeadEffect.h"
+#include "MyTrophy.h"
 
 BossMonster::BossMonster()
 	: m_Atlas(nullptr)
@@ -17,6 +24,10 @@ BossMonster::BossMonster()
 	, m_StartMoveTime(1.f)
 	, m_ChangeDirTime(8.f)
 	, m_Info{}
+	, m_AttTime(0.f)
+	, m_StartAttTime(2.f)
+	, m_AttDelay(8.f)
+	, m_MonsCount(0)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Boss", L"texture\\Boss\\boss_dukeofflies.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
@@ -25,6 +36,8 @@ BossMonster::BossMonster()
 	m_Animator->LoadAnimation(L"animdata\\BossIdleAnim.txt");
 	m_Animator->LoadAnimation(L"animdata\\BossAttackAnim1.txt");
 	m_Animator->LoadAnimation(L"animdata\\BossAttackAnim2.txt");
+	m_Animator->LoadAnimation(L"animdata\\BossAttackSpawnAnim1.txt");
+	m_Animator->LoadAnimation(L"animdata\\BossAttackSpawnAnim2.txt");
 	m_Animator->Play(L"BossIdleAnim", true);
 
 	m_Collider = AddComponent<MyCollider>(L"BossCollider");
@@ -36,7 +49,7 @@ BossMonster::BossMonster()
 	m_Movement->SetInitSpeed(50.f);
 	m_Movement->SetMaxSpeed(50.f);
 
-	m_Info.HP = 10.f;
+	m_Info.HP = 1.f;
 
 	srand((UINT)time(NULL));
 }
@@ -67,6 +80,7 @@ void BossMonster::tick(float _DT)
 	{
 		Super::tick(_DT);
 
+		m_AttTime += _DT;
 
 		if (m_ChangeDirTime <= m_MoveTime)
 		{
@@ -166,8 +180,13 @@ void BossMonster::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyColli
 		if (m_Info.HP <= 0.f)
 		{
 			m_IsDead = true;
-			
-			//Destroy();
+			MyBossDeadEffect* pBDE = new MyBossDeadEffect;
+			pBDE->SetPos(GetPos());
+			pBDE->SetScale(Vec2(1.f, 1.f));
+			pBDE->SetOffsetPos(Vec2(-15.f, -20.f));
+			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pBDE });
+
+			SpawnTrophy();
 		}
 	}
 }
@@ -175,22 +194,106 @@ void BossMonster::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyColli
 
 void BossMonster::ChangeDirectionU()
 {
-	m_Movement->SetVelocity(Vec2(0.f, -100.f));
+	m_Movement->SetVelocity(Vec2(-100.f, -100.f));
+
+	if (m_AttTime >= m_StartAttTime)
+	{
+		if (m_AttTime >= m_AttDelay)
+		{
+			int ran = rand() % 2;
+			switch ((ATT_TYPE)ran)
+			{
+			case ATT_TYPE::ATT1:
+				Attack01();
+				break;
+			case ATT_TYPE::ATT2:
+				Attack02();
+				break;
+			default:
+				break;
+			}
+
+			m_AttTime = 2.f;
+		}
+	}
 }
 
 void BossMonster::ChangeDirectionD()
 {
-	m_Movement->SetVelocity(Vec2(0.f, 100.f));
+	m_Movement->SetVelocity(Vec2(100.f, 100.f));
+
+	if (m_AttTime >= m_StartAttTime)
+	{
+		if (m_AttTime >= m_AttDelay)
+		{
+			int ran = rand() % 2;
+			switch ((ATT_TYPE)ran)
+			{
+			case ATT_TYPE::ATT1:
+				Attack01();
+				break;
+			case ATT_TYPE::ATT2:
+				Attack02();
+				break;
+			default:
+				break;
+			}
+
+			m_AttTime = 2.f;
+		}
+	}
 }
 
 void BossMonster::ChangeDirectionL()
 {
-	m_Movement->SetVelocity(Vec2(-100.f, 0.f));
+	m_Movement->SetVelocity(Vec2(-100.f, 100.f));
+
+	if (m_AttTime >= m_StartAttTime)
+	{
+		if (m_AttTime >= m_AttDelay)
+		{
+			int ran = rand() % 2;
+			switch ((ATT_TYPE)ran)
+			{
+			case ATT_TYPE::ATT1:
+				Attack01();
+				break;
+			case ATT_TYPE::ATT2:
+				Attack02();
+				break;
+			default:
+				break;
+			}
+
+			m_AttTime = 2.f;
+		}
+	}
 }
 
 void BossMonster::ChangeDirectionR()
 {
-	m_Movement->SetVelocity(Vec2(100.f, 0.f));
+	m_Movement->SetVelocity(Vec2(100.f, -100.f));
+
+	if (m_AttTime >= m_StartAttTime)
+	{
+		if (m_AttTime >= m_AttDelay)
+		{
+			int ran = rand() % 2;
+			switch ((ATT_TYPE)ran)
+			{
+			case ATT_TYPE::ATT1:
+				Attack01();
+				break;
+			case ATT_TYPE::ATT2:
+				Attack02();
+				break;
+			default:
+				break;
+			}
+
+			m_AttTime = 2.f;
+		}
+	}
 }
 
 
@@ -219,10 +322,72 @@ void BossMonster::SetStartDir(FKDir _dir)
 
 void BossMonster::Attack01()
 {
+	m_AttType = ATT_TYPE::ATT1;
 	m_Animator->Play(L"BossAttackAnim1", false);
+	m_Animator->FindAnim(L"BossAttackAnim2")->Reset();
+	m_Animator->FindAnim(L"BossAttackSpawnAnim1")->Reset();
+	m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
+	SpawnFly();
 }
 
 void BossMonster::Attack02()
 {
+	m_AttType = ATT_TYPE::ATT2;
 	m_Animator->Play(L"BossAttackAnim2", false);
+	m_Animator->FindAnim(L"BossAttackAnim1")->Reset();
+	m_Animator->FindAnim(L"BossAttackSpawnAnim1")->Reset();
+	m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
+	SpawnFly();
+}
+
+void BossMonster::SpawnFly()
+{
+	Vec2 vPos = GetPos();
+	if (m_AttType == ATT_TYPE::ATT1)
+	{
+		m_Animator->Play(L"BossAttackSpawnAnim1", false);
+	}
+	else if (m_AttType == ATT_TYPE::ATT2)
+	{
+		m_Animator->Play(L"BossAttackSpawnAnim1", false);
+	}
+
+	NormalFly* pFly = new NormalFly;
+	pFly->SetPos(Vec2(-10000.f, -10000.f));
+	pFly->SetInitPos(Vec2(vPos.x - 50.f, vPos.y + 50.f));
+	pFly->SetScale(Vec2(2.f, 2.f));
+	pFly->SetOffsetPos(Vec2(-15.f, -25.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)pFly });
+
+	NormalFly* pFly2 = new NormalFly;
+	pFly2->SetPos(Vec2(-10000.f, -10000.f));
+	pFly2->SetInitPos(Vec2(vPos.x + 50.f, vPos.y + 50.f));
+	pFly2->SetScale(Vec2(2.f, 2.f));
+	pFly2->SetOffsetPos(Vec2(-15.f, -25.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)pFly2 });
+
+	NormalFly* pFly3 = new NormalFly;
+	pFly3->SetPos(Vec2(-10000.f, -10000.f));
+	pFly3->SetInitPos(Vec2(vPos.x + 50.f, vPos.y - 50.f));
+	pFly3->SetScale(Vec2(2.f, 2.f));
+	pFly3->SetOffsetPos(Vec2(-15.f, -25.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)pFly3 });
+
+	auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
+	dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->AddMonster(pFly);
+	dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->AddMonster(pFly2);
+	dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->AddMonster(pFly3);
+
+	pFly->SetToInitPos();
+	pFly2->SetToInitPos();
+	pFly3->SetToInitPos();
+}
+
+void BossMonster::SpawnTrophy()
+{
+	MyTrophy* pTrophy = new MyTrophy;
+	pTrophy->SetPos(Vec2(1440.f, -300.f));
+	pTrophy->SetScale(Vec2(2.f, 2.f));
+	pTrophy->SetOffsetPos(Vec2(0.f, -30.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TROPHY, (UINT_PTR)pTrophy });
 }

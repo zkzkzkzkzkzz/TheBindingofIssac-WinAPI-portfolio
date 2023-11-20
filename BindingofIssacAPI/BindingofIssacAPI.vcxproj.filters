@@ -149,6 +149,15 @@
     <Filter Include="Game\05. Object\Scene">
       <UniqueIdentifier>{0ae1c00a-89ab-4b4f-bbb8-f775ec1ba62e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Trophy">
+      <UniqueIdentifier>{0dcb97da-a289-4764-9968-bc0c4a582924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\Effect\BossDeadEffect">
+      <UniqueIdentifier>{8e7c2af8-1845-4cc1-9de9-489dc1eb47be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\EndingLevel">
+      <UniqueIdentifier>{82f8dec9-3971-41cf-873d-77a5e7d2d928}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -341,6 +350,15 @@
     <ClInclude Include="MyScene.h">
       <Filter>Game\05. Object\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="MyBossDeadEffect.h">
+      <Filter>Game\05. Object\Effect\BossDeadEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTrophy.h">
+      <Filter>Game\05. Object\Trophy</Filter>
+    </ClInclude>
+    <ClInclude Include="MyEndingLevel.h">
+      <Filter>Game\04. Level\EndingLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc">
@@ -527,6 +545,15 @@
     </ClCompile>
     <ClCompile Include="MyScene.cpp">
       <Filter>Game\05. Object\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBossDeadEffect.cpp">
+      <Filter>Game\05. Object\Effect\BossDeadEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTrophy.cpp">
+      <Filter>Game\05. Object\Trophy</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEndingLevel.cpp">
+      <Filter>Game\04. Level\EndingLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

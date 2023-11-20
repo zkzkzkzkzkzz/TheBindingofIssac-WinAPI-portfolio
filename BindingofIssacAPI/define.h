@@ -129,6 +129,7 @@ enum class LAYER
 	MONSTEARS,
 	BOSS,
 	EFFECT,
+	TROPHY,
 
 	UI = 31,
 	END = 32,
@@ -166,6 +167,7 @@ enum class LEVEL_TYPE
 {
 	TITLE_LEVEL,
 	PLAY_LEVEL,
+	ENDING_LEVEL,
 	END,
 };
 

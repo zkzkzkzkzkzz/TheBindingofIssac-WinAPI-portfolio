@@ -148,6 +148,7 @@ void MyPlayLevel::init()
 	pRoom3->AddMonster(pFK3);
 	AddObject(LAYER::MONSTER, pFK3);
 
+	// 보스 생성
 	BossMonster* pBoss = new BossMonster;
 	pBoss->SetPos(Vec2(-10000.f, -10000.f));
 	pBoss->SetInitPos(Vec2(1440.f, -400.f));
@@ -169,6 +170,7 @@ void MyPlayLevel::init()
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::BOSS, LAYER::DOOR);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::ROOM);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::DOOR);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::TROPHY);
 }
 
 void MyPlayLevel::enter()
