@@ -23,6 +23,8 @@ private:
     TitleTexUI*         m_Cursor;
     int                 m_CursorIdx;
 
+    bool m_IsInit;
+
 public:
     void SetCurScreen(TITLE_TYPE _type) { m_CurScreen = (int)_type; }
     int GetCurScreen() { return m_CurScreen; }

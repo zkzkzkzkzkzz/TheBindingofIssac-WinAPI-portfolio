@@ -14,6 +14,7 @@
 #include "MyRoom.h"
 #include "components.h"
 #include "MyScene.h"
+#include "MyTrophy.h"
 
 MyDoor::MyDoor()
 	: m_Atlas(nullptr)
@@ -385,6 +386,7 @@ void MyDoor::tick(float _DT)
 			{
 				m_InAnimator->Play(L"DownInBossDoorOpenAnim", false);
 				m_InAnimator->FindAnim(L"DownInBossDoorCloseAnim")->Reset();
+				SpawnTrophy();
 			}
 
 		}
@@ -565,4 +567,14 @@ void MyDoor::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _Othe
 		}
 	}
 
+}
+
+
+void MyDoor::SpawnTrophy()
+{
+	MyTrophy* pTrophy = new MyTrophy;
+	pTrophy->SetPos(Vec2(1440.f, -300.f));
+	pTrophy->SetScale(Vec2(2.f, 2.f));
+	pTrophy->SetOffsetPos(Vec2(0.f, -30.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TROPHY, (UINT_PTR)pTrophy });
 }

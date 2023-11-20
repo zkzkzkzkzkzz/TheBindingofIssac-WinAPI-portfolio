@@ -161,6 +161,7 @@
     <ClInclude Include="MyDoor.h" />
     <ClInclude Include="MyEffect.h" />
     <ClInclude Include="MyEndingLevel.h" />
+    <ClInclude Include="MyEndingScene.h" />
     <ClInclude Include="MyEngine.h" />
     <ClInclude Include="MyEntity.h" />
     <ClInclude Include="MyFKDeadEffect.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="MyDoor.cpp" />
     <ClCompile Include="MyEffect.cpp" />
     <ClCompile Include="MyEndingLevel.cpp" />
+    <ClCompile Include="MyEndingScene.cpp" />
     <ClCompile Include="MyEngine.cpp" />
     <ClCompile Include="MyEntity.cpp" />
     <ClCompile Include="MyFKDeadEffect.cpp" />

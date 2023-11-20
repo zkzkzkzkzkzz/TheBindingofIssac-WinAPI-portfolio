@@ -2,6 +2,9 @@
 #include "MyTrophy.h"
 
 #include "MyAssetMgr.h"
+#include "MyLevelMgr.h"
+#include "MyLevel.h"
+#include "MyPlayLevel.h"
 #include "MyTexture.h"
 #include "components.h"
 
@@ -54,7 +57,10 @@ void MyTrophy::render(HDC _dc)
 
 void MyTrophy::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
+	MyPlayLevel* pLevel = dynamic_cast<MyPlayLevel*>(MyLevelMgr::GetInst()->GetCurLevel());
+	pLevel->SetToInitTrue();
 	ChangeLevel(LEVEL_TYPE::ENDING_LEVEL);
+
 }
 
 

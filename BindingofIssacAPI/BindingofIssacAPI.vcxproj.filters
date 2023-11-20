@@ -158,6 +158,9 @@
     <Filter Include="Game\04. Level\EndingLevel">
       <UniqueIdentifier>{82f8dec9-3971-41cf-873d-77a5e7d2d928}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Scene\EndingScene">
+      <UniqueIdentifier>{1b42cd26-475f-4084-b4e2-d4781c0fd08d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -359,6 +362,9 @@
     <ClInclude Include="MyEndingLevel.h">
       <Filter>Game\04. Level\EndingLevel</Filter>
     </ClInclude>
+    <ClInclude Include="MyEndingScene.h">
+      <Filter>Game\05. Object\Scene\EndingScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc">
@@ -554,6 +560,9 @@
     </ClCompile>
     <ClCompile Include="MyEndingLevel.cpp">
       <Filter>Game\04. Level\EndingLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEndingScene.cpp">
+      <Filter>Game\05. Object\Scene\EndingScene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

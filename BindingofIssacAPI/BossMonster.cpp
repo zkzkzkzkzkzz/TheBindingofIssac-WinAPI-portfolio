@@ -22,7 +22,7 @@ BossMonster::BossMonster()
 	, m_Movement(nullptr)
 	, m_MoveTime(0.f)
 	, m_StartMoveTime(1.f)
-	, m_ChangeDirTime(8.f)
+	, m_ChangeDirTime(6.f)
 	, m_Info{}
 	, m_AttTime(0.f)
 	, m_StartAttTime(2.f)
@@ -49,7 +49,7 @@ BossMonster::BossMonster()
 	m_Movement->SetInitSpeed(50.f);
 	m_Movement->SetMaxSpeed(50.f);
 
-	m_Info.HP = 1.f;
+	m_Info.HP = 10.f;
 
 	srand((UINT)time(NULL));
 }
@@ -185,8 +185,6 @@ void BossMonster::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyColli
 			pBDE->SetScale(Vec2(1.f, 1.f));
 			pBDE->SetOffsetPos(Vec2(-15.f, -20.f));
 			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pBDE });
-
-			SpawnTrophy();
 		}
 	}
 }
@@ -325,8 +323,6 @@ void BossMonster::Attack01()
 	m_AttType = ATT_TYPE::ATT1;
 	m_Animator->Play(L"BossAttackAnim1", false);
 	m_Animator->FindAnim(L"BossAttackAnim2")->Reset();
-	m_Animator->FindAnim(L"BossAttackSpawnAnim1")->Reset();
-	m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
 	SpawnFly();
 }
 
@@ -335,8 +331,7 @@ void BossMonster::Attack02()
 	m_AttType = ATT_TYPE::ATT2;
 	m_Animator->Play(L"BossAttackAnim2", false);
 	m_Animator->FindAnim(L"BossAttackAnim1")->Reset();
-	m_Animator->FindAnim(L"BossAttackSpawnAnim1")->Reset();
-	m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
+
 	SpawnFly();
 }
 
@@ -346,10 +341,14 @@ void BossMonster::SpawnFly()
 	if (m_AttType == ATT_TYPE::ATT1)
 	{
 		m_Animator->Play(L"BossAttackSpawnAnim1", false);
+		m_Animator->FindAnim(L"BossAttackSpawnAnim1")->Reset();
+		m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
 	}
 	else if (m_AttType == ATT_TYPE::ATT2)
 	{
-		m_Animator->Play(L"BossAttackSpawnAnim1", false);
+		m_Animator->Play(L"BossAttackSpawnAnim2", false);
+		m_Animator->FindAnim(L"BossAttackSpawnAnim1")->Reset();
+		m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
 	}
 
 	NormalFly* pFly = new NormalFly;
@@ -381,13 +380,4 @@ void BossMonster::SpawnFly()
 	pFly->SetToInitPos();
 	pFly2->SetToInitPos();
 	pFly3->SetToInitPos();
-}
-
-void BossMonster::SpawnTrophy()
-{
-	MyTrophy* pTrophy = new MyTrophy;
-	pTrophy->SetPos(Vec2(1440.f, -300.f));
-	pTrophy->SetScale(Vec2(2.f, 2.f));
-	pTrophy->SetOffsetPos(Vec2(0.f, -30.f));
-	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TROPHY, (UINT_PTR)pTrophy });
 }

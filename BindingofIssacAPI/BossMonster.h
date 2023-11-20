@@ -50,7 +50,6 @@ public:
     void Attack01();
     void Attack02();
     void SpawnFly();
-    void SpawnTrophy();
 
     void SetStartDir(FKDir _dir);
     FKDir GetStartDir() { return m_StartDir; }

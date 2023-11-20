@@ -11,6 +11,11 @@ private:
     MyTexture*      m_Texture;
     Vec2            vLookAt;
 
+    bool m_IsInit;
+
+public:
+    void SetToInitTrue() { m_IsInit = true; }
+
 public:
     virtual void init() override;
     virtual void enter() override;

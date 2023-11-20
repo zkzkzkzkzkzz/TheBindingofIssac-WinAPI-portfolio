@@ -40,6 +40,7 @@ public:
 public:
     void SetDoorDir(DOOR_DIR _Dir) { m_DoorDir = (int)_Dir; }
     int GetDoorDir() { return m_DoorDir; }
+    void SpawnTrophy();
 
 public:
     CLONE(MyDoor);

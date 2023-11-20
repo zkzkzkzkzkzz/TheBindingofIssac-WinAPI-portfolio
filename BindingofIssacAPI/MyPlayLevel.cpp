@@ -170,7 +170,9 @@ void MyPlayLevel::init()
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::BOSS, LAYER::DOOR);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::ROOM);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::MONSTER, LAYER::DOOR);
-	MyCollisionMgr::GetInst()->CheckCollision(LAYER::SHADOW, LAYER::TROPHY);
+	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::TROPHY);
+
+	m_IsInit = false;
 }
 
 void MyPlayLevel::enter()
@@ -179,6 +181,11 @@ void MyPlayLevel::enter()
 	vLookAt = MyEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
+
+	if (m_IsInit == true)
+	{
+		init();
+	}
 }
 
 void MyPlayLevel::exit()

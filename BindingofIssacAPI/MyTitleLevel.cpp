@@ -51,18 +51,20 @@ void MyTitleLevel::init()
 
 	m_CurScreen = (int)TITLE_TYPE::TITLE;
 
-	// 로딩용 이미지 생성
-
-
-	// 카메라 설정
-	vLookAt = MyEngine::GetInst()->GetResolution();
-	vLookAt /= 2.f;
-	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
+	m_IsInit = false;
 }
 
 void MyTitleLevel::enter()
 {
+	// 카메라 설정
+	vLookAt = MyEngine::GetInst()->GetResolution();
+	vLookAt /= 2.f;
+	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
 
+	if (m_IsInit == true)
+	{
+		init();
+	}
 }
 
 void MyTitleLevel::exit()
@@ -92,6 +94,7 @@ void MyTitleLevel::tick()
 		{	
 			MyCameraMgr::GetInst()->FadeIn(1.5f);
 
+			m_IsInit = true;
 			ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 		}
 		else if (KEY_TAP(ESC))
