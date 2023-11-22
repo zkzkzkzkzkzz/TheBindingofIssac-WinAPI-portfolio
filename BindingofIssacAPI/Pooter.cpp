@@ -23,6 +23,8 @@ Pooter::Pooter()
 	, m_AttDelayTime(2.f)
 	, m_Acctime(0.f)
 {
+	SetName(L"Pooter");
+
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Pooter", L"texture\\monster\\monster_pooter.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
 

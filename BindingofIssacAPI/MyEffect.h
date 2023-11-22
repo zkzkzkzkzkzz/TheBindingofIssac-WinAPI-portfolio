@@ -1,6 +1,9 @@
 #pragma once
 #include "MyObject.h"
 
+class MyTexture;
+class MyAnimator;
+class MySound;
 
 class MyEffect :
     public MyObject
@@ -11,6 +14,7 @@ private:
     MyTexture*  m_Atlas;
     MyAnimator* m_EffectAnimator;
     float       m_EffectTime;
+    MySound*    m_DestroySound;
 
 public:
     virtual void tick(float _DT) override;

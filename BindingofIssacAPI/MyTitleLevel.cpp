@@ -14,6 +14,7 @@
 #include "TitleAnimUI.h"
 #include "TitleTexUI.h"
 #include "MyTexture.h"
+#include "MySound.h"
 #include "components.h"
 
 void MyTitleLevel::init()
@@ -52,6 +53,17 @@ void MyTitleLevel::init()
 	m_CurScreen = (int)TITLE_TYPE::TITLE;
 
 	m_IsInit = false;
+
+
+	m_BGSound1 = MyAssetMgr::GetInst()->LoadSound(L"BGSound1", L"sound\\title_screen_intro.wav");
+	m_BGSound2 = MyAssetMgr::GetInst()->LoadSound(L"BGSound2", L"sound\\title_screen.wav");
+	m_EffectSound = MyAssetMgr::GetInst()->LoadSound(L"EffectSound", L"sound\\book_page_turn.wav");
+	m_LoadingSound = MyAssetMgr::GetInst()->LoadSound(L"LoadingSound", L"sound\\title_screen_jingle_v1_01.wav");
+
+	m_BGSound1->SetVolume(80.f);
+	m_BGSound1->SetPosition(0.f);
+	m_BGSound1->Play(true);
+
 }
 
 void MyTitleLevel::enter()
@@ -82,6 +94,9 @@ void MyTitleLevel::tick()
 		{
 			MyCameraMgr::GetInst()->ScrollDown(0.6f);
 			m_CurScreen = (int)TITLE_TYPE::MENU;
+			m_EffectSound->SetVolume(100);
+			m_EffectSound->SetPosition(0.f);
+			m_EffectSound->Play(false);
 		}
 		else if(KEY_TAP(ESC))
 		{
@@ -92,8 +107,12 @@ void MyTitleLevel::tick()
 	{
 		if (KEY_TAP(SPACE) && m_CursorIdx == 0)
 		{	
-			MyCameraMgr::GetInst()->FadeIn(1.5f);
+			MyCameraMgr::GetInst()->FadeIn(1.f);
 
+			m_BGSound1->Stop(true);
+			//m_LoadingSound->SetVolume(80.f);
+			//m_LoadingSound->SetPosition(0.f);
+			//m_LoadingSound->Play();
 			m_IsInit = true;
 			ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
 		}
@@ -101,6 +120,9 @@ void MyTitleLevel::tick()
 		{
 			MyCameraMgr::GetInst()->ScrollUp(0.6f);
 			m_CurScreen = (int)TITLE_TYPE::TITLE;
+			m_EffectSound->SetVolume(80.f);
+			m_EffectSound->SetPosition(0.f);
+			m_EffectSound->Play(false);
 		}
 		else if (KEY_TAP(DOWN))
 		{

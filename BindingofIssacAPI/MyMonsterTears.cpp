@@ -8,6 +8,7 @@
 #include "MyMonsterEffect.h"
 #include "MyShadow.h"
 #include "MyTexture.h"
+#include "MySound.h"
 #include "components.h"
 
 MyMonsterTears::MyMonsterTears()
@@ -23,6 +24,7 @@ MyMonsterTears::MyMonsterTears()
 	, m_IsDestroy(false)
 	, m_pTarget(nullptr)
 	, m_TargetPos()
+	, m_MTSound(nullptr)
 {
 	SetName(L"MonsterTears");
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"MonsterTearsTex", L"texture\\Effect\\effect_bloodtear.png");
@@ -46,6 +48,11 @@ MyMonsterTears::MyMonsterTears()
 	m_Shadow = new MyShadow(this);
 	m_Shadow->SetName(L"MonsterTearsShadow");
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::SHADOW, (UINT_PTR)m_Shadow });
+
+	m_MTSound = MyAssetMgr::GetInst()->LoadSound(L"MTSound", L"sound\\blood_fire.wav");
+	m_MTSound->SetVolume(100.f);
+	m_MTSound->SetPosition(0.f);
+	m_MTSound->Play();
 }
 
 MyMonsterTears::MyMonsterTears(const MyMonsterTears& _Origin)
@@ -62,6 +69,7 @@ MyMonsterTears::MyMonsterTears(const MyMonsterTears& _Origin)
 	, m_IsDestroy(false)
 	, m_pTarget(nullptr)
 	, m_TargetPos()
+	, m_MTSound(_Origin.m_MTSound)
 {
 	m_Animator = GetComponent<MyAnimator>();
 	m_Movement = GetComponent<MyMovement>();

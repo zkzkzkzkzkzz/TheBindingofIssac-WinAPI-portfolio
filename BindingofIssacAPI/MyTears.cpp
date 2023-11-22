@@ -6,6 +6,7 @@
 #include "MyEffect.h"
 #include "MyShadow.h"
 #include "MyTexture.h"
+#include "MySound.h"
 #include "components.h"
 
 
@@ -22,6 +23,7 @@ MyTears::MyTears()
 	, m_Acctime(0.f)
 	, m_IsDestroy(false)
 	, m_initPos{}
+	, m_FireSound(nullptr)
 {
 	SetName(L"NormalTears");
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Tears", L"texture\\Effect\\effect_tearpoof.png");
@@ -60,6 +62,7 @@ MyTears::MyTears(const MyTears& _Origin)
 	, m_Duration(1.f)
 	, m_Acctime(0.f)
 	, m_IsDestroy(false)
+	, m_FireSound(nullptr)
 {
 	m_Animator = GetComponent<MyAnimator>();
 	m_Movement = GetComponent<MyMovement>();
@@ -68,6 +71,8 @@ MyTears::MyTears(const MyTears& _Origin)
 	m_Shadow = new MyShadow(this);
 	m_Shadow->SetName(L"TearsShadow");
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::SHADOW, (UINT_PTR)m_Shadow });
+
+
 }
 
 MyTears::~MyTears()
@@ -119,6 +124,7 @@ void MyTears::fire()
 	{
 		m_Movement->UseGravity(true);
 	}
+
 }
 
 void MyTears::TearsDestroy()

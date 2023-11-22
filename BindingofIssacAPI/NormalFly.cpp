@@ -19,6 +19,8 @@ NormalFly::NormalFly()
 	, m_Animator(nullptr)
 	, m_AI(nullptr)
 {
+	SetName(L"NormalFly");
+
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"NormalFly", L"texture\\monster\\monster_fly.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
 
@@ -34,7 +36,7 @@ NormalFly::NormalFly()
 	m_AI->AddState((UINT)NormalMons_STATE::IDLE, new NMIdle);
 	m_AI->AddState((UINT)NormalMons_STATE::TRACE, new NMTrace);
 
-	m_Info.HP = 3.f;
+	m_Info.HP = 2.f;
 }
 
 NormalFly::NormalFly(const NormalFly& _Origin)

@@ -35,10 +35,11 @@ void MyEndingScene::tick(float _DT)
 
 	float fTime = GetSceneTime();
 
-	if (fTime >= 20.f)
+	if (fTime >= 15.f)
 	{
 		m_SceneTime = 0;
 		Destroy();
+		ChangeLevel(LEVEL_TYPE::TITLE_LEVEL);
 	}
 }
 

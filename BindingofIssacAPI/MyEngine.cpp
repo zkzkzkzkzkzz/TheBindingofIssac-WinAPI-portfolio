@@ -63,7 +63,7 @@ void MyEngine::init(HWND _hWnd, POINT _ptResolution)
 	MyTimeMgr::GetInst()->init();
 	MyKeyMgr::GetInst()->init();
 	MyPathMgr::init();
-	//MySoundMgr::GetInst()->init();
+	MySoundMgr::GetInst()->init();
 	MyLevelMgr::GetInst()->init();
 
 	// Default GDI Object 생성

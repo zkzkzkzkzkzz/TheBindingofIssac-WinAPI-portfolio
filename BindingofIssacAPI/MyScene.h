@@ -3,6 +3,7 @@
 
 class MyTexture;
 class MyAnimator;
+class MySound;
 
 class MyScene :
     public MyObject
@@ -14,6 +15,11 @@ private:
     MyAnimator* m_Animator;
 
     float m_SceneTime;
+
+    MySound* m_DOpenSound;
+    MySound* m_DCloseSound;
+    MySound* m_BossFight;
+    MySound* m_Summon;
 
 public:
     virtual void tick(float _DT) override;
@@ -27,5 +33,7 @@ public:
     MyScene();
     MyScene(const MyScene& _Origin) = delete;
     ~MyScene();
+
+    friend class MyDoor;
 };
 

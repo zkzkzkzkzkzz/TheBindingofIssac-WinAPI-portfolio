@@ -12,6 +12,7 @@
 #include "MyTears.h"
 #include "MyDoor.h"
 #include "MyShadow.h"
+#include "MySound.h"
 #include "MyEffect.h"
 #include "MyScene.h"
 #include "MyTexture.h"
@@ -40,6 +41,7 @@ MyRoom::MyRoom()
 	m_NormalImg = MyAssetMgr::GetInst()->LoadTexture(L"NormalRoom", L"texture\\Room\\Basement_1.png");
 	m_TreasureImg = MyAssetMgr::GetInst()->LoadTexture(L"TreasureRoom", L"texture\\Room\\Basement_3.png");
 	m_BossImg = MyAssetMgr::GetInst()->LoadTexture(L"BossRoom", L"texture\\Room\\Basement_4.png");
+
 }
 
 MyRoom::MyRoom(const MyRoom& _Origin)
@@ -319,6 +321,9 @@ void MyRoom::SetMonPos()
 
 void MyRoom::PlayBossAnimation()
 {
+	MyPlayLevel* pLevel = dynamic_cast<MyPlayLevel*>(MyLevelMgr::GetInst()->GetCurLevel());
+	pLevel->GetBGSound2()->Stop(true);
+
 	MyScene* pScene = new MyScene;
 	pScene->SetPos(Vec2(960.f, -640.f));
 	pScene->SetScale(Vec2(2.f, 2.f));

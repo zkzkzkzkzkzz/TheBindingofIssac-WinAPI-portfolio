@@ -6,6 +6,7 @@ class MyAnimator;
 class MyCollider;
 class MyShadow;
 class MyEffect;
+class MySound;
 
 class MyTears :
     public MyObject
@@ -29,6 +30,7 @@ private:
     Vec2    m_initPos;
     MyEffect* m_Effect;
 
+    MySound* m_FireSound;
 
 public:
     virtual void begin() override;

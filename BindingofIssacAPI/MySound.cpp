@@ -7,6 +7,7 @@ MySound::MySound()
 	: m_pSoundBuffer(nullptr)
 	, m_tBuffInfo{}
 	, m_iVolume(0)
+	, m_isPlayed(false)
 {
 }
 
@@ -18,6 +19,8 @@ MySound::~MySound()
 
 bool MySound::Load(const wstring& _strPath)
 {
+	LPDIRECTSOUND8 temp = MySoundMgr::GetInst()->GetSoundDevice();
+
 	if (nullptr == MySoundMgr::GetInst()->GetSoundDevice())
 		assert(nullptr);
 
@@ -145,6 +148,11 @@ void MySound::SetPosition(float _fPosition)
 
 	DWORD dwBytes = (DWORD)((_fPosition / 100.f) * (float)m_tBuffInfo.dwBufferBytes);
 	m_pSoundBuffer->SetCurrentPosition(dwBytes);
+}
+
+void MySound::Reset()
+{
+	m_pSoundBuffer->SetCurrentPosition(0);
 }
 
 int MySound::GetDecibel(float _fVolume)

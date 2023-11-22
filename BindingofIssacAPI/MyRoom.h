@@ -101,5 +101,6 @@ public:
     friend class MyDoor;
     friend class NormalFly;
     friend class MyPlayLevel;
+    friend class BossMonster;
 };
 

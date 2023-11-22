@@ -3,6 +3,7 @@
 
 class MyTexture;
 class MyAnimator;
+class MySound;
 
 class MyFlyDeadEffect :
     public MyObject
@@ -10,10 +11,10 @@ class MyFlyDeadEffect :
     GENERATED_OBJECT(MyObject);
 
 private:
-    MyTexture* m_Atlas;
+    MyTexture*  m_Atlas;
     MyAnimator* m_Animator;
     float       m_EffectTime;
-
+    MySound*    m_FlyDead;
 public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;

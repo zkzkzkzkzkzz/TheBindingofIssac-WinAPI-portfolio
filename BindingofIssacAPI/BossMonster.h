@@ -9,6 +9,7 @@ class MyAnimator;
 class MyMovement;
 class MyCollider;
 class MyRoom;
+class MySound;
 
 enum class ATT_TYPE
 {
@@ -40,6 +41,8 @@ private:
     float m_StartAttTime;
     float m_AttDelay;
     ATT_TYPE m_AttType;
+
+    MySound* m_SummonFly;
 
 public:
     void ChangeDirectionU();

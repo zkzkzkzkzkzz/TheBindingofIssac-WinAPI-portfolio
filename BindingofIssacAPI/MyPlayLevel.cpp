@@ -20,6 +20,7 @@
 #include "MyRoom.h"
 #include "MyBackGround.h"
 #include "MyTexture.h"
+#include "MySound.h"
 #include "components.h"
 
 void MyPlayLevel::init()
@@ -154,6 +155,7 @@ void MyPlayLevel::init()
 	pBoss->SetInitPos(Vec2(1440.f, -400.f));
 	pBoss->SetScale(Vec2(2.f, 2.f));
 	pBoss->SetOffsetPos(Vec2(-15.f, -40.f));
+	pBoss->SetStartDir(FKDir::RIGHT);
 	pBoss->SetActive(false);
 	pRoom5->AddMonster(pBoss);
 	AddObject(LAYER::BOSS, pBoss);
@@ -173,6 +175,9 @@ void MyPlayLevel::init()
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::TROPHY);
 
 	m_IsInit = false;
+
+	m_BGSound1 = MyAssetMgr::GetInst()->LoadSound(L"PL_BGSound1", L"sound\\burning_basement_intro.wav");
+	m_BGSound2 = MyAssetMgr::GetInst()->LoadSound(L"PL_BGSound2", L"sound\\burning_basement_loop.wav");
 }
 
 void MyPlayLevel::enter()
@@ -181,6 +186,10 @@ void MyPlayLevel::enter()
 	vLookAt = MyEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
+
+	m_BGSound2->SetVolume(40.f);
+	m_BGSound2->SetPosition(0.f);
+	m_BGSound2->PlayToBGM(true);
 
 	if (m_IsInit == true)
 	{

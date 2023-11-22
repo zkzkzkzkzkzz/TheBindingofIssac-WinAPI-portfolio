@@ -16,6 +16,7 @@ private:
 	vector<MyComponent*>	m_vecComponent;
 	int						m_iLayerIdx;
 	
+protected:
 	bool m_IsActive;
 
 public:

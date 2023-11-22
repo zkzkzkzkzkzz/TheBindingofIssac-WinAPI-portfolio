@@ -10,6 +10,7 @@ private:
 	LPDIRECTSOUNDBUFFER		m_pSoundBuffer;
 	DSBUFFERDESC			m_tBuffInfo;
 	int						m_iVolume;
+	bool					m_isPlayed;
 
 public:
 	virtual bool Load(const wstring& _strFilePath) override;
@@ -28,6 +29,12 @@ public:
 
 	// 사운드 재생 위치 (0 ~ 100)
 	void SetPosition(float _fPosition); // 0 ~ 100 ����
+
+	void Reset();
+
+public:
+	void SetPlayed(bool _b) { m_isPlayed = _b; }
+	bool IsPlayed() { return m_isPlayed; }
 
 private:
 	bool LoadWaveSound(const wstring& _strPath);

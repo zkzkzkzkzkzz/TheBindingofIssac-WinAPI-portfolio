@@ -3,6 +3,7 @@
 
 class MyTexture;
 class MyAnimator;
+class MySound;
 
 class MyBossDeadEffect :
     public MyEffect
@@ -13,6 +14,7 @@ private:
     MyTexture* m_Atlas;
     MyAnimator* m_Animator;
     float       m_EffectTime;
+    MySound* m_BossDead;
 
 public:
     virtual void tick(float _DT) override;

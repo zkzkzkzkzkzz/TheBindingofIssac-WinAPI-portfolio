@@ -5,6 +5,7 @@ class MyAnimator;
 class MyMovement;
 class MyCollider;
 class MyShadow;
+class MySound;
 
 class MyPlayer :
     public MyObject
@@ -17,6 +18,8 @@ private:
     MyMovement* m_Movement;
     MyCollider* m_Collider;
     MyShadow*   m_Shadow;
+
+    MySound* m_FireSound;
 
     // 눈물 딜레이
     float   m_Acctime;

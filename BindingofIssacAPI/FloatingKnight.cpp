@@ -22,6 +22,11 @@ FloatingKnight::FloatingKnight()
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"FloatingKnight", L"texture\\monster\\monster_floatingknight.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
 
+	m_Movement = AddComponent<MyMovement>(L"FKMovement");
+	m_Movement->SetVelocity(Vec2(0.f, 100.f));
+	m_Movement->SetInitSpeed(30.f);
+	m_Movement->SetMaxSpeed(30.f);
+
 	m_Animator = AddComponent<MyAnimator>(L"FKAnimator");
 	m_Animator->LoadAnimation(L"animdata\\FloatingKnightDownAnim.txt");
 	m_Animator->LoadAnimation(L"animdata\\FloatingKnightUpAnim.txt");
@@ -32,12 +37,6 @@ FloatingKnight::FloatingKnight()
 	m_HeadCollider = AddComponent<MyCollider>(L"FKHeadCollider");
 
 	m_TailCollider = AddComponent<MyCollider>(L"FKTailCollider");
-
-	m_Movement = AddComponent<MyMovement>(L"FKMovement");
-	m_Movement->SetVelocity(Vec2(0.f, 100.f));
-	m_Movement->SetInitSpeed(30.f);
-	m_Movement->SetMaxSpeed(30.f);
-
 
 	m_Info.HP = 3.f;
 

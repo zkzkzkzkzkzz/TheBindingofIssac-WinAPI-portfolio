@@ -44,7 +44,7 @@ void MyLevelMgr::init()
 	}
 
 	// ::를 사용하여 전역함수를 사용하겠다고 명시
-	::ChangeLevel(LEVEL_TYPE::PLAY_LEVEL);
+	::ChangeLevel(LEVEL_TYPE::TITLE_LEVEL);
 }
 
 void MyLevelMgr::ChangeLevel(LEVEL_TYPE _Type)

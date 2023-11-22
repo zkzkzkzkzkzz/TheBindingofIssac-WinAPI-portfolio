@@ -6,6 +6,7 @@ class MyCollider;
 class MyPlayer;
 class MyShadow;
 class MyMonsterEffect;
+class MySound;
 
 class MyMonsterTears :
     public MyObject
@@ -30,6 +31,7 @@ private:
     MyPlayer*           m_pTarget;
     Vec2                m_TargetPos;
 
+    MySound* m_MTSound;
 
 public:
     virtual void begin() override;
@@ -37,7 +39,6 @@ public:
 
     void fire();
     void TearsDestroy();
-
 
 public:
     void SetAngle(float _theta) { m_Angle = _theta; }

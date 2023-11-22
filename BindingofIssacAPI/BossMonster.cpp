@@ -10,8 +10,10 @@
 #include "MyRoom.h"
 #include "MyTears.h"
 #include "NormalFly.h"
+#include "MyMonsterTears.h"
 #include "components.h"
 #include "MyBossDeadEffect.h"
+#include "MySound.h"
 #include "MyTrophy.h"
 
 BossMonster::BossMonster()
@@ -21,16 +23,22 @@ BossMonster::BossMonster()
 	, m_Animator(nullptr)
 	, m_Movement(nullptr)
 	, m_MoveTime(0.f)
-	, m_StartMoveTime(1.f)
-	, m_ChangeDirTime(6.f)
+	, m_StartMoveTime(2.f)
+	, m_ChangeDirTime(7.f)
 	, m_Info{}
 	, m_AttTime(0.f)
 	, m_StartAttTime(2.f)
-	, m_AttDelay(8.f)
+	, m_AttDelay(6.f)
 	, m_MonsCount(0)
+	, m_SummonFly(nullptr)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Boss", L"texture\\Boss\\boss_dukeofflies.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
+
+	m_Movement = AddComponent<MyMovement>(L"BossMovement");
+	m_Movement->SetVelocity(Vec2(0.f, 0.f));
+	m_Movement->SetInitSpeed(50.f);
+	m_Movement->SetMaxSpeed(50.f);
 
 	m_Animator = AddComponent<MyAnimator>(L"BossAnimator");
 	m_Animator->LoadAnimation(L"animdata\\BossIdleAnim.txt");
@@ -44,12 +52,9 @@ BossMonster::BossMonster()
 	m_Collider->SetScale(Vec2(100.f, 100.f));
 	m_Collider->SetOffsetPos(Vec2(0.f, -50.f));
 
-	m_Movement = AddComponent<MyMovement>(L"BossMovement");
-	m_Movement->SetVelocity(Vec2(0.f, 0.f));
-	m_Movement->SetInitSpeed(50.f);
-	m_Movement->SetMaxSpeed(50.f);
-
 	m_Info.HP = 10.f;
+
+	m_SummonFly = MyAssetMgr::GetInst()->LoadSound(L"SummonFly", L"sound\\boss_lite_roar_1.wav");
 
 	srand((UINT)time(NULL));
 }
@@ -70,16 +75,17 @@ void BossMonster::begin()
 
 void BossMonster::tick(float _DT)
 {
-	if (m_IsDead == true)
+	if (m_IsDead == true || m_IsActive == false)
 	{
 		return;
 	}
+
+	Super::tick(_DT);
+
 	m_MoveTime += _DT;
 
 	if (m_MoveTime >= m_StartMoveTime)
 	{
-		Super::tick(_DT);
-
 		m_AttTime += _DT;
 
 		if (m_ChangeDirTime <= m_MoveTime)
@@ -103,14 +109,14 @@ void BossMonster::tick(float _DT)
 				break;
 			}
 
-			m_MoveTime = 1.f;
+			m_MoveTime = 2.f;
 		}
 	}
 }
 
 void BossMonster::render(HDC _dc)
 {
-	if (m_IsDead == true)
+	if (m_IsDead == true || m_IsActive == false)
 	{
 		return;
 	}
@@ -276,7 +282,7 @@ void BossMonster::ChangeDirectionR()
 	{
 		if (m_AttTime >= m_AttDelay)
 		{
-			int ran = rand() % 2;
+			int ran = rand() % 3;
 			switch ((ATT_TYPE)ran)
 			{
 			case ATT_TYPE::ATT1:
@@ -351,6 +357,8 @@ void BossMonster::SpawnFly()
 		m_Animator->FindAnim(L"BossAttackSpawnAnim2")->Reset();
 	}
 
+	auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
+
 	NormalFly* pFly = new NormalFly;
 	pFly->SetPos(Vec2(-10000.f, -10000.f));
 	pFly->SetInitPos(Vec2(vPos.x - 50.f, vPos.y + 50.f));
@@ -372,7 +380,6 @@ void BossMonster::SpawnFly()
 	pFly3->SetOffsetPos(Vec2(-15.f, -25.f));
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::MONSTER, (UINT_PTR)pFly3 });
 
-	auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
 	dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->AddMonster(pFly);
 	dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->AddMonster(pFly2);
 	dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->AddMonster(pFly3);
@@ -380,4 +387,8 @@ void BossMonster::SpawnFly()
 	pFly->SetToInitPos();
 	pFly2->SetToInitPos();
 	pFly3->SetToInitPos();
+
+	m_SummonFly->SetVolume(80.f);
+	m_SummonFly->SetPosition(0.f);
+	m_SummonFly->Play();
 }

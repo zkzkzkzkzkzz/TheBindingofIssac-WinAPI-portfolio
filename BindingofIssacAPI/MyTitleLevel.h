@@ -4,6 +4,7 @@
 
 class MyTexture;
 class TitleTexUI;
+class MySound;
 
 constexpr int MaxMenuSize = 5;
 
@@ -13,6 +14,10 @@ class MyTitleLevel :
 private:
     MyTexture*  m_Texture;
     Vec2        vLookAt;
+    MySound*    m_BGSound1;
+    MySound*    m_BGSound2;
+    MySound*    m_EffectSound;
+    MySound*    m_LoadingSound;
     int         m_CurScreen;
 
     // 메뉴바

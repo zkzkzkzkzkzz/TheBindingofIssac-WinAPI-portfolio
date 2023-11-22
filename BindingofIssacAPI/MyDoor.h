@@ -6,6 +6,7 @@ class MyAnimator;
 class MyCollider;
 class MyRoom;
 class MyEffect;
+class MySound;
 
 class MyDoor :
     public MyObject
@@ -28,6 +29,13 @@ private:
     bool    RightDoorColOpen;
 
     MyEffect* m_Effect;
+    
+    MySound* m_FlySound;
+    MySound* m_DOpenSound;
+    MySound* m_DCloseSound;
+    MySound* m_BossEnter;
+    MySound* m_BossEnter2;
+    MySound* m_StageClear;
 
 public:
     virtual void begin() override;

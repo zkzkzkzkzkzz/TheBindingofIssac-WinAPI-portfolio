@@ -15,6 +15,7 @@
 #include "TitleTexUI.h"
 #include "MyTexture.h"
 #include "MyEndingScene.h"
+#include "MySound.h"
 #include "components.h"
 
 void MyEndingLevel::init()
@@ -34,6 +35,11 @@ void MyEndingLevel::enter()
 	pEnd->SetScale(Vec2(2.f, 2.f));
 	pEnd->SetOffsetPos(Vec2(-240.f, -160.f));
 	AddObject(LAYER::EFFECT, pEnd);
+
+	m_Ending = MyAssetMgr::GetInst()->LoadSound(L"Ending", L"sound\\epilogue_01m.wav");
+	m_Ending->SetVolume(80.f);
+	m_Ending->SetPosition(0.f);
+	m_Ending->Play();
 }
 
 void MyEndingLevel::exit()
@@ -47,6 +53,7 @@ void MyEndingLevel::tick()
 
 	if (KEY_TAP(SPACE))
 	{
+		m_Ending->Stop(true);
 		ChangeLevel(LEVEL_TYPE::TITLE_LEVEL);
 	}
 }

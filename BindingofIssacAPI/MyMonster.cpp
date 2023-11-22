@@ -38,7 +38,6 @@ void MyMonster::SetToInitPos()
 	pSpawn->SetOffsetPos(Vec2(-30.f, -40.f));
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pSpawn });
 	m_fDuration = m_AccTime + 0.3f;
-	
 }
 
 void MyMonster::begin()
@@ -51,12 +50,15 @@ void MyMonster::tick(float _DT)
 	{
 		return;
 	}
+
+	Super::tick(_DT);
+
 	m_AccTime += _DT;
+
 	if (m_fDuration <= m_AccTime) {
 		SetPos(m_vInitPos);
 		m_fDuration = 10000.f;
 	}
-	Super::tick(_DT);
 }
 
 void MyMonster::render(HDC _dc)
