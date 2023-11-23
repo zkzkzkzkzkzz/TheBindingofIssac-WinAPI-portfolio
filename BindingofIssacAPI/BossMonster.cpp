@@ -26,7 +26,7 @@ BossMonster::BossMonster()
 	, m_StartMoveTime(2.f)
 	, m_ChangeDirTime(7.f)
 	, m_Info{}
-	, m_AttTime(0.f)
+	, m_AttTime(3.f)
 	, m_StartAttTime(2.f)
 	, m_AttDelay(6.f)
 	, m_MonsCount(0)

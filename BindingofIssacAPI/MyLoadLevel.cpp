@@ -42,7 +42,7 @@ void MyLoadLevel::enter()
 	vLookAt /= 2.f;
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
 
-	m_Loading->SetVolume(800.f);
+	m_Loading->SetVolume(60.f);
 	m_Loading->SetPosition(0.f);
 	m_Loading->Play();
 

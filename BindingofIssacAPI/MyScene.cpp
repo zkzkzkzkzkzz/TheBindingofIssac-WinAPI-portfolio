@@ -21,6 +21,7 @@ MyScene::MyScene()
 	, m_DCloseSound(nullptr)
 	, m_BossFight(nullptr)
 	, m_HideUI(false)
+	, m_IsRender(true)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Scene", L"texture\\UI\\BossCutScene.png");
 
@@ -43,57 +44,64 @@ MyScene::~MyScene()
 
 void MyScene::tick(float _DT)
 {
-	Super::tick(_DT);
-
-	auto UIobjects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::UI)->GetObjects();
-
-	if (m_HideUI == false)
+	if (m_IsRender)
 	{
-		for (size_t i = 0; i < UIobjects.size(); ++i)
+		Super::tick(_DT);
+
+		auto UIobjects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::UI)->GetObjects();
+
+		if (m_HideUI == false)
 		{
-			dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(true);
+			for (size_t i = 0; i < UIobjects.size(); ++i)
+			{
+				dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(true);
+			}
+
+			m_HideUI = true;
 		}
 
-		m_HideUI = true;
-	}
+		m_SceneTime += _DT;
 
-	m_SceneTime += _DT;
+		float fTime = GetSceneTime();
 
-	float fTime = GetSceneTime();
-
-	if (fTime >= 3.5f)
-	{
-		auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
+		if (fTime >= 3.5f)
+		{
+			auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
 		
-		dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->SetMonPos();
+			dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::BOSS])->SetMonPos();
 
-		if (!m_BossFight->IsPlayed())
-		{
-			m_DCloseSound->SetVolume(60.f);
-			m_DCloseSound->SetPosition(0.f);
-			m_DCloseSound->Play(false);
+			if (!m_BossFight->IsPlayed())
+			{
+				m_DCloseSound->SetVolume(60.f);
+				m_DCloseSound->SetPosition(0.f);
+				m_DCloseSound->Play(false);
 
-			m_BossFight->SetVolume(60.f);
-			m_BossFight->SetPosition(0.f);
-			m_BossFight->Play(true);
-			m_BossFight->SetPlayed(true);
+				m_BossFight->SetVolume(60.f);
+				m_BossFight->SetPosition(0.f);
+				m_BossFight->Play(true);
+				m_BossFight->SetPlayed(true);
 
-			m_Summon->SetVolume(60.f);	
-			m_Summon->SetPosition(0.f);
-			m_Summon->Play(false);
+				m_Summon->SetVolume(60.f);	
+				m_Summon->SetPosition(0.f);
+				m_Summon->Play(false);
+			}
+
+			for (size_t i = 0; i < UIobjects.size(); ++i)
+			{
+				dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(false);
+			}
+
+			m_SceneTime = 0;
+			m_IsRender = false;
+			//Destroy();
 		}
-
-		for (size_t i = 0; i < UIobjects.size(); ++i)
-		{
-			dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(false);
-		}
-
-		m_SceneTime = 0;
-		Destroy();
 	}
 }
 
 void MyScene::render(HDC _dc)
 {
-	Super::render(_dc);
+	if (m_IsRender)
+	{
+		Super::render(_dc);
+	}
 }

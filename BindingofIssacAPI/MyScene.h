@@ -22,6 +22,7 @@ private:
     MySound* m_Summon;
 
     bool m_HideUI;
+    bool m_IsRender;
 
 public:
     virtual void tick(float _DT) override;
@@ -36,6 +37,6 @@ public:
     MyScene(const MyScene& _Origin) = delete;
     ~MyScene();
 
-    friend class MyDoor;
+    friend class MyRoom;
 };
 

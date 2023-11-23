@@ -13,7 +13,6 @@
 #include "MyScene.h"
 #include "MyRoom.h"
 #include "components.h"
-#include "MyTrophy.h"
 #include "MySound.h"
 #include "MyPlayerUI.h"
 
@@ -35,7 +34,6 @@ MyDoor::MyDoor()
 	, m_DCloseSound(nullptr)
 	, m_BossEnter(nullptr)
 	, m_BossEnter2(nullptr)
-	, m_StageClear(nullptr)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Door", L"texture\\Grid\\door_01_normaldoor.png");
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"TreasureDoor", L"texture\\Grid\\door_02_treasureroomdoor.png");
@@ -75,7 +73,6 @@ MyDoor::MyDoor()
 	m_DCloseSound = MyAssetMgr::GetInst()->LoadSound(L"RoomDoorCloseSound", L"sound\\door_heavy_close.wav");
 	m_BossEnter = MyAssetMgr::GetInst()->LoadSound(L"RoomBossEnter", L"sound\\castleportcullis.wav");
 	m_BossEnter2 = MyAssetMgr::GetInst()->LoadSound(L"RoomBossEnter2", L"sound\\boss_fight_intro_jingle_v2.1.wav");
-	m_StageClear = MyAssetMgr::GetInst()->LoadSound(L"RoomStageClear", L"sound\\superholy.wav");
 }
 
 MyDoor::MyDoor(MyRoom* _Owner)
@@ -96,7 +93,6 @@ MyDoor::MyDoor(MyRoom* _Owner)
 	, m_DCloseSound(nullptr)
 	, m_BossEnter(nullptr)
 	, m_BossEnter2(nullptr)
-	, m_StageClear(nullptr)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Door", L"texture\\Grid\\door_01_normaldoor.png");
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"TreasureDoor", L"texture\\Grid\\door_02_treasureroomdoor.png");
@@ -135,7 +131,6 @@ MyDoor::MyDoor(MyRoom* _Owner)
 	m_DCloseSound = MyAssetMgr::GetInst()->LoadSound(L"RoomDoorCloseSound", L"sound\\door_heavy_close.wav");
 	m_BossEnter = MyAssetMgr::GetInst()->LoadSound(L"RoomBossEnter", L"sound\\castleportcullis.wav");
 	m_BossEnter2 = MyAssetMgr::GetInst()->LoadSound(L"RoomBossEnter2", L"sound\\boss_fight_intro_jingle_v2.1.wav");
-	m_StageClear = MyAssetMgr::GetInst()->LoadSound(L"RoomStageClear", L"sound\\superholy.wav");
 }
 
 MyDoor::~MyDoor()
@@ -425,7 +420,6 @@ void MyDoor::tick(float _DT)
 			{
 				m_InAnimator->Play(L"DownInBossDoorOpenAnim", false);
 				m_InAnimator->FindAnim(L"DownInBossDoorCloseAnim")->Reset();
-				SpawnTrophy();
 
 				if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::BOSS && m_OwnerRoom->GetName() == L"BossRoom")
 				{
@@ -666,24 +660,3 @@ void MyDoor::Overlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _Othe
 
 }
 
-
-void MyDoor::SpawnTrophy()
-{
-	MyTrophy* pTrophy = new MyTrophy;
-	pTrophy->SetPos(Vec2(1440.f, -300.f));
-	pTrophy->SetScale(Vec2(2.f, 2.f));
-	pTrophy->SetOffsetPos(Vec2(0.f, -30.f));
-	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TROPHY, (UINT_PTR)pTrophy });
-	
-	MyScene* pScene = new MyScene;
-	pScene->m_BossFight->Stop();
-	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pScene });
-
-	if (!(m_StageClear->IsPlayed()))
-	{
-		m_StageClear->SetVolume(60.f);
-		m_StageClear->SetPosition(0.f);
-		m_StageClear->Play();
-		m_StageClear->SetPlayed(true);
-	}
-}

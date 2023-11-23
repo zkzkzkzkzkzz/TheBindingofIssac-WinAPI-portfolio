@@ -35,7 +35,7 @@ private:
     MySound* m_DCloseSound;
     MySound* m_BossEnter;
     MySound* m_BossEnter2;
-    MySound* m_StageClear;
+
 
 public:
     virtual void begin() override;
@@ -48,7 +48,7 @@ public:
 public:
     void SetDoorDir(DOOR_DIR _Dir) { m_DoorDir = (int)_Dir; }
     int GetDoorDir() { return m_DoorDir; }
-    void SpawnTrophy();
+
 
 public:
     CLONE(MyDoor);

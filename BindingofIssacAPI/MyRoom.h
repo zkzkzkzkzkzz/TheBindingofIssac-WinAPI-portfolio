@@ -6,6 +6,8 @@ class MyCollider;
 class MyMonster;
 class MyEffect;
 class MyDoor;
+class MySound;
+class MyScene;
 
 enum class ROOM_TYPE
 {
@@ -47,6 +49,9 @@ private:
     bool LeftDoorColOpen;
     bool RightDoorColOpen;
 
+    MyScene* m_Scene;
+    MySound* m_StageClear;
+
 public:
 	virtual void begin() override;
 	virtual void tick(float _DT) override;
@@ -80,6 +85,8 @@ public:
     }
 
     void CheckMonsterCount();
+
+    void SpawnTrophy();
 
 public:
     void SetUpDoorColOpen(bool _b) { UpDoorColOpen = _b; }

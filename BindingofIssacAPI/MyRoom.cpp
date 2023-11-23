@@ -16,6 +16,8 @@
 #include "MyEffect.h"
 #include "MyScene.h"
 #include "MyTexture.h"
+#include "MyTrophy.h"
+#include "MySound.h"
 #include "components.h"
 
 
@@ -36,12 +38,15 @@ MyRoom::MyRoom()
 	, RightDoorColOpen(false)
 	, m_RoomClear(false)
 	, m_MonsterCount(0)
+	, m_StageClear(nullptr)
+	, m_Scene(nullptr)
 {
 	m_StartImg = MyAssetMgr::GetInst()->LoadTexture(L"StartRoom", L"texture\\Room\\Basement_0.png");
 	m_NormalImg = MyAssetMgr::GetInst()->LoadTexture(L"NormalRoom", L"texture\\Room\\Basement_1.png");
 	m_TreasureImg = MyAssetMgr::GetInst()->LoadTexture(L"TreasureRoom", L"texture\\Room\\Basement_3.png");
 	m_BossImg = MyAssetMgr::GetInst()->LoadTexture(L"BossRoom", L"texture\\Room\\Basement_4.png");
 
+	m_StageClear = MyAssetMgr::GetInst()->LoadSound(L"RoomStageClear", L"sound\\superholy.wav");
 }
 
 MyRoom::MyRoom(const MyRoom& _Origin)
@@ -56,6 +61,8 @@ MyRoom::MyRoom(const MyRoom& _Origin)
 	, m_Effect(nullptr)
 	, m_CurImg(nullptr)
 	, m_Collider(nullptr)
+	, m_StageClear(nullptr)
+	, m_Scene(nullptr)
 {
 	m_CurImg = GetCurImg();
 	m_Collider = GetComponent<MyCollider>();
@@ -324,11 +331,11 @@ void MyRoom::PlayBossAnimation()
 	MyPlayLevel* pLevel = dynamic_cast<MyPlayLevel*>(MyLevelMgr::GetInst()->GetCurLevel());
 	pLevel->GetBGSound2()->Stop(true);
 
-	MyScene* pScene = new MyScene;
-	pScene->SetPos(Vec2(960.f, -640.f));
-	pScene->SetScale(Vec2(2.f, 2.f));
-	pScene->SetOffsetPos(Vec2(250.f, 150.f));
-	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pScene });
+	m_Scene = new MyScene;
+	m_Scene->SetPos(Vec2(960.f, -640.f));
+	m_Scene->SetScale(Vec2(2.f, 2.f));
+	m_Scene->SetOffsetPos(Vec2(250.f, 150.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)m_Scene });
 }
 
 void MyRoom::CheckMonsterCount()
@@ -353,6 +360,12 @@ void MyRoom::CheckMonsterCount()
 	{
 		m_RoomClear = true;
 		m_isOpen = true;
+
+		if (m_CurRoomType == ROOM_TYPE::BOSS && GetName() == L"BossRoom")
+		{
+			SpawnTrophy();
+		}
+
 		return;
 	}
 	else
@@ -360,5 +373,26 @@ void MyRoom::CheckMonsterCount()
 		m_RoomClear = false;
 		m_isOpen = false;
 		return;
+	}
+}
+
+
+
+void MyRoom::SpawnTrophy()
+{
+	MyTrophy* pTrophy = new MyTrophy;
+	pTrophy->SetPos(Vec2(1440.f, -300.f));
+	pTrophy->SetScale(Vec2(2.f, 2.f));
+	pTrophy->SetOffsetPos(Vec2(0.f, -30.f));
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TROPHY, (UINT_PTR)pTrophy });
+
+	m_Scene->m_BossFight->Stop();
+
+	if (!(m_StageClear->IsPlayed()))
+	{
+		m_StageClear->SetVolume(60.f);
+		m_StageClear->SetPosition(0.f);
+		m_StageClear->Play();
+		m_StageClear->SetPlayed(true);
 	}
 }
