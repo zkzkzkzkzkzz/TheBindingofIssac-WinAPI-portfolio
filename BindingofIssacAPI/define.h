@@ -131,6 +131,7 @@ enum class LAYER
 	EFFECT,
 	TROPHY,
 
+	BOSS_UI = 30,
 	UI = 31,
 	END = 32,
 };

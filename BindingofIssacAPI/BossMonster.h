@@ -10,6 +10,7 @@ class MyMovement;
 class MyCollider;
 class MyRoom;
 class MySound;
+class MyBossUI;
 
 enum class ATT_TYPE
 {
@@ -43,6 +44,7 @@ private:
     ATT_TYPE m_AttType;
 
     MySound* m_SummonFly;
+    MyBossUI* m_BossUI;
 
 public:
     void ChangeDirectionU();
@@ -57,6 +59,8 @@ public:
     void SetStartDir(FKDir _dir);
     FKDir GetStartDir() { return m_StartDir; }
 
+    float GetCurBossHP() { return m_Info.HP; }
+
 public:
     virtual void begin() override;
     virtual void tick(float _DT) override;
@@ -69,5 +73,7 @@ public:
     CLONE(BossMonster);
     BossMonster();
     ~BossMonster();
+
+    friend class MyBossUI;
 };
 

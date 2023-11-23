@@ -11,6 +11,7 @@
 #include "MySound.h"
 #include "components.h"
 #include "MyPlayerUI.h"
+#include "MyBossUI.h"
 
 MyScene::MyScene()
 	: m_Atlas(nullptr)
@@ -90,6 +91,7 @@ void MyScene::tick(float _DT)
 			{
 				dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(false);
 			}
+
 
 			m_SceneTime = 0;
 			m_IsRender = false;

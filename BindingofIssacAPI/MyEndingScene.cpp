@@ -35,7 +35,7 @@ void MyEndingScene::tick(float _DT)
 
 	float fTime = GetSceneTime();
 
-	if (fTime >= 15.f)
+	if (fTime >= 13.f)
 	{
 		m_SceneTime = 0;
 		Destroy();

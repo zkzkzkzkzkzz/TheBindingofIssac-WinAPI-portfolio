@@ -15,6 +15,7 @@
 #include "MyBossDeadEffect.h"
 #include "MySound.h"
 #include "MyTrophy.h"
+#include "MyBossUI.h"
 
 BossMonster::BossMonster()
 	: m_Atlas(nullptr)
@@ -31,6 +32,7 @@ BossMonster::BossMonster()
 	, m_AttDelay(6.f)
 	, m_MonsCount(0)
 	, m_SummonFly(nullptr)
+	, m_BossUI(nullptr)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Boss", L"texture\\Boss\\boss_dukeofflies.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
@@ -71,16 +73,27 @@ void BossMonster::begin()
 	}
 
 	GetStartDir();
+
+	m_BossUI = new MyBossUI;
+	m_BossUI->SetPos(Vec2(1380.f, -610.f));
+	m_BossUI->SetScale(Vec2(2.f, 2.f));
+	m_BossUI->SetOffsetPos(Vec2(0.f, 0.f));
+	m_BossUI->SetUIRender(false);
+	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::BOSS_UI, (UINT_PTR)m_BossUI });
 }
 
 void BossMonster::tick(float _DT)
 {
+	m_BossUI->SetBossHP((int)GetCurBossHP());
+
 	if (m_IsDead == true || m_IsActive == false)
 	{
 		return;
 	}
 
 	Super::tick(_DT);
+
+	m_BossUI->SetUIRender(true);
 
 	m_MoveTime += _DT;
 

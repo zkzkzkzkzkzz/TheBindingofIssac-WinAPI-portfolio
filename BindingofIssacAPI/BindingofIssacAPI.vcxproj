@@ -154,6 +154,7 @@
     <ClInclude Include="MyAssetMgr.h" />
     <ClInclude Include="MyBackGround.h" />
     <ClInclude Include="MyBossDeadEffect.h" />
+    <ClInclude Include="MyBossUI.h" />
     <ClInclude Include="MyCameraMgr.h" />
     <ClInclude Include="MyCollider.h" />
     <ClInclude Include="MyCollisionMgr.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="MyAssetMgr.cpp" />
     <ClCompile Include="MyBackGround.cpp" />
     <ClCompile Include="MyBossDeadEffect.cpp" />
+    <ClCompile Include="MyBossUI.cpp" />
     <ClCompile Include="MyCameraMgr.cpp" />
     <ClCompile Include="MyCollider.cpp" />
     <ClCompile Include="MyCollisionMgr.cpp" />

@@ -170,6 +170,9 @@
     <Filter Include="Game\04. Level\LoadLevel">
       <UniqueIdentifier>{cd5185f5-65d5-4d22-aa50-01ff8f313421}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\UI\BossUI">
+      <UniqueIdentifier>{9b0fa655-d853-4a6d-b46e-84860ea7d04c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -383,6 +386,9 @@
     <ClInclude Include="MyLoadLevel.h">
       <Filter>Game\04. Level\LoadLevel</Filter>
     </ClInclude>
+    <ClInclude Include="MyBossUI.h">
+      <Filter>Game\05. Object\UI\BossUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc">
@@ -593,6 +599,9 @@
     </ClCompile>
     <ClCompile Include="MyLoadLevel.cpp">
       <Filter>Game\04. Level\LoadLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBossUI.cpp">
+      <Filter>Game\05. Object\UI\BossUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

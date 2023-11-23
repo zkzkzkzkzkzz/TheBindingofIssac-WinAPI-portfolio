@@ -55,7 +55,7 @@ void MyEndingLevel::tick()
 
 	m_SceneTime += DT;
 	 
-	if (KEY_TAP(SPACE) || m_SceneTime >= 15.f)
+	if (KEY_TAP(SPACE) || m_SceneTime >= 13.f)
 	{
 		m_Ending->Stop(true);
 		ChangeLevel(LEVEL_TYPE::TITLE_LEVEL);
