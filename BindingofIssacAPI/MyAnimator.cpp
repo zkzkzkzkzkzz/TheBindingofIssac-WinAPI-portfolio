@@ -11,6 +11,7 @@ MyAnimator::MyAnimator(MyObject* _Owner)
 	: MyComponent(_Owner)
 	, m_CurAnim(nullptr)
 	, m_bRepeat(false)
+	, m_Duration(100000.f)
 {
 }
 
@@ -18,6 +19,7 @@ MyAnimator::MyAnimator(const MyAnimator& _Origin)
 	: MyComponent(_Origin)
 	, m_CurAnim(nullptr)
 	, m_bRepeat(_Origin.m_bRepeat)
+	, m_Duration(100000.f)
 {
 	for (const auto& pair : _Origin.m_mapAnim)
 	{
@@ -42,6 +44,14 @@ MyAnimator::~MyAnimator()
 
 void MyAnimator::finaltick(float _DT)
 {
+	m_Acctime += _DT;
+	if (m_Duration <= m_Acctime) {
+		if (m_WaitName != L"") {
+			Play(m_WaitName, m_WaitRepeat);
+			m_Duration = 100000.f;
+		}
+	}
+
 	if (IsValid(m_CurAnim))
 	{
 		if (m_bRepeat && m_CurAnim->IsFinish())

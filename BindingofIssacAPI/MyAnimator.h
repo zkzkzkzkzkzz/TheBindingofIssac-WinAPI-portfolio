@@ -17,8 +17,21 @@ private:
     // 반복 재생 여부
     bool                    m_bRepeat;
 
+    float                   m_Duration;
+    float                   m_Acctime;
+
+    wstring m_WaitName;
+    bool m_WaitRepeat;
+
 public:
     void Play(const wstring& _strName, bool _bRepeat);
+    void WaitPlay(const wstring& _strName, bool _bRepeat, float _time)
+    {
+        m_WaitName = _strName;
+        m_WaitRepeat = _bRepeat;
+        m_Acctime = 0.f;
+        m_Duration = _time;
+    }
     void Stop();
     MyAnim* GetCurAnim() { return m_CurAnim; }
 

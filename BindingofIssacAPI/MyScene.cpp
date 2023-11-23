@@ -10,6 +10,7 @@
 #include "MyDoor.h"
 #include "MySound.h"
 #include "components.h"
+#include "MyPlayerUI.h"
 
 MyScene::MyScene()
 	: m_Atlas(nullptr)
@@ -19,6 +20,7 @@ MyScene::MyScene()
 	, m_DOpenSound(nullptr)
 	, m_DCloseSound(nullptr)
 	, m_BossFight(nullptr)
+	, m_HideUI(false)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Scene", L"texture\\UI\\BossCutScene.png");
 
@@ -42,6 +44,18 @@ MyScene::~MyScene()
 void MyScene::tick(float _DT)
 {
 	Super::tick(_DT);
+
+	auto UIobjects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::UI)->GetObjects();
+
+	if (m_HideUI == false)
+	{
+		for (size_t i = 0; i < UIobjects.size(); ++i)
+		{
+			dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(true);
+		}
+
+		m_HideUI = true;
+	}
 
 	m_SceneTime += _DT;
 
@@ -67,6 +81,11 @@ void MyScene::tick(float _DT)
 			m_Summon->SetVolume(60.f);	
 			m_Summon->SetPosition(0.f);
 			m_Summon->Play(false);
+		}
+
+		for (size_t i = 0; i < UIobjects.size(); ++i)
+		{
+			dynamic_cast<MyPlayerUI*>(UIobjects[i])->SetCutScene(false);
 		}
 
 		m_SceneTime = 0;

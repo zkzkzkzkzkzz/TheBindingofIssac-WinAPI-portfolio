@@ -40,6 +40,8 @@ void MyEndingLevel::enter()
 	m_Ending->SetVolume(80.f);
 	m_Ending->SetPosition(0.f);
 	m_Ending->Play();
+
+	m_SceneTime = 0.f;
 }
 
 void MyEndingLevel::exit()
@@ -51,7 +53,9 @@ void MyEndingLevel::tick()
 {
 	MyLevel::tick();
 
-	if (KEY_TAP(SPACE))
+	m_SceneTime += DT;
+	 
+	if (KEY_TAP(SPACE) || m_SceneTime >= 10.f)
 	{
 		m_Ending->Stop(true);
 		ChangeLevel(LEVEL_TYPE::TITLE_LEVEL);

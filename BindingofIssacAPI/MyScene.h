@@ -21,6 +21,8 @@ private:
     MySound* m_BossFight;
     MySound* m_Summon;
 
+    bool m_HideUI;
+
 public:
     virtual void tick(float _DT) override;
     virtual void render(HDC _dc) override;

@@ -15,6 +15,7 @@
 #include "components.h"
 #include "MyTrophy.h"
 #include "MySound.h"
+#include "MyPlayerUI.h"
 
 MyDoor::MyDoor()
 	: m_Atlas(nullptr)
@@ -673,7 +674,7 @@ void MyDoor::SpawnTrophy()
 	pTrophy->SetScale(Vec2(2.f, 2.f));
 	pTrophy->SetOffsetPos(Vec2(0.f, -30.f));
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TROPHY, (UINT_PTR)pTrophy });
-
+	
 	MyScene* pScene = new MyScene;
 	pScene->m_BossFight->Stop();
 	MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::EFFECT, (UINT_PTR)pScene });

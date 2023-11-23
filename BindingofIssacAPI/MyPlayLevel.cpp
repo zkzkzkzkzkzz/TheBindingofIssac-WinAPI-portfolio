@@ -18,6 +18,7 @@
 #include "FloatingKnight.h"
 #include "BossMonster.h"
 #include "MyRoom.h"
+#include "MyPlayerUI.h"
 #include "MyBackGround.h"
 #include "MyTexture.h"
 #include "MySound.h"
@@ -57,7 +58,7 @@ void MyPlayLevel::init()
 	pRoom3->SetPos(Vec2(0.f, -640.f));
 	pRoom3->SetScale(Vec2(2.f, 2.f));
 	pRoom3->SetRoomType(ROOM_TYPE::NORMAL2);
-	pRoom3->SetUpDoorColOpen(true);
+	pRoom3->SetUpDoorColOpen(false);
 	pRoom3->SetDownDoorColOpen(true);
 	pRoom3->SetLeftDoorColOpen(false);
 	pRoom3->SetRightDoorColOpen(false);
@@ -160,6 +161,63 @@ void MyPlayLevel::init()
 	pRoom5->AddMonster(pBoss);
 	AddObject(LAYER::BOSS, pBoss);
 
+	// 체력 생성
+	for (size_t i = 0; i < 3; ++i)
+	{
+		MyPlayerUI* pPUI = new MyPlayerUI;
+		pPUI->SetUIType(UI_TYPE::HEART);
+		pPUI->SetPos(Vec2(80.f + (25.f * i), 15.f));
+		pPUI->SetCutPos(Vec2(0.f, 0.f));
+		pPUI->SetCutSize(Vec2(16.f, 16.f));
+		pPUI->SetScale(Vec2(0.3f, 0.48f));
+		pPUI->SetCutScene();
+		AddObject(LAYER::UI, pPUI);
+	}
+
+	// 픽업 아이템 UI 생성
+	MyPlayerUI* pPUUI = new MyPlayerUI;
+	pPUUI->SetUIType(UI_TYPE::PICKUP);
+	pPUUI->SetPos(Vec2(5.f, 75.f));
+	pPUUI->SetCutPos(Vec2(0.f, 0.f));
+	pPUUI->SetCutSize(Vec2(16.f, 16.f));
+	pPUUI->SetScale(Vec2(0.3f, 0.3f));
+	pPUUI->SetCutScene();
+	AddObject(LAYER::UI, pPUUI);
+
+	MyPlayerUI* pPUUI2 = new MyPlayerUI;
+	pPUUI2->SetUIType(UI_TYPE::PICKUP);
+	pPUUI2->SetPos(Vec2(5.f, 105.f));
+	pPUUI2->SetCutPos(Vec2(0.f, 16.f));
+	pPUUI2->SetCutSize(Vec2(16.f, 16.f));
+	pPUUI2->SetScale(Vec2(0.3f, 0.3f));	
+	pPUUI2->SetCutScene();
+	AddObject(LAYER::UI, pPUUI2);
+
+	MyPlayerUI* pPUUI3 = new MyPlayerUI;
+	pPUUI3->SetUIType(UI_TYPE::PICKUP);
+	pPUUI3->SetPos(Vec2(5.f, 135.f));
+	pPUUI3->SetCutPos(Vec2(16.f, 0.f));
+	pPUUI3->SetCutSize(Vec2(16.f, 16.f));
+	pPUUI3->SetScale(Vec2(0.3f, 0.3f));
+	pPUUI3->SetCutScene();
+	AddObject(LAYER::UI, pPUUI3);
+
+	// 픽업 아이템 개수
+	for (size_t i = 0; i < 3; ++i)
+	{
+		for (size_t j = 0; j < 2; ++j)
+		{
+			MyPlayerUI* pFont = new MyPlayerUI;
+			pFont->SetUIType(UI_TYPE::FONT);
+			pFont->SetPos(Vec2(28.f + (15.f * j), 85.f + (30.f * i)));
+			pFont->SetCutPos(Vec2(164.f, 89.f));
+			pFont->SetCutSize(Vec2(16.f, 16.f));
+			pFont->SetScale(Vec2(0.08f, 0.12f));
+			pFont->SetCutScene();
+			AddObject(LAYER::UI, pFont);
+		}
+	}
+
 	// 충돌 설정
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::MONSTER);
 	MyCollisionMgr::GetInst()->CheckCollision(LAYER::PLAYER, LAYER::MONSTEARS);
@@ -186,6 +244,7 @@ void MyPlayLevel::enter()
 	vLookAt = MyEngine::GetInst()->GetResolution();
 	vLookAt /= 2.f;
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
+
 
 	m_BGSound2->SetVolume(40.f);
 	m_BGSound2->SetPosition(0.f);

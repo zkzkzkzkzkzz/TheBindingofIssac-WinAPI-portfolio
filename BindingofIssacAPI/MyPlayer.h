@@ -34,6 +34,7 @@ private:
 public:
     virtual void begin() override;
     virtual void tick(float _DT) override;
+    virtual void render(HDC _dc) override;
 
 public:
     virtual void BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol);

@@ -10,6 +10,7 @@
 
 #include "MyLevel.h"
 #include "MyTitleLevel.h"
+#include "MyLoadLevel.h"
 #include "MyPlayLevel.h"
 #include "MyEndingLevel.h"
 
@@ -34,6 +35,7 @@ void MyLevelMgr::init()
 {
 	// 모든 레벨 생성
 	m_arrLevels[(UINT)LEVEL_TYPE::TITLE_LEVEL] = new MyTitleLevel;
+	m_arrLevels[(UINT)LEVEL_TYPE::LOAD_LEVEL] = new MyLoadLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::PLAY_LEVEL] = new MyPlayLevel;
 	m_arrLevels[(UINT)LEVEL_TYPE::ENDING_LEVEL] = new MyEndingLevel;
 

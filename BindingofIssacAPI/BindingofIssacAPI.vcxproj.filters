@@ -161,6 +161,15 @@
     <Filter Include="Game\05. Object\Scene\EndingScene">
       <UniqueIdentifier>{1b42cd26-475f-4084-b4e2-d4781c0fd08d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\UI\PlayerUI">
+      <UniqueIdentifier>{f61aee5a-de45-4bae-9c4c-4b89246fc30f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\05. Object\UI\LoadUI">
+      <UniqueIdentifier>{e73cf757-80bb-4bf7-9504-1fd86f89a5ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Level\LoadLevel">
+      <UniqueIdentifier>{cd5185f5-65d5-4d22-aa50-01ff8f313421}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -365,6 +374,15 @@
     <ClInclude Include="MyEndingScene.h">
       <Filter>Game\05. Object\Scene\EndingScene</Filter>
     </ClInclude>
+    <ClInclude Include="MyPlayerUI.h">
+      <Filter>Game\05. Object\UI\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLoadUI.h">
+      <Filter>Game\05. Object\UI\LoadUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLoadLevel.h">
+      <Filter>Game\04. Level\LoadLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc">
@@ -376,6 +394,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="BindingofIssacAPI.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="icon.ico">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
@@ -563,6 +584,15 @@
     </ClCompile>
     <ClCompile Include="MyEndingScene.cpp">
       <Filter>Game\05. Object\Scene\EndingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPlayerUI.cpp">
+      <Filter>Game\05. Object\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLoadUI.cpp">
+      <Filter>Game\05. Object\UI\LoadUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyLoadLevel.cpp">
+      <Filter>Game\04. Level\LoadLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

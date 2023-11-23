@@ -25,13 +25,13 @@ MyPlayer::MyPlayer()
 	, m_Duration(0.5f)
 	, m_TearsCount(0)
 	, m_IsDamaged(0)
-	, m_DamagedMaxTime(2.f)
+	, m_DamagedMaxTime(100000.f)
 	, m_DamagedAccTime(0.f)
 	, m_FireSound(nullptr)
 {
 	SetName(L"Player");
 
-	MyTexture* pAtlas = MyAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\Character\\Issac.png");
+	//MyTexture* pAtlas = MyAssetMgr::GetInst()->LoadTexture(L"PlayerAtlas", L"texture\\Character\\Issac.png");
 
 	m_AnimatorBody = AddComponent<MyAnimator>(L"BodyAnimator");
 	m_AnimatorHead = AddComponent<MyAnimator>(L"HeadAnimator");
@@ -52,7 +52,7 @@ MyPlayer::MyPlayer()
 	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkLeft.txt");
 	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkRight.txt");
 	m_AnimatorBody->LoadAnimation(L"animdata\\BWalkDown.txt");
-	m_AnimatorBody->LoadAnimation(L"animdata\\IssacDamagedBodyAnim.txt");
+	m_AnimatorBody->LoadAnimation(L"animdata\\IssacDamagedAnim.txt");
 
 	m_AnimatorBody->Play(L"BIdleDown", true);
 	m_AnimatorHead->Play(L"HIdleDown", true);
@@ -85,7 +85,7 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	, m_Duration(1.f)
 	, m_TearsCount(0)
 	, m_IsDamaged(0)
-	, m_DamagedMaxTime(2.f)
+	, m_DamagedMaxTime(100000.f)
 	, m_DamagedAccTime(0.f)
 	, m_FireSound(_Origin.m_FireSound)
 {
@@ -123,53 +123,102 @@ void MyPlayer::tick(float _DT)
 
 	m_Acctime += _DT;
 
+	if (m_IsDamaged != 0)
+	{
+		m_DamagedAccTime += _DT;
+		if (m_DamagedAccTime >= m_DamagedMaxTime)
+		{
+			--m_IsDamaged;
+			m_DamagedMaxTime = 100000.f;
+			m_DamagedAccTime = 0.f;
+		}
+	}
+	
+
+
 	// 눈물을 안쏘고 있을 때
 	if (KEY_PRESSED(A) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(-1000.f, 0.f));
-		m_AnimatorBody->Play(L"BWalkLeft", true);
-		m_AnimatorHead->Play(L"HIdleLeft", true);
+
+		if (m_IsDamaged == 0)
+		{
+			m_AnimatorBody->Play(L"BWalkLeft", true);
+			m_AnimatorHead->Play(L"HIdleLeft", true);
+
+		}
 	}
 	if (KEY_RELEASED(A) && 0 == m_TearsCount)
 	{
-		m_AnimatorBody->Play(L"BIdleDown", true);
-		m_AnimatorHead->Play(L"HIdleDown", true);
+		if (m_IsDamaged == 0)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+
+		}
 	}
 
 	if (KEY_PRESSED(D) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(1000.f, 0.f));
-		m_AnimatorBody->Play(L"BWalkRight", true);
-		m_AnimatorHead->Play(L"HIdleRight", true);
+
+		if (m_IsDamaged == 0)
+		{
+
+			m_AnimatorBody->Play(L"BWalkRight", true);
+			m_AnimatorHead->Play(L"HIdleRight", true);
+		}
 	}
 	if (KEY_RELEASED(D) && 0 == m_TearsCount)
 	{
-		m_AnimatorBody->Play(L"BIdleDown", true);
-		m_AnimatorHead->Play(L"HIdleDown", true);
+		if (m_IsDamaged == 0)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+
+		}
 	}
 
 	if (KEY_PRESSED(W) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(0.f, -1000.f));
-		m_AnimatorBody->Play(L"BWalkDown", true);
-		m_AnimatorHead->Play(L"HIdleUp", true);
+
+		if (m_IsDamaged == 0)
+		{
+			m_AnimatorBody->Play(L"BWalkDown", true);
+			m_AnimatorHead->Play(L"HIdleUp", true);
+
+		}
 	}
 	if (KEY_RELEASED(W) && 0 == m_TearsCount)
 	{
-		m_AnimatorBody->Play(L"BIdleDown", true);
-		m_AnimatorHead->Play(L"HIdleDown", true);
+		if (m_IsDamaged == 0)
+		{
+
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
 	}
 
 	if (KEY_PRESSED(S) && 0 == m_TearsCount)
 	{
 		m_Movement->AddForce(Vec2(0.f, 1000.f));
-		m_AnimatorBody->Play(L"BWalkDown", true);
-		m_AnimatorHead->Play(L"HIdleDown", true);
+
+		if (m_IsDamaged == 0)
+		{
+			m_AnimatorBody->Play(L"BWalkDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+
+		}
 	}
 	if (KEY_RELEASED(S) && 0 == m_TearsCount)
 	{
-		m_AnimatorBody->Play(L"BIdleDown", true);
-		m_AnimatorHead->Play(L"HIdleDown", true);
+		if (m_IsDamaged == 0)
+		{
+			m_AnimatorBody->Play(L"BIdleDown", true);
+			m_AnimatorHead->Play(L"HIdleDown", true);
+
+		}
 	}
 
 	// 눈물을 쏘면서 움직일 때
@@ -179,81 +228,122 @@ void MyPlayer::tick(float _DT)
 	}
 	else if (KEY_PRESSED(LEFT))
 	{
-		m_AnimatorHead->Play(L"HTearLeft", true);
-		
-		if (m_Duration <= m_Acctime)
+		if (m_IsDamaged == 0)
 		{
-			m_FireSound->SetVolume(100.f);
-			m_FireSound->SetPosition(0.f);
-			m_FireSound->Play(false);
+			m_AnimatorHead->Play(L"HTearLeft", true);
+		
+			if (m_Duration <= m_Acctime)
+			{
+				m_FireSound->SetVolume(100.f);
+				m_FireSound->SetPosition(0.f);
+				m_FireSound->Play(false);
 
-			MyTears* pTears = new MyTears;
+				MyTears* pTears = new MyTears;
 
-			Vec2 TearsPos = GetPos();
-			TearsPos.x -= 20.f;
-			TearsPos.y -= 25.f;
+				Vec2 TearsPos = GetPos();
+				TearsPos.x -= 20.f;
+				TearsPos.y -= 25.f;
 
-			pTears->SetSpeed(450.f);
-			pTears->SetvAngle(Vec2(-1.f, 0.f));
-			pTears->SetScale(Vec2(1.4f, 1.4f));
-			pTears->SetOffsetPos(Vec2(-14.f, -18.f));
-			pTears->SetPos(TearsPos);
+				pTears->SetSpeed(450.f);
+				pTears->SetvAngle(Vec2(-1.f, 0.f));
+				pTears->SetScale(Vec2(1.4f, 1.4f));
+				pTears->SetOffsetPos(Vec2(-14.f, -18.f));
+				pTears->SetPos(TearsPos);
 
-			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+				MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
 
-			pTears->fire();
+				pTears->fire();
 
-			m_Acctime = 0.f;
+				m_Acctime = 0.f;
+			}
 		}
 
 		if (KEY_PRESSED(A) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(-1000.f, 0.f));
-			m_AnimatorBody->Play(L"BWalkLeft", true);
+			if (m_IsDamaged == 0)
+			{
+
+				m_AnimatorBody->Play(L"BWalkLeft", true);
+			}
 		}
 		if (KEY_RELEASED(A) && 0 != m_TearsCount)
 		{
-			m_AnimatorBody->Play(L"BIdleDown", true);
-			m_AnimatorHead->Play(L"HIdleDown", true);
+			if (m_IsDamaged == 0)
+			{
+
+				m_AnimatorBody->Play(L"BIdleDown", true);
+				m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(D) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(1000.f, 0.f));
-			m_AnimatorBody->Play(L"BWalkRight", true);
+
+			if (m_IsDamaged == 0)
+			{
+
+				m_AnimatorBody->Play(L"BWalkRight", true);
+			}
 		}
 		if (KEY_RELEASED(D) && 0 != m_TearsCount)
 		{
-			m_AnimatorBody->Play(L"BIdleDown", true);
-			m_AnimatorHead->Play(L"HIdleDown", true);
+			if (m_IsDamaged == 0)
+			{
+
+				m_AnimatorBody->Play(L"BIdleDown", true);
+				m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(W) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, -1000.f));
-			m_AnimatorBody->Play(L"BWalkDown", true);
+
+			if (m_IsDamaged == 0)
+			{
+				m_AnimatorBody->Play(L"BWalkDown", true);
+
+			}
 		}
 		if (KEY_RELEASED(W) && 0 != m_TearsCount)
 		{
-			m_AnimatorBody->Play(L"BIdleDown", true);
-			m_AnimatorHead->Play(L"HIdleDown", true);
+			if (m_IsDamaged == 0)
+			{
+
+				m_AnimatorBody->Play(L"BIdleDown", true);
+				m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(S) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, 1000.f));
-			m_AnimatorBody->Play(L"BWalkDown", true);
+			if (m_IsDamaged == 0)
+			{
+				m_AnimatorBody->Play(L"BWalkDown", true);
+
+			}
 		}
 		if (KEY_RELEASED(S) && 0 != m_TearsCount)
 		{
-			m_AnimatorBody->Play(L"BIdleDown", true);
-			m_AnimatorHead->Play(L"HIdleDown", true);
+			if (m_IsDamaged == 0)
+			{
+
+				m_AnimatorBody->Play(L"BIdleDown", true);
+				m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 	}
 	else if (KEY_RELEASED(LEFT))
 	{
-		m_AnimatorHead->Play(L"HIdleDown", true);
-		--m_TearsCount;
+		if (m_IsDamaged == 0)
+		{
+
+			m_AnimatorHead->Play(L"HIdleDown", true);
+		}
+			--m_TearsCount;
 	}
 
 	if (KEY_TAP(RIGHT))
@@ -262,80 +352,122 @@ void MyPlayer::tick(float _DT)
 	}
 	else if (KEY_PRESSED(RIGHT))
 	{
-		m_AnimatorHead->Play(L"HTearRight", true);
-
-		if (m_Duration <= m_Acctime)
+		if (m_IsDamaged == 0)
 		{
-			m_FireSound->SetVolume(100.f);
-			m_FireSound->SetPosition(0.f);
-			m_FireSound->Play(false);
 
-			MyTears* pTears = new MyTears;
+			m_AnimatorHead->Play(L"HTearRight", true);
 
-			Vec2 TearsPos = GetPos();
-			TearsPos.x += 12.f;
-			TearsPos.y -= 25.f;
+			if (m_Duration <= m_Acctime)
+			{
+				m_FireSound->SetVolume(100.f);
+				m_FireSound->SetPosition(0.f);
+				m_FireSound->Play(false);
 
-			pTears->SetSpeed(450.f);
-			pTears->SetvAngle(Vec2(1.f, 0.f));
-			pTears->SetScale(Vec2(1.4f, 1.4f));
-			pTears->SetOffsetPos(Vec2(-14.f, -18.f));
-			pTears->SetPos(TearsPos);
+				MyTears* pTears = new MyTears;
 
-			MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+				Vec2 TearsPos = GetPos();
+				TearsPos.x += 12.f;
+				TearsPos.y -= 25.f;
 
-			pTears->fire();
+				pTears->SetSpeed(450.f);
+				pTears->SetvAngle(Vec2(1.f, 0.f));
+				pTears->SetScale(Vec2(1.4f, 1.4f));
+				pTears->SetOffsetPos(Vec2(-14.f, -18.f));
+				pTears->SetPos(TearsPos);
 
-			m_Acctime = 0.f;
+				MyTaskMgr::GetInst()->AddTask(FTask{ TASK_TYPE::CREATE_OBJECT, (UINT_PTR)LAYER::TEARS, (UINT_PTR)pTears });
+
+				pTears->fire();
+
+				m_Acctime = 0.f;
+			}
 		}
 
 		if (KEY_PRESSED(A) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkLeft", true);
+			}
 		}
 		if (KEY_RELEASED(A) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(D) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkRight", true);
+			}
 		}
 		if (KEY_RELEASED(D) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(W) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkDown", true);
+			}
 		}
 		if (KEY_RELEASED(W) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(S) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkDown", true);
+			}
 		}
 		if (KEY_RELEASED(S) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 	}
 	else if (KEY_RELEASED(RIGHT))
 	{
+		if (m_IsDamaged == 0)
+		{
+
 		m_AnimatorHead->Play(L"HIdleDown", true);
+		}
 		--m_TearsCount;
 	}
 
@@ -345,6 +477,9 @@ void MyPlayer::tick(float _DT)
 	}
 	else if (KEY_PRESSED(UP))
 	{
+		if (m_IsDamaged == 0)
+		{
+
 		m_AnimatorHead->Play(L"HTearUp", true);
 
 		if (m_Duration <= m_Acctime)
@@ -371,54 +506,93 @@ void MyPlayer::tick(float _DT)
 
 			m_Acctime = 0.f;
 		}
+		}
 
 		if (KEY_PRESSED(A) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkLeft", true);
+			}
 		}
 		if (KEY_RELEASED(A) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(D) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkRight", true);
+			}
 		}
 		if (KEY_RELEASED(D) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(W) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkDown", true);
+			}
 		}
 		if (KEY_RELEASED(W) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(S) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkDown", true);
+			}
 		}
 		if (KEY_RELEASED(S) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 	}
 	else if (KEY_RELEASED(UP))
 	{
+		if (m_IsDamaged == 0)
+		{
+
 		m_AnimatorHead->Play(L"HIdleDown", true);
+		}
 		--m_TearsCount;
 	}
 
@@ -428,6 +602,9 @@ void MyPlayer::tick(float _DT)
 	}
 	else if (KEY_PRESSED(DOWN))
 	{
+		if (m_IsDamaged == 0)
+		{
+
 		m_AnimatorHead->Play(L"HTearDown", true);
 
 		if (m_Duration <= m_Acctime)
@@ -454,54 +631,93 @@ void MyPlayer::tick(float _DT)
 
 			m_Acctime = 0.f;
 		}
+		}
 
 		if (KEY_PRESSED(A) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(-1000.f, 0.f));
+			
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkLeft", true);
+			}
 		}
 		if (KEY_RELEASED(A) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(D) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(1000.f, 0.f));
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkRight", true);
+			}
 		}
 		if (KEY_RELEASED(D) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(W) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, -1000.f));
+			
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkDown", true);
+			}
 		}
 		if (KEY_RELEASED(W) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 
 		if (KEY_PRESSED(S) && 0 != m_TearsCount)
 		{
 			m_Movement->AddForce(Vec2(0.f, 1000.f));
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BWalkDown", true);
+			}
 		}
 		if (KEY_RELEASED(S) && 0 != m_TearsCount)
 		{
+			if (m_IsDamaged == 0)
+			{
+
 			m_AnimatorBody->Play(L"BIdleDown", true);
 			m_AnimatorHead->Play(L"HIdleDown", true);
+			}
 		}
 	}
 	else if (KEY_RELEASED(DOWN))
 	{
+		if (m_IsDamaged == 0)
+		{
+
 		m_AnimatorHead->Play(L"HIdleDown", true);
+		}
 		--m_TearsCount;
 	}
 
@@ -510,13 +726,27 @@ void MyPlayer::tick(float _DT)
 	m_Shadow->SetPos(vPos);
 }
 
+void MyPlayer::render(HDC _dc)
+{
+	if (m_IsDamaged != 0)
+	{
+
+	}
+
+	Super::render(_dc);
+}
+
 
 void MyPlayer::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
 	++m_IsDamaged;
+	m_DamagedMaxTime = 0.5f;
+	m_AnimatorHead->Play(L"IssacDamagedAnim", false);
+	m_AnimatorBody->Play(L"IssacDamagedAnim", false);
 }
 
 void MyPlayer::EndOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
-	--m_IsDamaged;
+	m_AnimatorHead->WaitPlay(L"HIdleDown", false, 0.2f);
+	m_AnimatorBody->WaitPlay(L"BIdleDown", false, 0.2f);
 }
