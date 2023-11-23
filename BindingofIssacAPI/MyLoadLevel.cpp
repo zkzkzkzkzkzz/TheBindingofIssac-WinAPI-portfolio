@@ -68,7 +68,7 @@ void MyLoadLevel::tick()
 	{
 		if (!m_IsFade)
 		{
-			MyCameraMgr::GetInst()->FadeOut(0.5f);
+			MyCameraMgr::GetInst()->FadeOut(0.8f);
 			m_IsFade = true;
 		}
 	}

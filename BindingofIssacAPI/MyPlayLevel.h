@@ -12,15 +12,13 @@ private:
     MyTexture*      m_Texture;
     Vec2            vLookAt;
     
-    MySound* m_BGSound1;
-    MySound* m_BGSound2;
+    MySound* m_BGSound;
 
     bool m_IsInit;
 
 public:
     void SetToInitTrue() { m_IsInit = true; }
-    MySound* GetBGSound1() { return m_BGSound1; }
-    MySound* GetBGSound2() { return m_BGSound2; }
+    MySound* GetBGSound() { return m_BGSound; }
 
 public:
     virtual void init() override;

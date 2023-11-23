@@ -14,8 +14,7 @@ class MyTitleLevel :
 private:
     MyTexture*  m_Texture;
     Vec2        vLookAt;
-    MySound*    m_BGSound1;
-    MySound*    m_BGSound2;
+    MySound*    m_BGSound;
     MySound*    m_EffectSound;
     MySound*    m_LoadingSound;
     int         m_CurScreen;

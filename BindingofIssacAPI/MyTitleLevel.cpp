@@ -55,14 +55,12 @@ void MyTitleLevel::init()
 	m_IsInit = false;
 
 
-	m_BGSound1 = MyAssetMgr::GetInst()->LoadSound(L"BGSound1", L"sound\\title_screen_intro.wav");
-	m_BGSound2 = MyAssetMgr::GetInst()->LoadSound(L"BGSound2", L"sound\\title_screen.wav");
+	m_BGSound = MyAssetMgr::GetInst()->LoadSound(L"BGSound1", L"sound\\title_screen.wav");
 	m_EffectSound = MyAssetMgr::GetInst()->LoadSound(L"EffectSound", L"sound\\book_page_turn.wav");
 
-	m_BGSound1->SetVolume(80.f);
-	m_BGSound1->SetPosition(0.f);
-	m_BGSound1->Play(true);
-
+	m_BGSound->SetVolume(80.f);
+	m_BGSound->SetPosition(0.f);
+	m_BGSound->Play(true);
 }
 
 void MyTitleLevel::enter()
@@ -106,7 +104,7 @@ void MyTitleLevel::tick()
 	{
 		if (KEY_TAP(SPACE) && m_CursorIdx == 0)
 		{	
-			m_BGSound1->Stop(true);
+			m_BGSound->Stop(true);
 			m_IsInit = true;
 			ChangeLevel(LEVEL_TYPE::LOAD_LEVEL);
 		}

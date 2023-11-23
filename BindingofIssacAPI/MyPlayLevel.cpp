@@ -235,8 +235,7 @@ void MyPlayLevel::init()
 
 	m_IsInit = false;
 
-	m_BGSound1 = MyAssetMgr::GetInst()->LoadSound(L"PL_BGSound1", L"sound\\burning_basement_intro.wav");
-	m_BGSound2 = MyAssetMgr::GetInst()->LoadSound(L"PL_BGSound2", L"sound\\burning_basement_loop.wav");
+	m_BGSound = MyAssetMgr::GetInst()->LoadSound(L"PL_BGSound1", L"sound\\burning_basement.wav");
 }
 
 void MyPlayLevel::enter()
@@ -246,10 +245,9 @@ void MyPlayLevel::enter()
 	vLookAt /= 2.f;
 	MyCameraMgr::GetInst()->SetLookAt(vLookAt);
 
-
-	m_BGSound2->SetVolume(40.f);
-	m_BGSound2->SetPosition(0.f);
-	m_BGSound2->PlayToBGM(true);
+	m_BGSound->SetVolume(40.f);
+	m_BGSound->SetPosition(0.f);
+	m_BGSound->PlayToBGM(true);
 
 	if (m_IsInit == true)
 	{

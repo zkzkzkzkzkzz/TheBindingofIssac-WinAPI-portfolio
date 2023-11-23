@@ -329,7 +329,7 @@ void MyRoom::SetMonPos()
 void MyRoom::PlayBossAnimation()
 {
 	MyPlayLevel* pLevel = dynamic_cast<MyPlayLevel*>(MyLevelMgr::GetInst()->GetCurLevel());
-	pLevel->GetBGSound2()->Stop(true);
+	pLevel->GetBGSound()->Stop(true);
 
 	m_Scene = new MyScene;
 	m_Scene->SetPos(Vec2(960.f, -640.f));
