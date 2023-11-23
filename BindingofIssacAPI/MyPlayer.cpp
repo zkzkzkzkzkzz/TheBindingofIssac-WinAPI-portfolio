@@ -28,6 +28,8 @@ MyPlayer::MyPlayer()
 	, m_DamagedMaxTime(100000.f)
 	, m_DamagedAccTime(0.f)
 	, m_FireSound(nullptr)
+	, m_DamageSound(nullptr)
+	, m_IsRender(true)
 {
 	SetName(L"Player");
 
@@ -72,6 +74,7 @@ MyPlayer::MyPlayer()
 	m_Movement->UseGravity(false);
 
 	m_FireSound = MyAssetMgr::GetInst()->LoadSound(L"FireSound", L"sound\\tear_fire_5.wav");
+	m_DamageSound = MyAssetMgr::GetInst()->LoadSound(L"DamagedSound", L"sound\\hurt_grunt.wav");
 }
 
 MyPlayer::MyPlayer(const MyPlayer& _Origin)
@@ -88,6 +91,7 @@ MyPlayer::MyPlayer(const MyPlayer& _Origin)
 	, m_DamagedMaxTime(100000.f)
 	, m_DamagedAccTime(0.f)
 	, m_FireSound(_Origin.m_FireSound)
+	, m_DamageSound(_Origin.m_DamageSound)
 {
 	m_AnimatorHead = GetComponent<MyAnimator>();
 	m_AnimatorBody = GetComponent<MyAnimator>();
@@ -126,9 +130,27 @@ void MyPlayer::tick(float _DT)
 	if (m_IsDamaged != 0)
 	{
 		m_DamagedAccTime += _DT;
+		
+		if (m_DamagedAccTime >= 0.f && m_DamagedAccTime < 0.1f)
+		{
+			m_IsRender = true;
+		}
+		else if (m_DamagedAccTime >= 0.1f && m_DamagedAccTime < 0.2f)
+		{
+			m_IsRender = false;
+		}
+		else if (m_DamagedAccTime >= 0.3f && m_DamagedAccTime < 0.4f)
+		{
+			m_IsRender = true;
+		}
+		else if (m_DamagedAccTime >= 0.4f && m_DamagedAccTime < 0.5f)
+		{
+			m_IsRender = false;
+		}
 		if (m_DamagedAccTime >= m_DamagedMaxTime)
 		{
-			--m_IsDamaged;
+			m_IsRender = true;
+			m_IsDamaged = 0;
 			m_DamagedMaxTime = 100000.f;
 			m_DamagedAccTime = 0.f;
 		}
@@ -728,25 +750,39 @@ void MyPlayer::tick(float _DT)
 
 void MyPlayer::render(HDC _dc)
 {
-	if (m_IsDamaged != 0)
+	if (m_IsRender)
 	{
-
+		Super::render(_dc);
 	}
 
-	Super::render(_dc);
 }
 
 
 void MyPlayer::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
-	++m_IsDamaged;
-	m_DamagedMaxTime = 0.5f;
-	m_AnimatorHead->Play(L"IssacDamagedAnim", false);
-	m_AnimatorBody->Play(L"IssacDamagedAnim", false);
+	wstring str = _OtherCol ->GetName();
+
+	if (str != L"TrophyCollider")
+	{
+		m_IsRender = false;
+		m_IsDamaged = 1;
+		m_DamagedMaxTime = 0.5f;
+		m_AnimatorHead->Play(L"IssacDamagedAnim", false);
+		m_AnimatorBody->Play(L"IssacDamagedAnim", false);
+
+		m_DamageSound->SetVolume(80.f);
+		m_DamageSound->SetPosition(0.f);
+		m_DamageSound->Play();
+	}
 }
 
 void MyPlayer::EndOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* _OtherCol)
 {
-	m_AnimatorHead->WaitPlay(L"HIdleDown", false, 0.2f);
-	m_AnimatorBody->WaitPlay(L"BIdleDown", false, 0.2f);
+	wstring str = _OtherCol->GetName();
+
+	if (str != L"TrophyCollider")
+	{
+		m_AnimatorHead->WaitPlay(L"HIdleDown", false, 0.2f);
+		m_AnimatorBody->WaitPlay(L"BIdleDown", false, 0.2f);
+	}
 }

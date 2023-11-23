@@ -20,6 +20,7 @@ private:
     MyShadow*   m_Shadow;
 
     MySound* m_FireSound;
+    MySound* m_DamageSound;
 
     // 눈물 딜레이
     float   m_Acctime;
@@ -30,6 +31,7 @@ private:
     float   m_DamagedMaxTime;
     float   m_DamagedAccTime;
     
+    bool m_IsRender;
 
 public:
     virtual void begin() override;
