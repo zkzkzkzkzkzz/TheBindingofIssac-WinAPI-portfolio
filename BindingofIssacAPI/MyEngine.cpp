@@ -12,7 +12,6 @@
 #include "MyGCMgr.h"
 #include "MyLogMgr.h"
 #include "MyCameraMgr.h"
-#include "MyUIMgr.h"
 #include "MySoundMgr.h"
 		  
 #include "MyTexture.h"
@@ -21,7 +20,7 @@ MyEngine::MyEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
 	, m_DC(nullptr)
-	, m_bDebugRender(true)
+	, m_bDebugRender(false)
 	, m_arrPen{}
 {
 }

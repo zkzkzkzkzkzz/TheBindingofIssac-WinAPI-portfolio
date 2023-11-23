@@ -200,10 +200,6 @@
     <ClInclude Include="MyTitleLevel.h" />
     <ClInclude Include="MyTrophy.h" />
     <ClInclude Include="MyUI.h" />
-    <ClInclude Include="MyUIMgr.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="NMAttack.h" />
     <ClInclude Include="NMIdle.h" />
     <ClInclude Include="NMTrace.h" />
@@ -274,10 +270,6 @@
     <ClCompile Include="MyTitleLevel.cpp" />
     <ClCompile Include="MyTrophy.cpp" />
     <ClCompile Include="MyUI.cpp" />
-    <ClCompile Include="MyUIMgr.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="NMAttack.cpp" />
     <ClCompile Include="NMIdle.cpp" />
     <ClCompile Include="NMTrace.cpp" />

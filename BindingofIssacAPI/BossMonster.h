@@ -44,6 +44,7 @@ private:
     ATT_TYPE m_AttType;
 
     MySound* m_SummonFly;
+    MySound* m_SummonFlySound;
     MyBossUI* m_BossUI;
 
 public:
@@ -75,5 +76,6 @@ public:
     ~BossMonster();
 
     friend class MyBossUI;
+    friend class MyRoom;
 };
 

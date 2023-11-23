@@ -31,7 +31,6 @@ private:
     ROOM_TYPE m_CurRoomType;
     
     vector<MyMonster*>  m_vecMons;
-    int                 m_MonsterCount;
     bool                m_isOpen;
     bool                m_RoomClear;
     bool                m_IsBoss;
@@ -81,7 +80,6 @@ public:
     void AddMonster(MyMonster* _Mons)
     {
         m_vecMons.push_back(_Mons);
-        ++m_MonsterCount;
     }
 
     void CheckMonsterCount();

@@ -105,9 +105,27 @@ void MyPlayLevel::init()
 	pFly->SetInitPos(Vec2(-800.f, 200.f));
 	pFly->SetScale(Vec2(2.f, 2.f));
 	pFly->SetOffsetPos(Vec2(-15.f, -25.f));
-	pRoom2->AddMonster(pFly);
 	pFly->SetActive(false);
+	pRoom2->AddMonster(pFly);
 	AddObject(LAYER::MONSTER, pFly);
+
+	NormalFly* pFly2 = new NormalFly;
+	pFly2->SetPos(Vec2(-10000.f, -10000.f));
+	pFly2->SetInitPos(Vec2(-800.f, 300.f));
+	pFly2->SetScale(Vec2(2.f, 2.f));
+	pFly2->SetOffsetPos(Vec2(-15.f, -25.f));
+	pFly2->SetActive(false);
+	pRoom2->AddMonster(pFly2);
+	AddObject(LAYER::MONSTER, pFly2);
+
+	NormalFly* pFly3 = new NormalFly;
+	pFly3->SetPos(Vec2(-10000.f, -10000.f));
+	pFly3->SetInitPos(Vec2(-800.f, 400.f));
+	pFly3->SetScale(Vec2(2.f, 2.f));
+	pFly3->SetOffsetPos(Vec2(-15.f, -25.f));
+	pFly3->SetActive(false);
+	pRoom2->AddMonster(pFly3);
+	AddObject(LAYER::MONSTER, pFly3);
 
 	// 푸터 생성
 	Pooter* pPooter = new Pooter;
@@ -118,6 +136,15 @@ void MyPlayLevel::init()
 	pPooter->SetActive(false);
 	pRoom2->AddMonster(pPooter);
 	AddObject(LAYER::MONSTER, pPooter);
+
+	Pooter* pPooter2 = new Pooter;
+	pPooter2->SetPos(Vec2(-10000.f, -10000.f));
+	pPooter2->SetInitPos(Vec2(-700.f, 450.f));
+	pPooter2->SetScale(Vec2(2.f, 2.f));
+	pPooter2->SetOffsetPos(Vec2(-18.f, -30.f));
+	pPooter2->SetActive(false);
+	pRoom2->AddMonster(pPooter2);
+	AddObject(LAYER::MONSTER, pPooter2);
 
 	// 부유하는 나이트 생성
 	FloatingKnight* pFK = new FloatingKnight;
@@ -152,6 +179,7 @@ void MyPlayLevel::init()
 
 	// 보스 생성
 	BossMonster* pBoss = new BossMonster;
+	pBoss->SetName(L"StageBoss");
 	pBoss->SetPos(Vec2(-10000.f, -10000.f));
 	pBoss->SetInitPos(Vec2(1440.f, -400.f));
 	pBoss->SetScale(Vec2(2.f, 2.f));

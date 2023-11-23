@@ -8,6 +8,7 @@
 #include "MyLevel.h"
 #include "MyPlayer.h"
 #include "MyMonster.h"
+#include "BossMonster.h"
 #include "NormalFly.h"
 #include "MyTears.h"
 #include "MyDoor.h"
@@ -37,7 +38,6 @@ MyRoom::MyRoom()
 	, LeftDoorColOpen(false)
 	, RightDoorColOpen(false)
 	, m_RoomClear(false)
-	, m_MonsterCount(0)
 	, m_StageClear(nullptr)
 	, m_Scene(nullptr)
 {
@@ -363,7 +363,19 @@ void MyRoom::CheckMonsterCount()
 
 		if (m_CurRoomType == ROOM_TYPE::BOSS && GetName() == L"BossRoom")
 		{
+			auto Boss = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::BOSS)->GetObjects();
+			dynamic_cast<BossMonster*>(Boss[0])->m_SummonFlySound->Stop();
 			SpawnTrophy();
+		}
+
+		return;
+	}
+	else if (1 == m_vecMons.size())
+	{
+		if (m_CurRoomType == ROOM_TYPE::BOSS && GetName() == L"BossRoom" && m_vecMons[0]->GetName() == L"StageBoss")
+		{
+			auto Boss = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::BOSS)->GetObjects();
+			dynamic_cast<BossMonster*>(Boss[0])->m_SummonFlySound->Stop();
 		}
 
 		return;

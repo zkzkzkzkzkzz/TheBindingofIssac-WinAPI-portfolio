@@ -58,7 +58,7 @@ void MyTitleLevel::init()
 	m_BGSound = MyAssetMgr::GetInst()->LoadSound(L"BGSound1", L"sound\\title_screen.wav");
 	m_EffectSound = MyAssetMgr::GetInst()->LoadSound(L"EffectSound", L"sound\\book_page_turn.wav");
 
-	m_BGSound->SetVolume(80.f);
+	m_BGSound->SetVolume(60.f);
 	m_BGSound->SetPosition(0.f);
 	m_BGSound->Play(true);
 }

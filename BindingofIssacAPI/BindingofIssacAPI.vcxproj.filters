@@ -239,9 +239,6 @@
     <ClInclude Include="MySoundMgr.h">
       <Filter>Game\03. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="MyUIMgr.h">
-      <Filter>Game\03. Manager</Filter>
-    </ClInclude>
     <ClInclude Include="components.h">
       <Filter>Game\01. Header</Filter>
     </ClInclude>
@@ -454,9 +451,6 @@
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
     <ClCompile Include="MySoundMgr.cpp">
-      <Filter>Game\03. Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="MyUIMgr.cpp">
       <Filter>Game\03. Manager</Filter>
     </ClCompile>
     <ClCompile Include="MyComponent.cpp">

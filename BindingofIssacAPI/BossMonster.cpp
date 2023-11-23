@@ -33,6 +33,7 @@ BossMonster::BossMonster()
 	, m_MonsCount(0)
 	, m_SummonFly(nullptr)
 	, m_BossUI(nullptr)
+	, m_SummonFlySound(nullptr)
 {
 	m_Atlas = MyAssetMgr::GetInst()->LoadTexture(L"Boss", L"texture\\Boss\\boss_dukeofflies.png");
 	m_MonsterShadow = MyAssetMgr::GetInst()->LoadTexture(L"Shadow", L"texture\\Effect\\shadow.png");
@@ -57,6 +58,7 @@ BossMonster::BossMonster()
 	m_Info.HP = 10.f;
 
 	m_SummonFly = MyAssetMgr::GetInst()->LoadSound(L"SummonFly", L"sound\\boss_lite_roar_1.wav");
+	m_SummonFlySound = MyAssetMgr::GetInst()->LoadSound(L"SummonFlySound", L"sound\\insect_swarm.wav");
 
 	srand((UINT)time(NULL));
 }
@@ -404,4 +406,11 @@ void BossMonster::SpawnFly()
 	m_SummonFly->SetVolume(80.f);
 	m_SummonFly->SetPosition(0.f);
 	m_SummonFly->Play();
+
+	if (!(pFly->IsDead()) || !(pFly2->IsDead()) || !(pFly3->IsDead()))
+	{
+		m_SummonFlySound->SetVolume(80.f);
+		m_SummonFlySound->SetPosition(0.f);
+		m_SummonFlySound->Play(true);
+	}
 }
