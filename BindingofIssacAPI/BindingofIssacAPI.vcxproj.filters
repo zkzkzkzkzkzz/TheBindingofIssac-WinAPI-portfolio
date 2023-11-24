@@ -173,6 +173,9 @@
     <Filter Include="Game\05. Object\UI\BossUI">
       <UniqueIdentifier>{9b0fa655-d853-4a6d-b46e-84860ea7d04c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\05. Object\Monster\Host">
+      <UniqueIdentifier>{ea01dc38-c4ea-4439-83c3-936946805ec7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingofIssacAPI.h">
@@ -386,6 +389,9 @@
     <ClInclude Include="MyBossUI.h">
       <Filter>Game\05. Object\UI\BossUI</Filter>
     </ClInclude>
+    <ClInclude Include="Host.h">
+      <Filter>Game\05. Object\Monster\Host</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BindingofIssacAPI.rc">
@@ -596,6 +602,9 @@
     </ClCompile>
     <ClCompile Include="MyBossUI.cpp">
       <Filter>Game\05. Object\UI\BossUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Host.cpp">
+      <Filter>Game\05. Object\Monster\Host</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

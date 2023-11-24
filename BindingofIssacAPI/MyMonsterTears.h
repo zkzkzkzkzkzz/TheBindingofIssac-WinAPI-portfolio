@@ -22,7 +22,6 @@ private:
 
     float   m_Speed;
     float   m_Angle;
-    Vec2    m_vAngle;
     float   m_Duration;
     float   m_Acctime;
     bool    m_IsDestroy;
@@ -43,8 +42,6 @@ public:
 public:
     void SetAngle(float _theta) { m_Angle = _theta; }
     void SetSpeed(float _Speed) { m_Speed = _Speed; }
-    void SetvAngle(Vec2 _vDir) { m_vAngle = _vDir; }
-    Vec2 GetvAngle() { return m_vAngle; }
 
     float GetSpeed() { return m_Speed; }
     float GetAngle() { return m_Angle; };

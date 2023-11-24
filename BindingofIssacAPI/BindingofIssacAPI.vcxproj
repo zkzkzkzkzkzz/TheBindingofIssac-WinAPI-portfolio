@@ -148,6 +148,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="Host.h" />
     <ClInclude Include="MyAnim.h" />
     <ClInclude Include="MyAnimator.h" />
     <ClInclude Include="MyAsset.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="FloatingKnight.cpp" />
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="Host.cpp" />
     <ClCompile Include="MyAnim.cpp" />
     <ClCompile Include="MyAnimator.cpp" />
     <ClCompile Include="MyAsset.cpp" />

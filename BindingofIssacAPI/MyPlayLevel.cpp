@@ -16,6 +16,7 @@
 #include "NormalFly.h"
 #include "Pooter.h"
 #include "FloatingKnight.h"
+#include "Host.h"
 #include "BossMonster.h"
 #include "MyRoom.h"
 #include "MyPlayerUI.h"
@@ -176,6 +177,25 @@ void MyPlayLevel::init()
 	pFK3->SetActive(false);
 	pRoom3->AddMonster(pFK3);
 	AddObject(LAYER::MONSTER, pFK3);
+
+	// 호스트 생성
+	Host* pHost = new Host;
+	pHost->SetPos(Vec2(-10000.f, -1000.f));
+	pHost->SetInitPos(Vec2(1750.f, 200.f));
+	pHost->SetScale(Vec2(2.f, 2.f));
+	pHost->SetOffsetPos(Vec2(-15.f, -40.f));
+	pHost->SetActive(false);
+	pRoom4->AddMonster(pHost);
+	AddObject(LAYER::MONSTER, pHost);
+
+	Host* pHost2 = new Host;
+	pHost2->SetPos(Vec2(-10000.f, -1000.f));
+	pHost2->SetInitPos(Vec2(1550.f, 200.f));
+	pHost2->SetScale(Vec2(2.f, 2.f));
+	pHost2->SetOffsetPos(Vec2(-15.f, -40.f));
+	pHost2->SetActive(false);
+	pRoom4->AddMonster(pHost2);
+	AddObject(LAYER::MONSTER, pHost2);
 
 	// 보스 생성
 	BossMonster* pBoss = new BossMonster;

@@ -111,7 +111,7 @@ void MyMonsterTears::fire()
 
 	Vec2 vPos = GetPos();
 	
-	Vec2 vDir = m_TargetPos - vPos;
+	Vec2 vDir = (m_TargetPos - vPos);
 	vDir.Normalize();
 
 	vPos.x += vDir.x * GetSpeed() * DT;
@@ -121,12 +121,12 @@ void MyMonsterTears::fire()
 
 	m_Shadow->SetPos(Vec2(vPos.x, vPos.y + 30.f));
 	m_Shadow->SetScale(Vec2(0.2f, 0.2f));
-	m_Shadow->SetOffsetPos(Vec2(-12.f, -10.f));
+	m_Shadow->SetOffsetPos(Vec2(-12.f, -20.f));
 
-	/*if (m_Duration / 4.f <= m_Acctime)
-	{
-		m_Movement->UseGravity(true);
-	}*/
+	//if (m_Duration / 4.f <= m_Acctime)
+	//{
+	//	m_Movement->UseGravity(true);
+	//}
 }
 
 void MyMonsterTears::TearsDestroy()

@@ -394,6 +394,17 @@ void MyDoor::tick(float _DT)
 			{
 				m_InAnimator->Play(L"UpInBossDoorOpenAnim", false);
 				m_InAnimator->FindAnim(L"UpInBossDoorCloseAnim")->Reset();
+
+				if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::NORMAL3 && m_OwnerRoom->GetName() == L"NormalRoom3")
+				{
+					if (!(m_DOpenSound->IsPlayed()))
+					{
+						m_DOpenSound->SetVolume(80.f);
+						m_DOpenSound->SetPosition(0.f);
+						m_DOpenSound->Play();
+						m_DOpenSound->SetPlayed(true);
+					}
+				}
 			}
 
 		}
@@ -568,6 +579,22 @@ void MyDoor::BeginOverlap(MyCollider* _OwnCol, MyObject* _OtherObj, MyCollider* 
 			_OtherObj = pPlayer;
 
 			_OtherObj->SetPos(Vec2(PlayerPos.x + 252.f, PlayerPos.y));
+
+			if (m_OwnerRoom->GetRoomType() == ROOM_TYPE::START)
+			{
+				auto objects = MyLevelMgr::GetInst()->GetCurLevel()->GetLayer((UINT)LAYER::ROOM)->GetObjects();
+				dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::NORMAL3])->SetMonPos();
+
+				if (!(dynamic_cast<MyRoom*>(objects[(UINT)ROOM_TYPE::NORMAL3])->IsRoomOpen()))
+				{
+					m_DCloseSound->SetVolume(80.f);
+					m_DCloseSound->SetPosition(0.f);
+					m_DCloseSound->Play();
+					m_DCloseSound->SetPlayed(true);
+					m_DOpenSound->SetPlayed(false);
+					m_DOpenSound->Reset();
+				}
+			}
 		}
 
 		// 문과 눈물 충돌

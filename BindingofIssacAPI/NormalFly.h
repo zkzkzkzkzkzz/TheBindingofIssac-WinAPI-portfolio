@@ -20,7 +20,7 @@ private:
     MyCollider*     m_Collider;
     MyStateMachine* m_AI;
     FMonInfo        m_Info;
-    MyRoom*         m_OwnerRoom;
+    //MyRoom*         m_OwnerRoom;
 
 public:
     virtual void begin() override;

@@ -16,7 +16,6 @@ enum class ROOM_TYPE
     NORMAL2,
     NORMAL3,
     BOSS,
-    TREASURE,
     END,
 };
 
